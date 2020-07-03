@@ -1,6 +1,7 @@
 package de.neuefische.boosterapp.controller;
 
 import de.neuefische.boosterapp.model.Booster;
+import de.neuefische.boosterapp.model.BoosterType;
 import de.neuefische.boosterapp.service.BoosterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,11 @@ public class BoosterController {
     @GetMapping
     public List<Booster> getBooster(){
         return boosterService.getBooster();
+    }
+
+    @PutMapping("/random")
+    public Booster getRandomBoosterOfType(@RequestBody BoosterType randomBoost){
+        return boosterService.getRandomBoosterOfType(randomBoost);
     }
 
     @PutMapping
