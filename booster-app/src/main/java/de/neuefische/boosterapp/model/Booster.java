@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 public class Booster {
 
+    private String id;
     private BoosterType type;
     private String message;
     private String youtubeLink;
