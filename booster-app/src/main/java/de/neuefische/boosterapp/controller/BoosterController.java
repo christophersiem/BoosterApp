@@ -28,4 +28,9 @@ public class BoosterController {
     public Booster addNewBooster(@RequestBody Booster booster){
         return boosterService.addNewBooster(booster);
     }
+
+    @DeleteMapping("{id}")
+    public void deleteBooster(@PathVariable String id){
+        boosterService.deleteBooster(id);
+    }
 }

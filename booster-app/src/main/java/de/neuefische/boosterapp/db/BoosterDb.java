@@ -29,4 +29,13 @@ public class BoosterDb {
     public List<Booster> getBooster() {
         return boosterList;
     }
+
+    public void deleteBooster(String id) {
+        for (Booster booster : boosterList){
+            if (booster.getId().equals(id)){
+                boosterList.remove(booster);
+
+            }
+        }
+    }
 }

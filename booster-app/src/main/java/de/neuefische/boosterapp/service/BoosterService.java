@@ -25,4 +25,8 @@ public class BoosterService {
     public Booster addNewBooster(Booster booster) {
         return BoosterDb.addNewBooster(booster);
     }
+
+    public void deleteBooster(String id) {
+        boosterDb.deleteBooster(id);
+    }
 }
