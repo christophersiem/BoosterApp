@@ -3,9 +3,7 @@ package de.neuefische.boosterapp.controller;
 import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.service.BoosterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,10 @@ public class BoosterController {
     @GetMapping
     public List<Booster> getBooster(){
         return boosterService.getBooster();
+    }
+
+    @PutMapping
+    public Booster addNewBooster(@RequestBody Booster booster){
+        return boosterService.addNewBooster(booster);
     }
 }

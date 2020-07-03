@@ -21,4 +21,8 @@ public class BoosterService {
     public List<Booster> getBooster() {
         return boosterDb.getBooster();
     }
+
+    public Booster addNewBooster(Booster booster) {
+        return BoosterDb.addNewBooster(booster);
+    }
 }
