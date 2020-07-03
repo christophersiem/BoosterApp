@@ -12,6 +12,7 @@ public class Booster {
 
     private String id;
     private BoosterType type;
+    private String name;
     private String message;
     private String youtubeLink;
     private String spotifyLink;

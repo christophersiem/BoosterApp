@@ -18,12 +18,12 @@ import static de.neuefische.boosterapp.model.BoosterType.CALM;
 public class BoosterDb {
 
     private static final List<Booster> boosterList = new ArrayList<>(List.of(
-            new Booster("1", JOY, "JOY MESSAGE 1", null, null),
-            new Booster("2", CONFIDENCE, null, "https://www.youtube.com/watch?v=kzSBrJmXqdg", null),
-            new Booster("3", CALM, "CALM MESSAGE 1", null, null),
-            new Booster("4", CONFIDENCE, "CONFIDENCE MESSAGE 1", null, null),
-            new Booster("5", JOY, "JOY MESSAGE 2", null, null),
-            new Booster("6", CALM, "CALM MESSAGE 2", null, null)
+            new Booster("1", JOY,"My first booster", "JOY MESSAGE 1", null, null),
+            new Booster("2", CONFIDENCE,"My second booster", null, "https://www.youtube.com/watch?v=kzSBrJmXqdg", null),
+            new Booster("3", CALM,"My third booster", "CALM MESSAGE 1", null, null),
+            new Booster("4", CONFIDENCE,"My fourth booster", "CONFIDENCE MESSAGE 1", null, null),
+            new Booster("5", JOY,"My fifth booster", "JOY MESSAGE 2", null, null),
+            new Booster("6", CALM,"My sixth booster", "CALM MESSAGE 2", null, null)
 
     ));
 
@@ -48,8 +48,6 @@ public class BoosterDb {
             if (booster.getType().equals(randomBoost)) {
                 list.add(booster);
             }
-
-
         }
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
