@@ -18,12 +18,12 @@ import static de.neuefische.boosterapp.model.BoosterType.CALM;
 public class BoosterDb {
 
     private static final List<Booster> boosterList = new ArrayList<>(List.of(
-            new Booster("1", JOY,"user1","My first booster", "JOY MESSAGE 1", null, null),
-            new Booster("2", CONFIDENCE,"user1","My second booster", null, "https://www.youtube.com/watch?v=kzSBrJmXqdg", null),
-            new Booster("3", CALM,"user1","My third booster", "CALM MESSAGE 1", null, null),
-            new Booster("4", CONFIDENCE,"user1","My fourth booster", "CONFIDENCE MESSAGE 1", null, null),
-            new Booster("5", JOY,"user1","My fifth booster", "JOY MESSAGE 2", null, null),
-            new Booster("6", CALM,"user1","My sixth booster", "CALM MESSAGE 2", null, null)
+            new Booster("1", JOY, "user1", "My first booster", "JOY MESSAGE 1", null, null),
+            new Booster("2", CONFIDENCE, "user1", "My second booster", null, "https://www.youtube.com/watch?v=kzSBrJmXqdg", null),
+            new Booster("3", CALM, "user1", "My third booster", "CALM MESSAGE 1", null, null),
+            new Booster("4", CONFIDENCE, "user1", "My fourth booster", "CONFIDENCE MESSAGE 1", null, null),
+            new Booster("5", JOY, "user1", "My fifth booster", "JOY MESSAGE 2", null, null),
+            new Booster("6", CALM, "user1", "My sixth booster", "CALM MESSAGE 2", null, null)
 
     ));
 
@@ -42,10 +42,10 @@ public class BoosterDb {
         boosterList.removeIf(booster -> booster.getBoosterId().equals(id));
     }
 
-    public Booster getRandomBoosterOfType(BoosterType randomBoost) {
+    public Booster getRandomBoosterOfType(BoosterType randomBoost, String userId) {
         List<Booster> list = new ArrayList<>();
         for (Booster booster : boosterList) {
-            if (booster.getType().equals(randomBoost)) {
+            if (booster.getOwnerId().equals(userId) && booster.getType().equals(randomBoost)) {
                 list.add(booster);
             }
         }

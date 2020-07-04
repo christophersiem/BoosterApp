@@ -31,7 +31,7 @@ public class BoosterService {
         boosterDb.deleteBooster(id);
     }
 
-    public Booster getRandomBoosterOfType(BoosterType randomBoost) {
-        return boosterDb.getRandomBoosterOfType(randomBoost);
+    public Booster getRandomBoosterOfType(BoosterType randomBoost, String userId) {
+        return boosterDb.getRandomBoosterOfType(randomBoost, userId);
     }
 }
