@@ -42,10 +42,10 @@ public class BoosterDb {
         boosterList.removeIf(booster -> booster.getBoosterId().equals(id));
     }
 
-    public Booster getRandomBoosterOfType(BoosterType randomBoost, String userId) {
+    public Booster getRandomBoosterOfType(BoosterType randomBoost, String ownerId) {
         List<Booster> list = new ArrayList<>();
         for (Booster booster : boosterList) {
-            if (booster.getOwnerId().equals(userId) && booster.getType().equals(randomBoost)) {
+            if (booster.getOwnerId().equals(ownerId) && booster.getType().equals(randomBoost)) {
                 list.add(booster);
             }
         }

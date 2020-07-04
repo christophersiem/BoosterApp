@@ -25,9 +25,9 @@ public class BoosterController {
         return boosterService.getBooster();
     }
 
-    @PutMapping("/random")
-    public Booster getRandomBoosterOfType(@RequestBody BoosterType randomBoost,String userId){
-        return boosterService.getRandomBoosterOfType(randomBoost,userId);
+    @PutMapping("{ownerId}/random")
+    public Booster getRandomBoosterOfType(@PathVariable String ownerId, @RequestBody BoosterType randomBoost){
+        return boosterService.getRandomBoosterOfType(randomBoost,ownerId);
     }
 
     @PutMapping
