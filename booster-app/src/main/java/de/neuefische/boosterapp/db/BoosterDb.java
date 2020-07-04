@@ -18,17 +18,17 @@ import static de.neuefische.boosterapp.model.BoosterType.CALM;
 public class BoosterDb {
 
     private static final List<Booster> boosterList = new ArrayList<>(List.of(
-            new Booster("1", JOY,"My first booster", "JOY MESSAGE 1", null, null),
-            new Booster("2", CONFIDENCE,"My second booster", null, "https://www.youtube.com/watch?v=kzSBrJmXqdg", null),
-            new Booster("3", CALM,"My third booster", "CALM MESSAGE 1", null, null),
-            new Booster("4", CONFIDENCE,"My fourth booster", "CONFIDENCE MESSAGE 1", null, null),
-            new Booster("5", JOY,"My fifth booster", "JOY MESSAGE 2", null, null),
-            new Booster("6", CALM,"My sixth booster", "CALM MESSAGE 2", null, null)
+            new Booster("1", JOY,"user1","My first booster", "JOY MESSAGE 1", null, null),
+            new Booster("2", CONFIDENCE,"user1","My second booster", null, "https://www.youtube.com/watch?v=kzSBrJmXqdg", null),
+            new Booster("3", CALM,"user1","My third booster", "CALM MESSAGE 1", null, null),
+            new Booster("4", CONFIDENCE,"user1","My fourth booster", "CONFIDENCE MESSAGE 1", null, null),
+            new Booster("5", JOY,"user1","My fifth booster", "JOY MESSAGE 2", null, null),
+            new Booster("6", CALM,"user1","My sixth booster", "CALM MESSAGE 2", null, null)
 
     ));
 
     public static Booster addNewBooster(Booster booster) {
-        booster.setId(UUID.randomUUID().toString());
+        booster.setBoosterId(UUID.randomUUID().toString());
         boosterList.add(booster);
         return booster;
     }
@@ -39,7 +39,7 @@ public class BoosterDb {
     }
 
     public void deleteBooster(String id) {
-        boosterList.removeIf(booster -> booster.getId().equals(id));
+        boosterList.removeIf(booster -> booster.getBoosterId().equals(id));
     }
 
     public Booster getRandomBoosterOfType(BoosterType randomBoost) {

@@ -10,8 +10,9 @@ import lombok.NoArgsConstructor;
 
 public class Booster {
 
-    private String id;
+    private String boosterId;
     private BoosterType type;
+    private String ownerId;
     private String name;
     private String message;
     private String youtubeLink;
