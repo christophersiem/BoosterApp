@@ -18,12 +18,12 @@ import static de.neuefische.boosterapp.model.BoosterType.CALM;
 public class BoosterDb {
 
     private static final List<Booster> boosterList = new ArrayList<>(List.of(
-            new Booster("1", JOY, "user1", "My first booster", "JOY MESSAGE 1", null, null),
-            new Booster("2", CONFIDENCE, "user1", "My second booster", null, "https://www.youtube.com/watch?v=kzSBrJmXqdg", null),
-            new Booster("3", CALM, "user1", "My third booster", "CALM MESSAGE 1", null, null),
-            new Booster("4", CONFIDENCE, "user1", "My fourth booster", "CONFIDENCE MESSAGE 1", null, null),
-            new Booster("5", JOY, "user1", "My fifth booster", "JOY MESSAGE 2", null, null),
-            new Booster("6", CALM, "user1", "My sixth booster", "CALM MESSAGE 2", null, null)
+            new Booster("1", JOY,"user1", "user1", "My first booster", "JOY MESSAGE 1", null, null),
+            new Booster("2", CONFIDENCE,"user1", "user1", "My second booster", null, "https://www.youtube.com/watch?v=kzSBrJmXqdg", null),
+            new Booster("3", CALM,"user1", "user1", "My third booster", "CALM MESSAGE 1", null, null),
+            new Booster("4", CONFIDENCE,"user1", "user1", "My fourth booster", "CONFIDENCE MESSAGE 1", null, null),
+            new Booster("5", JOY,"user1", "user1", "My fifth booster", "JOY MESSAGE 2", null, null),
+            new Booster("6", CALM,"user2", "user1", "My sixth booster", "CALM MESSAGE 2", null, null)
 
     ));
 
@@ -52,5 +52,14 @@ public class BoosterDb {
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
 
+    }
+
+    public List<Booster> getCreatedBooster(String creatorId) {
+        List<Booster> list = new ArrayList<>();
+        for (Booster booster : boosterList) {
+            if (booster.getCreatorId().equals(creatorId)){
+                list.add(booster);
+            }
+        } return list;
     }
 }

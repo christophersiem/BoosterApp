@@ -34,4 +34,9 @@ public class BoosterService {
     public Booster getRandomBoosterOfType(BoosterType randomBoost, String ownerId) {
         return boosterDb.getRandomBoosterOfType(randomBoost, ownerId);
     }
+
+    public List<Booster> getCreatedBooster(String creatorId) {
+       return boosterDb.getCreatedBooster(creatorId);
+
+    }
 }

@@ -21,22 +21,28 @@ public class BoosterController {
     }
 
     @GetMapping
-    public List<Booster> getBooster(){
+    public List<Booster> getBooster() {
         return boosterService.getBooster();
     }
 
+    // no difference between GetMapping and PutMapping here?
+    @GetMapping("{creatorId}")
+    public List<Booster> getCreatedBooster(@PathVariable String creatorId) {
+        return boosterService.getCreatedBooster(creatorId);
+    }
+
     @PutMapping("{ownerId}/random")
-    public Booster getRandomBoosterOfType(@PathVariable String ownerId, @RequestBody BoosterType randomBoost){
-        return boosterService.getRandomBoosterOfType(randomBoost,ownerId);
+    public Booster getRandomBoosterOfType(@PathVariable String ownerId, @RequestBody BoosterType randomBoost) {
+        return boosterService.getRandomBoosterOfType(randomBoost, ownerId);
     }
 
     @PutMapping
-    public Booster addNewBooster(@RequestBody Booster booster){
+    public Booster addNewBooster(@RequestBody Booster booster) {
         return boosterService.addNewBooster(booster);
     }
 
     @DeleteMapping("{id}")
-    public void deleteBooster(@PathVariable String id){
+    public void deleteBooster(@PathVariable String id) {
         boosterService.deleteBooster(id);
     }
 }
