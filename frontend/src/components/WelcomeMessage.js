@@ -4,6 +4,6 @@ import "./WelcomeMessage.css"
 export default function WelcomeMessage() {
 
     return (
-        <h2 className={"message"}>Welcome back,<br/> Christopher!</h2>
+        <h2 className={"message"}>Welcome back,<br/><span className={"colored"}>Christopher!</span> </h2>
     )
 }
