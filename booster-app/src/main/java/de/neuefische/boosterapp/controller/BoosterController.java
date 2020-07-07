@@ -31,6 +31,12 @@ public class BoosterController {
         return boosterService.getCreatedBooster(creatorId);
     }
 
+//    How to send data via Postman?
+//    @PutMapping("random")
+//    public Booster getRandomBoosterOfType(@RequestBody String ownerId,  BoosterType randomBoost) {
+//        return boosterService.getRandomBoosterOfType(randomBoost, ownerId);
+//    }
+
     @PutMapping("{ownerId}/random")
     public Booster getRandomBoosterOfType(@PathVariable String ownerId, @RequestBody BoosterType randomBoost) {
         return boosterService.getRandomBoosterOfType(randomBoost, ownerId);
