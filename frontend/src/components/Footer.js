@@ -3,7 +3,7 @@ import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
 import AddIcon from '@material-ui/icons/Add';
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import HelpIcon from '@material-ui/icons/Help';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 const useStyles = makeStyles((theme) => ({
     listIcon: {
@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
     helpIcon:{
         padding: "15px",
+
     }
 
 }));
@@ -35,7 +36,7 @@ export default function Footer() {
             <AddIcon className={classes.addIcon}fontSize={"large"}/>
                 </Grid>
                 <Grid>
-                    <HelpIcon className={classes.helpIcon}fontSize={"large"}/>
+                    <HelpOutlineIcon className={classes.helpIcon}fontSize={"large"}/>
                 </Grid>
             </Grid>
         </footer>
