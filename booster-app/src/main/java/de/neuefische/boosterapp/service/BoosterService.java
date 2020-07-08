@@ -1,42 +1,42 @@
 package de.neuefische.boosterapp.service;
 
-import de.neuefische.boosterapp.db.BoosterDb;
+import de.neuefische.boosterapp.db.BoosterMongoDb;
 import de.neuefische.boosterapp.model.Booster;
-import de.neuefische.boosterapp.model.BoosterType;
-import lombok.Data;
+import de.neuefische.boosterapp.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
-@Data
+
 public class BoosterService {
 
-    @Autowired
-    public BoosterService(BoosterDb boosterDb) {
-        this.boosterDb = boosterDb;
-    }
+    private final BoosterMongoDb boosterDb;
+    private final IdUtils idUtils;
 
-    public final BoosterDb boosterDb;
-    public List<Booster> getBooster() {
-        return boosterDb.getBooster();
+    @Autowired
+    public BoosterService(BoosterMongoDb boosterDb, IdUtils idUtils) {
+        this.boosterDb = boosterDb;
+        this.idUtils = idUtils;
     }
 
     public Booster addNewBooster(Booster booster) {
-        return BoosterDb.addNewBooster(booster);
+        booster.setBoosterId(idUtils.generateRandomId());
+        return boosterDb.save(booster);
     }
 
     public void deleteBooster(String id) {
-        boosterDb.deleteBooster(id);
+        boosterDb.deleteById(id);
     }
 
-    public Booster getRandomBoosterOfType(BoosterType randomBoost, String ownerId) {
-        return boosterDb.getRandomBoosterOfType(randomBoost, ownerId);
-    }
+//    public Booster getRandomBooster(BoosterType randomBoost, String ownerId) {
+//        boosterDb.findAll()
+//
+//    }
 
-    public List<Booster> getCreatedBooster(String creatorId) {
-       return boosterDb.getCreatedBooster(creatorId);
+    public Optional<Booster> getCreatedBooster(String creatorId) {
+        return boosterDb.findById(creatorId);
 
     }
 }

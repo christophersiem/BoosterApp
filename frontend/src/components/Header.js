@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     menuButton: {
-        padding:"0px",
+        padding:"15px",
         color:"black"
     },
     title: {
@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign:"center"
     },
     accountButton:{
+        padding:"15px",
         color:"black"
     }
 }));

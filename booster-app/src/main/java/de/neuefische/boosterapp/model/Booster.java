@@ -3,6 +3,7 @@ package de.neuefische.boosterapp.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 
 @Data
 @AllArgsConstructor
@@ -10,8 +11,10 @@ import lombok.NoArgsConstructor;
 
 public class Booster {
 
+
     private String boosterId;
     private BoosterType type;
+    @Id
     private String creatorId;
     private String ownerId;
     private String name;
