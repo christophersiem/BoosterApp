@@ -1,4 +1,10 @@
 package de.neuefische.boosterapp.db;
 
-public interface BoosterMongoDb {
-}
+import de.neuefische.boosterapp.model.Booster;
+import org.springframework.data.repository.PagingAndSortingRepository;
+
+
+public interface BoosterMongoDb extends PagingAndSortingRepository<Booster,String>{
+
+    }
+
