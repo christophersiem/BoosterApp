@@ -1,5 +1,7 @@
 .flex-grow{
     flex-grow: 1;
-    background-color: #EFEFED;
+    background-color: white;
+    padding:20px;
+    overflow: auto;
 
 }

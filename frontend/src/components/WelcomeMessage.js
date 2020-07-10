@@ -14,7 +14,7 @@ export default function WelcomeMessage() {
         greet = 'Good Evening';
 
     return (
-        <h2 className={"message"}> {greet} ,<br/><span className={"colored"}>Christopher!</span></h2>
+        <h2 className={"message"}> {greet},<br/><span className={"colored"}>Christopher!</span></h2>
     )
 }
 

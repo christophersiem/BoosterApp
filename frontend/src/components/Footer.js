@@ -10,6 +10,7 @@ export default function SimpleBottomNavigation() {
     const [value, setValue] = React.useState(0);
 
     return (
+
         <BottomNavigation
             value={value}
             onChange={(event, newValue) => {

@@ -8,12 +8,12 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import "./Header.css"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
     },
     menuButton: {
-        padding:"15px",
+
         color:"black"
     },
     title: {
@@ -22,11 +22,13 @@ const useStyles = makeStyles((theme) => ({
         textAlign:"center"
     },
     accountButton:{
-        padding:"15px",
+
         color:"black"
     },
     toolbar:{
         minHeight: 80,
+
+        padding:"0px 15px 0px 15px"
     }
 }));
 
