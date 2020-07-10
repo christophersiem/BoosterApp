@@ -5,6 +5,7 @@ import de.neuefische.boosterapp.service.BoosterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -19,9 +20,9 @@ public class BoosterController {
         this.boosterService = boosterService;
     }
 
-    @GetMapping("{creatorId}")
-    public Optional<Booster> getCreatedBooster(@PathVariable String creatorId) {
-        return boosterService.getCreatedBooster(creatorId);
+    @GetMapping
+    public List<Booster> getCreatedBooster(@RequestParam (required = false) String creator) {
+        return boosterService.getCreatedBooster(creator);
     }
 
 

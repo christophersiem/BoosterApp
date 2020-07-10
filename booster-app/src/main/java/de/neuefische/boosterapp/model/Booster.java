@@ -11,12 +11,11 @@ import org.springframework.data.annotation.Id;
 
 public class Booster {
 
-
-    private String boosterId;
-    private BoosterType type;
     @Id
-    private String creatorId;
-    private String ownerId;
+    private String id;
+    private BoosterType type;
+    private String creator;
+    private String owner;
     private String name;
     private String message;
     private String youtubeLink;

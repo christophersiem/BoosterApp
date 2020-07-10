@@ -6,6 +6,7 @@ import de.neuefische.boosterapp.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,7 +23,7 @@ public class BoosterService {
     }
 
     public Booster addNewBooster(Booster booster) {
-        booster.setBoosterId(idUtils.generateRandomId());
+        booster.setId(idUtils.generateRandomId());
         return boosterDb.save(booster);
     }
 
@@ -35,8 +36,8 @@ public class BoosterService {
 //
 //    }
 
-    public Optional<Booster> getCreatedBooster(String creatorId) {
-        return boosterDb.findById(creatorId);
+    public List<Booster> getCreatedBooster(String creator) {
+        return boosterDb.findByCreator(creator);
 
     }
 }
