@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -14,21 +14,23 @@ const useStyles = makeStyles(() => ({
     },
     menuButton: {
 
-        color:"black"
+        color: "black"
     },
     title: {
         flexGrow: 1,
         color: "black",
-        textAlign:"center"
+        textAlign: "center",
+        fontFamily: "Rock Salt",
+        fontSize: "32px",
     },
-    accountButton:{
+    accountButton: {
 
-        color:"black"
+        color: "black"
     },
-    toolbar:{
+    toolbar: {
         minHeight: 80,
 
-        padding:"0px 15px 0px 15px"
+        padding: "0px 15px 0px 15px"
     }
 }));
 
@@ -37,21 +39,21 @@ export default function Header() {
 
     return (
         <header className="height">
-        <div className={classes.root}>
-            <AppBar style= {{ background: 'white' }}position="static">
-                <Toolbar className={classes.toolbar}>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        MoodBoost
-                    </Typography>
-                    <AccountCircleIcon className={classes.accountButton}>
+            <div className={classes.root}>
+                <AppBar style={{background: 'white'}} position="static">
+                    <Toolbar className={classes.toolbar}>
+                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <MenuIcon/>
+                        </IconButton>
+                        <Typography variant="h6" className={classes.title}>
+                            MoodBoost
+                        </Typography>
+                        <AccountCircleIcon className={classes.accountButton}>
 
-                    </AccountCircleIcon>
-                </Toolbar>
-            </AppBar>
-        </div>
+                        </AccountCircleIcon>
+                    </Toolbar>
+                </AppBar>
+            </div>
         </header>
     );
 }

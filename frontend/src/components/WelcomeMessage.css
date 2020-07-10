@@ -1,5 +1,10 @@
 
-
 .colored{
     color: #0030A9;
+    font-style: italic;
+}
+
+.message{
+    font-family: 'Noto Sans', sans-serif;
+    text-align: center;
 }
