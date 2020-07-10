@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme) => ({
     accountButton:{
         padding:"15px",
         color:"black"
+    },
+    toolbar:{
+        minHeight: 80,
     }
 }));
 
@@ -34,7 +37,7 @@ export default function Header() {
         <header className="height">
         <div className={classes.root}>
             <AppBar style= {{ background: 'white' }}position="static">
-                <Toolbar>
+                <Toolbar className={classes.toolbar}>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         <MenuIcon />
                     </IconButton>
