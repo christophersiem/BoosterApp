@@ -20,14 +20,14 @@ public class BoosterController {
     }
 
     @GetMapping
-    public List<Booster> getCreatedBooster(@RequestParam (required = false) String creator) {
+    public List<Booster> getCreatedBooster(@RequestParam(required = false) String creator) {
         return boosterService.getCreatedBooster(creator);
     }
 
 
-    @PutMapping("list")
-    public Booster getRandomBooster(@RequestParam  String owner, @RequestBody BoosterType randomBoost) {
-        return boosterService.getRandomBooster(randomBoost,owner);
+    @GetMapping("random")
+    public Booster getRandomBooster(@RequestParam BoosterType randomBoost, @RequestParam String owner) {
+        return boosterService.getRandomBooster(randomBoost, owner);
     }
 
     @PutMapping
