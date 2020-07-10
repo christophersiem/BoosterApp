@@ -1,13 +1,12 @@
 package de.neuefische.boosterapp.controller;
 
 import de.neuefische.boosterapp.model.Booster;
+import de.neuefische.boosterapp.model.BoosterType;
 import de.neuefische.boosterapp.service.BoosterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-
 
 @RestController
 @RequestMapping("api/booster")
@@ -21,15 +20,15 @@ public class BoosterController {
     }
 
     @GetMapping
-    public List<Booster> getCreatedBooster(@RequestParam (required = false) String creator) {
+    public List<Booster> getCreatedBooster(@RequestParam(required = false) String creator) {
         return boosterService.getCreatedBooster(creator);
     }
 
 
-//    @PutMapping("{ownerId}/random")
-//    public Booster getRandomBoosterOfType(@PathVariable String ownerId, @RequestBody BoosterType randomBoost) {
-//        return boosterService.getRandomBooster(randomBoost, ownerId);
-//    }
+    @GetMapping("random")
+    public Booster getRandomBooster(@RequestParam BoosterType randomBoost, @RequestParam String owner) {
+        return boosterService.getRandomBooster(randomBoost, owner);
+    }
 
     @PutMapping
     public Booster addNewBooster(@RequestBody Booster booster) {
