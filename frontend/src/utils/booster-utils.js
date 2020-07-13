@@ -11,3 +11,9 @@ export async function fetchCreatedBooster() {
     console.log(data);
     return data;
 }
+
+export async function deleteBooster(id){
+    await fetch ("api/booster/"+id,{
+        method:"DELETE"
+    })
+}
