@@ -10,6 +10,7 @@ export default function SimpleBottomNavigation() {
     const [value, setValue] = React.useState(0);
 
     return (
+        <footer>
 
         <BottomNavigation
             value={value}
@@ -23,5 +24,7 @@ export default function SimpleBottomNavigation() {
             <BottomNavigationAction label="New Boost" icon={<AddIcon />} />
             <BottomNavigationAction label="FAQ" icon={<InfoIcon />} />
         </BottomNavigation>
+        </footer>
     );
+
 }

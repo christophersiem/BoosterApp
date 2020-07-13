@@ -3,7 +3,6 @@ import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import "./Header.css"
@@ -22,6 +21,11 @@ const useStyles = makeStyles(() => ({
         textAlign: "center",
         fontFamily: "Rock Salt",
         fontSize: "32px",
+        display: "inline",
+    },
+
+    mColor: {
+        color:"#0030A9",
     },
     accountButton: {
 
@@ -29,7 +33,6 @@ const useStyles = makeStyles(() => ({
     },
     toolbar: {
         minHeight: 80,
-
         padding: "0px 15px 0px 15px"
     }
 }));
@@ -46,11 +49,8 @@ export default function Header() {
                             <MenuIcon/>
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
-                            MoodBoost
+                            <p className={classes.mColor}>M</p>oodBoost
                         </Typography>
-                        <AccountCircleIcon className={classes.accountButton}>
-
-                        </AccountCircleIcon>
                     </Toolbar>
                 </AppBar>
             </div>

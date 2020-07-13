@@ -3,20 +3,31 @@ import './App.css';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Main from "./components/Main";
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+} from "react-router-dom";
+import LoginPage from "./components/LoginPage";
 
 
 function App() {
     return (
-
         <div className="App">
-
-                <Header/>
-                <Main/>
-                <Footer/>
-
-
+        <Router>
+            <Switch>
+                <Route path="/login" exact>
+                    <LoginPage/>
+                </Route>
+                    <Route path="/" exact>
+                        <Header/>
+                        <Main/>
+                        <Footer/>
+                    </Route>
+            </Switch>
+        </Router>
         </div>
+
     );
 }
 

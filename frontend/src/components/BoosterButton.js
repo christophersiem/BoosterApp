@@ -6,9 +6,10 @@ import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles((theme) => ({
     button: {
-        width: 335,
+        width: 325,
         height: 160,
-        margin: "20px 0px"
+        margin: "20px 0px",
+        borderRadius: "10%"
     },
 
 
