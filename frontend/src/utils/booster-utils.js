@@ -1,5 +1,3 @@
-import AddBooster from "../pages/AddBoster";
-
 export async function fetchCreatedBooster() {
     const creatorId = 2;
     const response = await fetch("/api/booster?creator=" + creatorId, {
@@ -21,10 +19,8 @@ export async function deleteBooster(id) {
     })
 }
 
-export async function addNewBooster(type) {
-    const boosterToAdd = {
-        type: type,
-    };
+export async function addNewBooster(boosterToAdd) {
+
     await fetch("api/booster/", {
         method: "PUT",
         headers: {

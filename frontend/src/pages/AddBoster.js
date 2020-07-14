@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
@@ -21,27 +19,49 @@ const useStyles = makeStyles(() => ({
 export default function AddBooster() {
     const classes = useStyles();
     const [type, setType] = useState('JOY');
-    const handleChange = (event) => {
+    const [name, setName] = useState("");
+    const [message, setMessage] = useState("");
+
+    const boosterToAdd = {
+        type: type,
+        name: name,
+        message: message,
+    }
+
+    const handleChangeType = (event) => {
         setType(event.target.value);
+    };
+    const handleChangeName = (event) => {
+        setName(event.target.value);
+    };
+    const handleChangeMessage = (event) => {
+        setMessage(event.target.value);
     };
 
     function handleSubmit(){
-        addNewBooster(type);
+        addNewBooster(boosterToAdd);
     }
 return(
     <div className={classes.mainPage}>
     <FormControl>
         <FormLabel>Booster Type</FormLabel>
-        <RadioGroup aria-label="type" name="type" value={type} onChange={handleChange} required>
+        <RadioGroup aria-label="type" name="type" row value={type} onChange={handleChangeType} required>
             <FormControlLabel value="JOY" control={<Radio />} label="Joy" />
             <FormControlLabel value="CALM" control={<Radio />} label="Calm" />
             <FormControlLabel value="CONFIDENCE" control={<Radio />} label="Confidence" />
         </RadioGroup>
+        <form className={classes.root} noValidate autoComplete="off">
+        <TextField id="name" label="Name of Booster" variant="outlined" onChange={handleChangeName} value={name}/>
+        </form>
+        <br/>
+        <form className={classes.root} noValidate autoComplete="off">
+            <TextField id="name" label="Your Message" variant="outlined" multiline rows={4} onChange={handleChangeMessage} value={message}/>
+        </form>
         <Button
             onClick={handleSubmit}
             color="primary"
         >
-            Create
+            Create Booster
         </Button>
     </FormControl>
     </div>

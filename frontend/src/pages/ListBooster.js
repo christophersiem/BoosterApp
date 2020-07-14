@@ -22,9 +22,6 @@ export default function ListBooster() {
             .catch((e) => console.error(e));
     },[])
 
-    function handleDelete(id){
-        deleteBooster(id);
-    }
     return (
 
         <div  className={classes.mainPage}>
@@ -35,7 +32,7 @@ export default function ListBooster() {
                         <EditIcon />
                     </IconButton>
                     <IconButton>
-                        <DeleteIcon onClick={handleDelete(booster.id)}/>
+                        <DeleteIcon onClick={()=>deleteBooster(booster.id)}/>
                     </IconButton>
                 </div>)}
         </div>
