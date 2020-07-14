@@ -19,6 +19,9 @@ function App() {
             <Header/>
             <Router>
                 <Switch>
+                    <Route path="/" exact>
+                        <Main/>
+                    </Route>
                     <Route path="/login" exact>
                         <LoginPage/>
                     </Route>
@@ -27,9 +30,6 @@ function App() {
                     </Route>
                     <Route path="/add" exact>
                         <AddBooster/>
-                    </Route>
-                    <Route path="/" exact>
-                        <Main/>
                     </Route>
                 </Switch>
             </Router>

@@ -23,6 +23,8 @@ export default function AddBooster() {
     const [message, setMessage] = useState("");
 
     const boosterToAdd = {
+        creator: "2",
+        owner: "2",
         type: type,
         name: name,
         message: message,
@@ -51,7 +53,14 @@ return(
             <FormControlLabel value="CONFIDENCE" control={<Radio />} label="Confidence" />
         </RadioGroup>
         <form className={classes.root} noValidate autoComplete="off">
-        <TextField id="name" label="Name of Booster" variant="outlined" onChange={handleChangeName} value={name}/>
+        <TextField
+            id="name"
+            error={name.length < 5}
+            label="Name of Booster"
+            variant="outlined"
+            onChange={handleChangeName}
+            value={name}
+            required/>
         </form>
         <br/>
         <form className={classes.root} noValidate autoComplete="off">
