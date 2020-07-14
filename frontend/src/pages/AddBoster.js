@@ -69,6 +69,7 @@ return(
         <Button
             onClick={handleSubmit}
             color="primary"
+            disabled={name.length < 5 || message.length<5}
         >
             Create Booster
         </Button>

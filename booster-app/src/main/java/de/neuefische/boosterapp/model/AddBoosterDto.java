@@ -11,15 +11,15 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class AddBoosterDto {
 
-        private BoosterType type;
-        private String creator;
-        private String owner;
-        @Size(min = 5, max = 20, message = "minimum length = 5")
-        private String name;
-        private String message;
-        private String youtubeLink;
-        private String spotifyLink;
+    private BoosterType type;
+    private String creator;
+    private String owner;
+    @Size(min = 5, message = "too short")
+    private String name;
+    private String message;
+    private String youtubeLink;
+    private String spotifyLink;
 
-    }
+}
 
 
