@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {fetchCreatedBooster} from "../utils/booster-utils";
+import {deleteBooster, fetchCreatedBooster} from "../utils/booster-utils";
 import {makeStyles} from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles(() => ({
     mainPage: {
@@ -10,18 +13,32 @@ const useStyles = makeStyles(() => ({
 
 export default function BoosterList() {
     const classes = useStyles();
+    const [allBooster, setAllBoosters] = useState([]);
 
-    const [boosters, setBoosters] = useState([]);
+
+
     useEffect(() => {
         fetchCreatedBooster()
-            .then((data) => setBoosters(data))
+            .then((data) => setAllBoosters(data))
             .catch((e) => console.error(e));
-    })
+    },[])
+
+
 
     return (
-        <>
-            <div>{boosters.map(booster => <div className={classes.mainPage}>{booster.name}</div>)}</div>
-        </>
+
+        <div  className={classes.mainPage}>
+            {allBooster.map(booster =>
+                <div id={"boosterList"}>
+                    {booster.name}
+                    <IconButton>
+                        <EditIcon />
+                    </IconButton>
+                    <IconButton>
+                        <DeleteIcon />
+                    </IconButton>
+                </div>)}
+        </div>
 
     )
 

@@ -22,6 +22,7 @@ function App() {
                         <LoginPage/>
                     </Route>
                     <Route path="/list" exact>
+                        <Header/>
                         <BoosterList/>
                         <Footer/>
                     </Route>
