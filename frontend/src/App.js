@@ -9,7 +9,8 @@ import {
     Route,
 } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
-import BoosterList from "./pages/BoosterList";
+import ListBooster from "./pages/ListBooster";
+import AddBooster from "./pages/AddBoster";
 
 
 function App() {
@@ -22,7 +23,10 @@ function App() {
                         <LoginPage/>
                     </Route>
                     <Route path="/list" exact>
-                        <BoosterList/>
+                        <ListBooster/>
+                    </Route>
+                    <Route path="/add" exact>
+                        <AddBooster/>
                     </Route>
                     <Route path="/" exact>
                         <Main/>

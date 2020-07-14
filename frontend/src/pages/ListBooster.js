@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     }}))
 
 
-export default function BoosterList() {
+export default function ListBooster() {
     const classes = useStyles();
     const [allBooster, setAllBoosters] = useState([]);
 
@@ -29,7 +29,7 @@ export default function BoosterList() {
 
         <div  className={classes.mainPage}>
             {allBooster.map(booster =>
-                <div id={"boosterList"}>
+                <div id={"boosterList"} key={booster.id}>
                     {booster.name}
                     <IconButton>
                         <EditIcon />
@@ -43,3 +43,11 @@ export default function BoosterList() {
     )
 
 }
+
+
+
+
+
+
+
+
