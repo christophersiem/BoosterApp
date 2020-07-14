@@ -15,24 +15,21 @@ import BoosterList from "./pages/BoosterList";
 function App() {
     return (
         <div className="App">
-
+            <Header/>
             <Router>
                 <Switch>
                     <Route path="/login" exact>
                         <LoginPage/>
                     </Route>
                     <Route path="/list" exact>
-                        <Header/>
                         <BoosterList/>
-                        <Footer/>
                     </Route>
                     <Route path="/" exact>
-                        <Header/>
                         <Main/>
-                        <Footer/>
                     </Route>
                 </Switch>
             </Router>
+            <Footer/>
         </div>
 
     );

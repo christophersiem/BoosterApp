@@ -12,6 +12,7 @@ export async function fetchCreatedBooster() {
     return data;
 }
 
+
 export async function deleteBooster(id){
     await fetch ("api/booster/"+id,{
         method:"DELETE"

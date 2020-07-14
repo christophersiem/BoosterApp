@@ -35,7 +35,7 @@ export default function BoosterList() {
                         <EditIcon />
                     </IconButton>
                     <IconButton>
-                        <DeleteIcon />
+                        <DeleteIcon onClick={deleteBooster(booster.id)}/>
                     </IconButton>
                 </div>)}
         </div>
