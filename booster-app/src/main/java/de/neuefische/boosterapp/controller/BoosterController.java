@@ -7,6 +7,7 @@ import de.neuefische.boosterapp.service.BoosterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -33,7 +34,7 @@ public class BoosterController {
 
     @PutMapping
     public Booster addNewBooster(@RequestBody @Valid AddBoosterDto data) {
-        return boosterService.addNewBooster(booster);
+        return boosterService.addNewBooster(data);
     }
 
     @DeleteMapping("{id}")
