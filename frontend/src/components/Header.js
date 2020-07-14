@@ -5,11 +5,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import "./Header.css"
+
 
 const useStyles = makeStyles(() => ({
     root: {
-        flexGrow: 1,
+        minHeight: "10vh",
+
     },
     menuButton: {
 
@@ -25,24 +26,22 @@ const useStyles = makeStyles(() => ({
     },
 
     mColor: {
-        color:"#0030A9",
+        color: "#0030A9",
+        display: "inline-block",
     },
     accountButton: {
 
         color: "black"
     },
-    toolbar: {
-        minHeight: 80,
-        padding: "0px 15px 0px 15px"
-    }
+
 }));
 
 export default function Header() {
     const classes = useStyles();
 
     return (
-        <header className="height">
-            <div className={classes.root}>
+        <header className={classes.root}>
+
                 <AppBar style={{background: 'white'}} position="static">
                     <Toolbar className={classes.toolbar}>
                         <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -53,7 +52,7 @@ export default function Header() {
                         </Typography>
                     </Toolbar>
                 </AppBar>
-            </div>
+
         </header>
     );
 }
