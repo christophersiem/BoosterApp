@@ -9,30 +9,31 @@ import {
     Route,
 } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
-import BoosterList from "./pages/BoosterList";
+import ListBooster from "./pages/ListBooster";
+import AddBooster from "./pages/AddBoster";
 
 
 function App() {
     return (
         <div className="App">
-
+            <Header/>
             <Router>
                 <Switch>
+                    <Route path="/" exact>
+                        <Main/>
+                    </Route>
                     <Route path="/login" exact>
                         <LoginPage/>
                     </Route>
                     <Route path="/list" exact>
-                        <Header/>
-                        <BoosterList/>
-                        <Footer/>
+                        <ListBooster/>
                     </Route>
-                    <Route path="/" exact>
-                        <Header/>
-                        <Main/>
-                        <Footer/>
+                    <Route path="/add" exact>
+                        <AddBooster/>
                     </Route>
                 </Switch>
             </Router>
+            <Footer/>
         </div>
 
     );

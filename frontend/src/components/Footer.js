@@ -3,7 +3,8 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import InfoIcon from '@material-ui/icons/Info';
 import AddIcon from '@material-ui/icons/Add';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import HomeIcon from '@material-ui/icons/Home';
+import ListIcon from '@material-ui/icons/List';
 
 
 export default function SimpleBottomNavigation() {
@@ -19,10 +20,15 @@ export default function SimpleBottomNavigation() {
             }}
             showLabels
 
+
         >
-            <BottomNavigationAction label="Boosts" icon={<LibraryBooksIcon />} />
-            <BottomNavigationAction label="New Boost" icon={<AddIcon />} />
-            <BottomNavigationAction label="FAQ" icon={<InfoIcon />} />
+            <BottomNavigationAction icon={<HomeIcon onClick={() => {
+                window.location = "/"}}  />}/>
+            <BottomNavigationAction icon={<ListIcon onClick={() => {
+                window.location = "/list"}}   />}/>
+            <BottomNavigationAction icon={<AddIcon onClick={() => {
+                window.location = "/add"}}   />}/>
+            <BottomNavigationAction icon={<InfoIcon />} />
         </BottomNavigation>
         </footer>
     );
