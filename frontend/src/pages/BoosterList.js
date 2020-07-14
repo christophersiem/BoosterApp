@@ -16,15 +16,15 @@ export default function BoosterList() {
     const [allBooster, setAllBoosters] = useState([]);
 
 
-
     useEffect(() => {
         fetchCreatedBooster()
             .then((data) => setAllBoosters(data))
             .catch((e) => console.error(e));
     },[])
 
-
-
+    function handleDelete(id){
+        deleteBooster(id);
+    }
     return (
 
         <div  className={classes.mainPage}>
@@ -35,7 +35,7 @@ export default function BoosterList() {
                         <EditIcon />
                     </IconButton>
                     <IconButton>
-                        <DeleteIcon onClick={deleteBooster(booster.id)}/>
+                        <DeleteIcon onClick={handleDelete(booster.id)}/>
                     </IconButton>
                 </div>)}
         </div>
