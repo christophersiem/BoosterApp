@@ -1,6 +1,7 @@
 package de.neuefische.boosterapp.service;
 
 import de.neuefische.boosterapp.db.BoosterMongoDb;
+import de.neuefische.boosterapp.model.AddBoosterDto;
 import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterType;
 import de.neuefische.boosterapp.utils.IdUtils;
@@ -30,8 +31,16 @@ public class BoosterService {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public Booster addNewBooster(Booster booster) {
+    public Booster addNewBooster(AddBoosterDto data) {
+        Booster booster = new Booster();
         booster.setId(idUtils.generateRandomId());
+        booster.setName(data.getName());
+        booster.setCreator(data.getCreator());
+        booster.setMessage(data.getMessage());
+        booster.setOwner(data.getOwner());
+        booster.setSpotifyLink(data.getSpotifyLink());
+        booster.setYoutubeLink(data.getYoutubeLink());
+        booster.setType(data.getType());
         return boosterDb.save(booster);
     }
 

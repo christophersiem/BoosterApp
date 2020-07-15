@@ -1,11 +1,13 @@
 package de.neuefische.boosterapp.controller;
 
+import de.neuefische.boosterapp.model.AddBoosterDto;
 import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterType;
 import de.neuefische.boosterapp.service.BoosterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -31,8 +33,8 @@ public class BoosterController {
     }
 
     @PutMapping
-    public Booster addNewBooster(@RequestBody Booster booster) {
-        return boosterService.addNewBooster(booster);
+    public Booster addNewBooster(@RequestBody @Valid AddBoosterDto data) {
+        return boosterService.addNewBooster(data);
     }
 
     @DeleteMapping("{id}")
