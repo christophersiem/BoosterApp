@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import './App.css';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -11,34 +11,57 @@ import {
 import LoginPage from "./components/LoginPage";
 import ListBooster from "./pages/ListBooster";
 import AddBooster from "./pages/AddBoster";
-import GitHubCallbackPage from "./pages/GitHubCallback";
+import {UserDispatchContext} from "./context/user/UserContext";
+import {getDecodedJWTToken, isJWTTokenValid} from "./utils/jwt-utils";
+import UserContextProvider, {LOGIN_SUCCESS} from "./context/user/UserContextProvider";
+import PrivateRoute from "./pages/PrivateRoute";
 
 
-function App() {
+function Navigation() {
+    const dispatch = useContext(UserDispatchContext);
+
+    useEffect(() => {
+        if (isJWTTokenValid()) {
+            dispatch({type: LOGIN_SUCCESS, payload: getDecodedJWTToken()});
+        }
+    }, [dispatch]);
+
     return (
-        <div className="App">
-            <Header/>
-            <Router>
+
+        <Router>
+            <div className="App">
+                <Header/>
                 <Switch>
-                    <Route path="/" exact>
-                        <Main/>
-                    </Route>
-                    <Route path="/login" exact>
-                        <LoginPage/>
-                    </Route>
-                    <Route path="/list" exact>
-                        <ListBooster/>
-                    </Route>
-                    <Route path="/add" exact>
-                        <AddBooster/>
-                    </Route>
+                    <Route path="/login" exact component={LoginPage}/>
+
+                    <PrivateRoute
+                        path="/"
+                        component={Main}
+                        exact
+                    />
+                    <PrivateRoute
+                        path="/list"
+                        component={ListBooster}
+                        exact/>
+
+                    <PrivateRoute
+                        path="/add"
+                        component={AddBooster}
+                        exact/>
+
                 </Switch>
                 <Footer/>
-            </Router>
+            </div>
+        </Router>
 
-        </div>
-
-    );
+    )
 }
 
-export default App;
+export default function App() {
+
+    return (
+        <UserContextProvider>
+            <Navigation/>
+        </UserContextProvider>
+    );
+}

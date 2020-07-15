@@ -1,7 +1,13 @@
+import {getJWTToken} from "./jwt-utils";
+
 export async function fetchCreatedBooster() {
-    const creatorId = 2;
-    const response = await fetch("/api/booster?creator=" + creatorId, {
-        method: "GET"
+    const token = getJWTToken();
+    const creator = 2;
+    const response = await fetch("/api/booster?creator=" + creator, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
 
     });
     if (response.status !== 200) {

@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useContext, useState} from "react";
+
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import Avatar from '@material-ui/core/Avatar';
@@ -10,7 +11,11 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from '@material-ui/core/Container';
-
+import {performLogin} from "../utils/auth-utils";
+import {getDecodedJWTToken, setJWTToken} from "../utils/jwt-utils";
+import {UserDispatchContext, UserStateContext} from "../context/user/UserContext";
+import {LOGIN, LOGIN_FAILED, LOGIN_SUCCESS} from "../context/user/UserContextProvider";
+import {Redirect} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
 root:{
@@ -54,7 +59,31 @@ root:{
 }))
 
 export default function LoginPage() {
+
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const dispatch = useContext(UserDispatchContext);
+
     const classes = useStyles();
+
+    function login() {
+        dispatch({ type: LOGIN });
+        performLogin(username, password)
+            .then((response) => {
+                setJWTToken(response);
+                const userData = getDecodedJWTToken();
+                dispatch({ type: LOGIN_SUCCESS, payload: userData });
+            })
+            .catch(() => {
+                dispatch({ type: LOGIN_FAILED });
+            });
+    }
+
+    const { authStatus } = useContext(UserStateContext);
+    if (authStatus === 'SUCCESS') {
+        return <Redirect to={'/'} />;
+    }
 
     return (
         <div className={classes.root}>
@@ -73,17 +102,20 @@ export default function LoginPage() {
                     </Typography>
                     <form className={classes.form} noValidate>
                         <TextField
+                            value={username}
+                            onChange={(event) => setUsername(event.target.value)}
                             variant="outlined"
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
+                            id="username"
+                            label="Username"
+                            name="username"
                             autoFocus
                         />
                         <TextField
+                            value={password}
+                            onChange={(event) => setPassword(event.target.value)}
                             variant="outlined"
                             margin="normal"
                             required
@@ -95,21 +127,15 @@ export default function LoginPage() {
                             autoComplete="current-password"
                         />
                         <Button
-                            type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onClick={login}
                         >
                             Sign In
                         </Button>
-                        <Button
-                        onClick={()=>{
-                            window.location="https://github.com/login/oauth/authorize?client_id=Iv1.eb92295e6d39c0b8&redirect_uri=http://localhost:3000/oauth/github"
-                        } }
 
-
-                        >Login with Github</Button>
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
