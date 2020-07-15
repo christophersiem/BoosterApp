@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {UserStateContext} from "../context/user/UserContext";
 
 
 const useStyles = makeStyles(() => ({
@@ -38,8 +39,14 @@ const useStyles = makeStyles(() => ({
 
 export default function Header() {
     const classes = useStyles();
+    const { authStatus } = useContext(UserStateContext);
+
+    if (authStatus !== 'SUCCESS') {
+        return null;
+    }
 
     return (
+
         <header className={classes.root}>
 
                 <AppBar style={{background: 'white'}} position="static">

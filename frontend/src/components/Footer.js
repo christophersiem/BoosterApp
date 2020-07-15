@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import InfoIcon from '@material-ui/icons/Info';
@@ -6,7 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 import {makeStyles} from "@material-ui/core/styles";
-import Link from "@material-ui/core/Link";
+import {UserStateContext} from "../context/user/UserContext";
 
 const useStyles = makeStyles(() => ({
     footer: {
@@ -23,6 +23,11 @@ export default function SimpleBottomNavigation() {
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+    const { authStatus } = useContext(UserStateContext);
+
+    if (authStatus !== 'SUCCESS') {
+        return null;
+    }
 
     return (
         <footer className={classes.footer}>
