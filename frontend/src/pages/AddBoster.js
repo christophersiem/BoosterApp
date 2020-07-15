@@ -39,9 +39,14 @@ export default function AddBooster() {
     const handleChangeMessage = (event) => {
         setMessage(event.target.value);
     };
+    const nameElement = document.getElementById("name")
+    const messageElement = document.getElementById("message")
 
     function handleSubmit(){
         addNewBooster(boosterToAdd);
+        nameElement.value="";
+        messageElement.value="";
+
     }
 return(
     <div className={classes.mainPage}>
@@ -64,7 +69,7 @@ return(
         </form>
         <br/>
         <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="name" label="Your Message" variant="outlined" multiline rows={4} onChange={handleChangeMessage} value={message}/>
+            <TextField id="message" label="Your Message" variant="outlined" multiline rows={4} onChange={handleChangeMessage} value={message}/>
         </form>
         <Button
             onClick={handleSubmit}

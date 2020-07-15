@@ -11,6 +11,7 @@ import {
 import LoginPage from "./components/LoginPage";
 import ListBooster from "./pages/ListBooster";
 import AddBooster from "./pages/AddBoster";
+import GitHubCallbackPage from "./pages/GitHubCallback";
 
 
 function App() {

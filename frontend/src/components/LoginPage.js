@@ -13,16 +13,20 @@ import Container from '@material-ui/core/Container';
 
 
 const useStyles = makeStyles((theme) => ({
-
+root:{
+    flexGrow: "1",
+},
     title: {
         color: "black",
         textAlign: "center",
         fontFamily: "Rock Salt",
         fontSize: "32px",
+        display: "inline"
     },
 
     mColor: {
         color: "#0030A9",
+        display: "inline-block",
     },
 
     paper: {
@@ -53,7 +57,7 @@ export default function LoginPage() {
     const classes = useStyles();
 
     return (
-        <>
+        <div className={classes.root}>
             <Typography variant="h6" className={classes.title}>
                 <p className={classes.mColor}>M</p>oodBoost
             </Typography>
@@ -99,6 +103,13 @@ export default function LoginPage() {
                         >
                             Sign In
                         </Button>
+                        <Button
+                        onClick={()=>{
+                            window.location="https://github.com/login/oauth/authorize?client_id=Iv1.eb92295e6d39c0b8&redirect_uri=http://localhost:3000/oauth/github"
+                        } }
+
+
+                        >Login with Github</Button>
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
@@ -116,6 +127,6 @@ export default function LoginPage() {
                 <Box mt={8}>
                 </Box>
             </Container>
-            </>
+            </div>
             )
             }

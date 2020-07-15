@@ -6,6 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 import {makeStyles} from "@material-ui/core/styles";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles(() => ({
     footer: {
@@ -26,10 +27,10 @@ export default function SimpleBottomNavigation() {
     return (
         <footer className={classes.footer}>
             <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-                <BottomNavigationAction label="Home" value="home" icon={<HomeIcon />} />
-                <BottomNavigationAction label="Booster" value="favorites" icon={<ListIcon />} />
-                <BottomNavigationAction label="New" value="nearby" icon={<AddIcon />} />
-                <BottomNavigationAction label="FAQ" value="folder" icon={<InfoIcon />} />
+                <BottomNavigationAction label="Home" value="home" icon={<HomeIcon/>} />
+                <BottomNavigationAction label="Booster" value="booster" icon={<ListIcon/>} />
+                <BottomNavigationAction label="New" value="new" icon={<AddIcon/>} />
+                <BottomNavigationAction label="FAQ" value="faq" icon={<InfoIcon/>} />
             </BottomNavigation>
 
         </footer>

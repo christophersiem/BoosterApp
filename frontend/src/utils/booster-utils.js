@@ -17,6 +17,7 @@ export async function deleteBooster(id) {
     await fetch("api/booster/" + id, {
         method: "DELETE"
     })
+    await fetchCreatedBooster();
 }
 
 export async function addNewBooster(boosterToAdd) {
@@ -28,6 +29,7 @@ export async function addNewBooster(boosterToAdd) {
         },
         body: JSON.stringify(boosterToAdd)
     })
+
 
 
 }

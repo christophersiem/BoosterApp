@@ -19,7 +19,8 @@ const useStyles = makeStyles(() => ({
 
     },
     delIcon: {
-        alignItems: "right"
+        alignItems: "right",
+        color: "#e36736"
     },
     title: {
         padding: "10px"
