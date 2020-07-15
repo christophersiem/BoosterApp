@@ -5,31 +5,33 @@ import InfoIcon from '@material-ui/icons/Info';
 import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
+import {makeStyles} from "@material-ui/core/styles";
 
+const useStyles = makeStyles(() => ({
+    footer: {
+        alignItems:"center",
+        height: "64px",
+    },
+}))
 
 
 export default function SimpleBottomNavigation() {
-    const [value, setValue] = React.useState(0);
+    const classes = useStyles();
+    const [value, setValue] = React.useState('home');
 
-const history = use
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     return (
-        <footer>
+        <footer className={classes.footer}>
+            <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+                <BottomNavigationAction label="Home" value="home" icon={<HomeIcon />} />
+                <BottomNavigationAction label="Booster" value="favorites" icon={<ListIcon />} />
+                <BottomNavigationAction label="New" value="nearby" icon={<AddIcon />} />
+                <BottomNavigationAction label="FAQ" value="folder" icon={<InfoIcon />} />
+            </BottomNavigation>
 
-        <BottomNavigation
-            value={value}
-            onChange={(event, newValue) => {
-                setValue(newValue);
-            }}
-
-        >
-            <BottomNavigationAction icon={<HomeIcon onClick={() => history.push("/")}/>}/>
-            <BottomNavigationAction icon={<ListIcon onClick={() => {
-                window.location = "/list"}}   />}/>
-            <BottomNavigationAction icon={<AddIcon onClick={() => {
-                window.location = "/add"}}   />}/>
-            <BottomNavigationAction icon={<InfoIcon />} />
-        </BottomNavigation>
         </footer>
     );
 

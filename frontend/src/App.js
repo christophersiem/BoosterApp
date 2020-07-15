@@ -32,8 +32,9 @@ function App() {
                         <AddBooster/>
                     </Route>
                 </Switch>
+                <Footer/>
             </Router>
-            <Footer/>
+
         </div>
 
     );

@@ -5,12 +5,13 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(() => ({
     mainPage: {
         flexGrow: 1,
+        overflow: "auto",
+        padding: "0 20px",
     },
     paper: {
         margin: "5px 0px",
@@ -19,6 +20,9 @@ const useStyles = makeStyles(() => ({
     },
     delIcon: {
         alignItems: "right"
+    },
+    title: {
+        padding: "10px"
     }
 }))
 
@@ -37,6 +41,9 @@ export default function ListBooster() {
     return (
 
         <div className={classes.mainPage}>
+            <Paper className={classes.paper} elevation={10}>
+            <h3 className={classes.title}>Your created booster</h3>
+            </Paper>
             {allBooster.map(booster =>
                 <div id={"boosterList"} key={booster.id}>
                     <Paper className={classes.paper} elevation={10}>
