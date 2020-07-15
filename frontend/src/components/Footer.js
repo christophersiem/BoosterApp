@@ -7,8 +7,11 @@ import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 
 
+
 export default function SimpleBottomNavigation() {
     const [value, setValue] = React.useState(0);
+
+const history = use
 
     return (
         <footer>
@@ -18,12 +21,9 @@ export default function SimpleBottomNavigation() {
             onChange={(event, newValue) => {
                 setValue(newValue);
             }}
-            showLabels
-
 
         >
-            <BottomNavigationAction icon={<HomeIcon onClick={() => {
-                window.location = "/"}}  />}/>
+            <BottomNavigationAction icon={<HomeIcon onClick={() => history.push("/")}/>}/>
             <BottomNavigationAction icon={<ListIcon onClick={() => {
                 window.location = "/list"}}   />}/>
             <BottomNavigationAction icon={<AddIcon onClick={() => {
