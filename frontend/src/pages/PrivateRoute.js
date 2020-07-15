@@ -1,7 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import {removeJWTToken} from "../utils/jwt-utils";
-import Route from "react-router-dom/es/Route";
-import Redirect from "react-router-dom/es/Redirect";
+import {Redirect,Route} from "react-router-dom";
 import {UserDispatchContext, UserStateContext} from "../context/user/UserContext";
 import {LOGOUT} from "../context/user/UserContextProvider";
 

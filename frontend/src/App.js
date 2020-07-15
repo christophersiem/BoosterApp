@@ -30,8 +30,7 @@ function Navigation() {
 
         <Router>
             <div className="App">
-                <Header
-                />
+                <Header/>
                 <Switch>
                     <Route path="/login" exact component={LoginPage}/>
 

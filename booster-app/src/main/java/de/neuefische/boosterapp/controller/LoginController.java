@@ -1,14 +1,10 @@
 package de.neuefische.boosterapp.controller;
-
 import de.neuefische.boosterapp.model.LoginData;
 import de.neuefische.boosterapp.security.JWTUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
@@ -25,7 +21,7 @@ public class LoginController {
         this.jwtUtils = jwtUtils;
     }
 
-    @PostMapping
+    @PutMapping
     public String login(@RequestBody LoginData data){
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword()));

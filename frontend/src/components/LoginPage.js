@@ -127,7 +127,6 @@ export default function LoginPage() {
                             autoComplete="current-password"
                         />
                         <Button
-                            type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
