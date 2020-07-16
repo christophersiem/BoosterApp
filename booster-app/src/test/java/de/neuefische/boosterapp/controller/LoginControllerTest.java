@@ -56,4 +56,18 @@ class LoginControllerTest {
 
     }
 
+    @Test
+    public void loginWithInvalidCredentials(){
+
+        //GIVEN
+        BoosterUser testUser = new BoosterUser("chris2020",encoder.encode("!!21*QqwW"),"Markus","user");
+        userDb.save(testUser);
+
+        //WHEN
+        String url = "http://localhost:"+ port + "/auth/login";
+        ResponseEntity<String> tokenResponse = restTemplate.postForEntity(url, new LoginData("chris2020","??21*QqwW"), String.class);
+
+        //THEN
+        assertEquals(HttpStatus.BAD_REQUEST, tokenResponse.getStatusCode());
+    }
 }
