@@ -1,15 +1,11 @@
 import React, {useContext, useState} from "react";
-
-import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Container from '@material-ui/core/Container';
 import {performLogin} from "../utils/auth-utils";
 import {getDecodedJWTToken, setJWTToken} from "../utils/jwt-utils";
@@ -18,9 +14,10 @@ import {LOGIN, LOGIN_FAILED, LOGIN_SUCCESS} from "../context/user/UserContextPro
 import {Redirect} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
-root:{
-    flexGrow: "1",
-},
+    root: {
+        flexGrow: "1",
+        padding: theme.spacing(0,3,0)
+    },
     title: {
         color: "black",
         textAlign: "center",
@@ -40,22 +37,26 @@ root:{
         alignItems: 'center',
 
     },
-    avatar: {
-        margin: theme.spacing(1),
 
-    },
-
-    signIn: {
-        fontFamily: "Noto Sans, sans-serif",
-        fontSize: "18px",
-    },
     form: {
         width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(2),
     },
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    image: {
+
+        padding: theme.spacing(5, 0, 5),
+        width: "340px",
+    },
+
+    welcome:{
+        fontFamily: 'Noto Sans',
+        fontSize:"18px",
+        letterSpacing:"1.5px",
+        alignSelf:"start"
+    }
 }))
 
 export default function LoginPage() {
@@ -68,38 +69,33 @@ export default function LoginPage() {
     const classes = useStyles();
 
     function login() {
-        dispatch({ type: LOGIN });
+        dispatch({type: LOGIN});
         performLogin(username, password)
             .then((response) => {
                 setJWTToken(response);
                 const userData = getDecodedJWTToken();
-                dispatch({ type: LOGIN_SUCCESS, payload: userData });
+                dispatch({type: LOGIN_SUCCESS, payload: userData});
             })
             .catch(() => {
-                dispatch({ type: LOGIN_FAILED });
+                dispatch({type: LOGIN_FAILED});
             });
     }
 
-    const { authStatus } = useContext(UserStateContext);
+    const {authStatus} = useContext(UserStateContext);
     if (authStatus === 'SUCCESS') {
-        return <Redirect to={'/'} />;
+        return <Redirect to={'/'}/>;
     }
 
     return (
+
         <div className={classes.root}>
-            <Typography variant="h6" className={classes.title}>
-                <p className={classes.mColor}>M</p>oodBoost
-            </Typography>
 
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <div className={classes.paper}>
-                    <Avatar className={classes.avatar}>
-                        <LockOutlinedIcon/>
-                    </Avatar>
-                    <Typography component="h1" variant="h5" className={classes.signIn}>
-                        Sign in
-                    </Typography>
+                    <img className={classes.image} src={"./logo_login.png"} alt="MoodBoost_Logo"/>
+
+                    <h2 className={classes.welcome} >Nice to have you here!<br/> Please sign in</h2>
                     <form className={classes.form} noValidate>
                         <TextField
                             value={username}
@@ -144,7 +140,7 @@ export default function LoginPage() {
                             </Grid>
                             <Grid item>
                                 <Link href="#" variant="body2">
-                                    {"Don't have an account? Sign Up"}
+                                    {"Sign Up"}
                                 </Link>
                             </Grid>
                         </Grid>
@@ -153,6 +149,7 @@ export default function LoginPage() {
                 <Box mt={8}>
                 </Box>
             </Container>
-            </div>
-            )
-            }
+        </div>
+
+    )
+}

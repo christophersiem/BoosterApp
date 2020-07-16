@@ -9,21 +9,32 @@ import Button from "@material-ui/core/Button";
 import Drawer from "@material-ui/core/Drawer";
 import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
-import Divider from "@material-ui/core/Divider";
+import WelcomeMessage from "./WelcomeMessage";
+import Grid from "@material-ui/core/Grid";
+
 
 const useStyles = makeStyles(theme => ({
+
+    root:{
+        justifyContent:"center",
+        display:"flex",
+        alignSelf: "center",
+    },
     list: {
         width: 250,
     },
     fullList: {
         width: 'auto',
     },
-
     drawerPaper: {
-        backgroundColor: "lightblue",
-        height: "50%"
-
+        height: "100%",
+        backgroundColor:"#f7f5ed"
     },
+    image: {
+        marginTop: "10px",
+        alignSelf: "center",
+        justifyContent:"center",
+    }
 
 }));
 
@@ -39,13 +50,13 @@ export default function AppDrawerLeft(props) {
         }
         setState({...state, [anchor]: open});
     };
-    const navLinks =[
-        {text: "Home", link:"/",},
-        {text: "My created Booster", link:"/list",},
-        {text: "Add new Booster", link:"/add",},
-        {text: "FAQ", link:"/faq",},
-        {text: "Logout", link:"/logout",}
-        ]
+    const navLinks = [
+        {text: "Home", link: "/",},
+        {text: "My created Booster", link: "/list",},
+        {text: "Add new Booster", link: "/add",},
+        {text: "FAQ", link: "/faq",},
+        {text: "Logout", link: "/logout",}
+    ]
     const list = (anchor) => (
         <div
             className={clsx(classes.list, {
@@ -56,7 +67,14 @@ export default function AppDrawerLeft(props) {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                {navLinks.map((linkItem, ) => (
+                <Grid container justify = "center">
+
+                        <img className={classes.image} src={"./logo.png"} alt="fireSpot" width={"40%"} height={"40%"}/>
+                </Grid>
+                        <WelcomeMessage/>
+
+
+                {navLinks.map((linkItem,) => (
 
                     <ListItem onClick={() => {
                         window.location = linkItem.link

@@ -1,6 +1,8 @@
-.App{
-  display: flex;
-  flex-flow: column nowrap;
-  height: 100vh;
-  flex-grow: 1;
+.App {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100vh;
+    flex-grow: 1;
+    background-color:#f7f5ed;
+
 }

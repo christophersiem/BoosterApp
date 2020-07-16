@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
     footer: {
         alignItems:"center",
         height: "64px",
+        backgroundColor:"#f7f5ed",
     },
 }))
 
@@ -33,8 +34,8 @@ export default function SimpleBottomNavigation() {
     }
 
     return (
-        <footer className={classes.footer}>
-            <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
+        <footer>
+            <BottomNavigation value={value} onChange={handleChange} className={classes.root} style={{background: '#f7f5ed'}}>
                 <BottomNavigationAction label="Home" value="" icon={<HomeIcon/>} />
                 <BottomNavigationAction label="Booster" value="list" icon={<ListIcon/>} />
                 <BottomNavigationAction label="New" value="add" icon={<AddIcon/>} />
