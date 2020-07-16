@@ -20,22 +20,31 @@ export async function fetchCreatedBooster() {
 
 
 export async function deleteBooster(id) {
+    const token = getJWTToken();
     await fetch("api/booster/" + id, {
-        method: "DELETE"
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
     })
     await fetchCreatedBooster();
 }
 
 export async function addNewBooster(boosterToAdd) {
+    const token = getJWTToken();
 
     await fetch("api/booster/", {
         method: "PUT",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(boosterToAdd)
-    })
+    }).then((response) => {
+        if (response.status !== 200) {
+            throw new Error('invalid response');
+        }
 
-
-
+        return response.json();
+    });
 }
