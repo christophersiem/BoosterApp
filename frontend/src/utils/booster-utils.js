@@ -18,7 +18,6 @@ export async function fetchCreatedBooster() {
     return data;
 }
 
-
 export async function deleteBooster(id) {
     const token = getJWTToken();
     await fetch("api/booster/" + id, {
@@ -27,7 +26,7 @@ export async function deleteBooster(id) {
             Authorization: `Bearer ${token}`,
         },
     })
-    await fetchCreatedBooster();
+    await fetchCreatedBooster()
 }
 
 export async function addNewBooster(boosterToAdd) {

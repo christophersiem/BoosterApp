@@ -15,6 +15,7 @@ import {UserDispatchContext} from "./context/user/UserContext";
 import {getDecodedJWTToken, isJWTTokenValid} from "./utils/jwt-utils";
 import UserContextProvider, {LOGIN_FAILED, LOGIN_SUCCESS} from "./context/user/UserContextProvider";
 import PrivateRoute from "./pages/PrivateRoute";
+import FAQ from "./pages/FAQ";
 
 
 function Navigation() {
@@ -49,6 +50,10 @@ function Navigation() {
                         component={Main}
                         exact
                     />
+                    <PrivateRoute
+                        path="/faq"
+                        component={FAQ}
+                        exact/>
                 </Switch>
                 <Footer/>
             </div>
