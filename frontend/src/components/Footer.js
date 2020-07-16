@@ -7,6 +7,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ListIcon from '@material-ui/icons/List';
 import {makeStyles} from "@material-ui/core/styles";
 import {UserStateContext} from "../context/user/UserContext";
+import {useHistory} from "react-router";
 
 const useStyles = makeStyles(() => ({
     footer: {
@@ -19,8 +20,10 @@ const useStyles = makeStyles(() => ({
 export default function SimpleBottomNavigation() {
     const classes = useStyles();
     const [value, setValue] = React.useState('home');
+    const history = useHistory();
 
     const handleChange = (event, newValue) => {
+        history.push(`/${newValue}`);
         setValue(newValue);
     };
     const { authStatus } = useContext(UserStateContext);
@@ -32,9 +35,9 @@ export default function SimpleBottomNavigation() {
     return (
         <footer className={classes.footer}>
             <BottomNavigation value={value} onChange={handleChange} className={classes.root}>
-                <BottomNavigationAction label="Home" value="home" icon={<HomeIcon/>} />
-                <BottomNavigationAction label="Booster" value="booster" icon={<ListIcon/>} />
-                <BottomNavigationAction label="New" value="new" icon={<AddIcon/>} />
+                <BottomNavigationAction label="Home" value="" icon={<HomeIcon/>} />
+                <BottomNavigationAction label="Booster" value="list" icon={<ListIcon/>} />
+                <BottomNavigationAction label="New" value="add" icon={<AddIcon/>} />
                 <BottomNavigationAction label="FAQ" value="faq" icon={<InfoIcon/>} />
             </BottomNavigation>
 
