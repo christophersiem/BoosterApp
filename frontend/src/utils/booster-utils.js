@@ -33,7 +33,7 @@ export async function addNewBooster(boosterToAdd) {
     const token = getJWTToken();
 
     await fetch("api/booster/", {
-        method: "PUT",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
