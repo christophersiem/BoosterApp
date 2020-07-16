@@ -13,7 +13,7 @@ import ListBooster from "./pages/ListBooster";
 import AddBooster from "./pages/AddBoster";
 import {UserDispatchContext} from "./context/user/UserContext";
 import {getDecodedJWTToken, isJWTTokenValid} from "./utils/jwt-utils";
-import UserContextProvider, {LOGIN_SUCCESS} from "./context/user/UserContextProvider";
+import UserContextProvider, {LOGIN_FAILED, LOGIN_SUCCESS} from "./context/user/UserContextProvider";
 import PrivateRoute from "./pages/PrivateRoute";
 
 
@@ -23,7 +23,10 @@ function Navigation() {
     useEffect(() => {
         if (isJWTTokenValid()) {
             dispatch({type: LOGIN_SUCCESS, payload: getDecodedJWTToken()});
+        }else {
+            dispatch({type: LOGIN_FAILED})
         }
+
     }, [dispatch]);
 
     return (
@@ -33,22 +36,19 @@ function Navigation() {
                 <Header/>
                 <Switch>
                     <Route path="/login" exact component={LoginPage}/>
-
+                    <PrivateRoute
+                        path="/list"
+                        component={ListBooster}
+                        exact/>
+                    <PrivateRoute
+                        path="/add"
+                        component={AddBooster}
+                        exact/>
                     <PrivateRoute
                         path="/"
                         component={Main}
                         exact
                     />
-                    <PrivateRoute
-                        path="/list"
-                        component={ListBooster}
-                        exact/>
-
-                    <PrivateRoute
-                        path="/add"
-                        component={AddBooster}
-                        exact/>
-
                 </Switch>
                 <Footer/>
             </div>

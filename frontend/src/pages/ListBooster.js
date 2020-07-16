@@ -61,8 +61,8 @@ export default function ListBooster() {
                                 <IconButton>
                                     <EditIcon/>
                                 </IconButton>
-                                <IconButton className={classes.delIcon}>
-                                    <DeleteIcon onClick={() => deleteBooster(booster.id)}/>
+                                <IconButton className={classes.delIcon} onClick={() => deleteBooster(booster.id)}>
+                                    <DeleteIcon />
                                 </IconButton>
                             </Grid>
                         </Grid>
