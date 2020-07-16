@@ -32,7 +32,7 @@ public class BoosterController {
         return boosterService.getRandomBooster(randomBoost, owner);
     }
 
-    @PutMapping
+    @PostMapping
     public Booster addNewBooster(@RequestBody @Valid AddBoosterDto data) {
         return boosterService.addNewBooster(data);
     }

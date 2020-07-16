@@ -21,7 +21,7 @@ public class LoginController {
         this.jwtUtils = jwtUtils;
     }
 
-    @PutMapping
+    @PostMapping
     public String login(@RequestBody LoginData data){
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword()));
