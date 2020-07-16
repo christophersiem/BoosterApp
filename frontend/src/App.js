@@ -16,6 +16,7 @@ import {getDecodedJWTToken, isJWTTokenValid} from "./utils/jwt-utils";
 import UserContextProvider, {LOGIN_FAILED, LOGIN_SUCCESS} from "./context/user/UserContextProvider";
 import PrivateRoute from "./pages/PrivateRoute";
 import FAQ from "./pages/FAQ";
+import LogoutPage from "./components/LogoutPage";
 
 
 function Navigation() {
@@ -37,6 +38,7 @@ function Navigation() {
                 <Header/>
                 <Switch>
                     <Route path="/login" exact component={LoginPage}/>
+                    <Route path="/logout" exact component={LogoutPage}/>
                     <PrivateRoute
                         path="/list"
                         component={ListBooster}
