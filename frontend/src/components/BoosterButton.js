@@ -16,21 +16,19 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
 export default function BoosterButton() {
     const [randomId, setRandomId] = useState([]);
     const classes = useStyles();
     const history = useHistory();
 
 
-
-    function redirect(boosterType,owner) {
-        fetchIdFromType(boosterType,owner)
+    function redirect(boosterType) {
+        fetchIdFromType(boosterType, owner)
             .then((data) => setRandomId(data))
             .catch((e) => console.error(e))
-        //     .then (history.push(`/${randomId}`))
+            .then (history.push(`/booster/${randomId}`))
 
-    }
+    };
 
     return (
 
@@ -42,14 +40,15 @@ export default function BoosterButton() {
         >
             <div className={classes.root}>
                 <Grid>
-                    <Button onClick={redirect("JOY",owner)} variant="outlined" className={classes.button}>Joy Booster</Button>
-                </Grid>
-                <Grid>
-                    <Button onClick={redirect("CALM",owner)} variant="outlined" className={classes.button}>Calm
+                    <Button value={"JOY"} onClick={() => redirect("JOY")} variant="outlined" className={classes.button}>Joy
                         Booster</Button>
                 </Grid>
                 <Grid>
-                    <Button onClick={redirect("CONFIDENCE",owner)} variant="outlined" className={classes.button}>Confidence
+                    <Button value={"CALM"} onClick={() => redirect("CALM")} variant="outlined" className={classes.button}>Calm
+                        Booster</Button>
+                </Grid>
+                <Grid>
+                    <Button value={"CONFIDENCE"} onClick={() => redirect("CONFIDENCE")} variant="outlined" className={classes.button}>Confidence
                         Booster</Button>
                 </Grid>
             </div>

@@ -17,7 +17,7 @@ import UserContextProvider, {LOGIN_FAILED, LOGIN_SUCCESS} from "./context/user/U
 import PrivateRoute from "./pages/PrivateRoute";
 import FAQ from "./pages/FAQ";
 import LogoutPage from "./components/LogoutPage";
-import ShowBooster from "./pages/boosterDisplay/ShowBooster";
+import ShowBooster from "./pages/ShowBooster";
 
 
 function Navigation() {
@@ -57,12 +57,12 @@ function Navigation() {
                         path="/faq"
                         component={FAQ}
                         exact/>
-                </Switch>
-                {/*<PrivateRoute*/}
-                {/*    path="/booster"*/}
-                {/*    component={ShowBooster}*/}
-                {/*    exact*/}
-                {/*/>*/}
+                <PrivateRoute
+                    path="/booster/:id"
+                    component={ShowBooster}
+                    exact
+                />
+                   </Switch>
                 <Footer/>
             </div>
         </Router>
