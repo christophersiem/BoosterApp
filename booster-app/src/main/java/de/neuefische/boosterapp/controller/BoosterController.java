@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/booster")
@@ -26,10 +27,15 @@ public class BoosterController {
         return boosterService.getCreatedBooster(creator);
     }
 
+    @GetMapping("{id}")
+    public Optional<Booster> getBoosterById(@PathVariable String id) {
+        return boosterService.getBoosterById(id);
+    }
 
-    @GetMapping("random")
-    public Booster getRandomBooster(@RequestParam BoosterType randomBoost, @RequestParam String owner) {
-        return boosterService.getRandomBooster(randomBoost, owner);
+
+    @GetMapping("{type}/{owner}")
+    public String getRandomIdFromType(@PathVariable BoosterType type, @PathVariable String owner) {
+        return boosterService.getRandomIdFromType(type, owner);
     }
 
     @PostMapping

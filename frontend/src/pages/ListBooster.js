@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles(() => ({
     mainPage: {
         flexGrow: 1,
-        overflow: "auto",
+        overflow: "scroll",
         padding: "0 20px",
     },
     paper: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
         color: "#F7A396"
     },
     title: {
-        padding: "10px"
+        padding: "10px",
     }
 }))
 
@@ -31,10 +31,10 @@ const useStyles = makeStyles(() => ({
 export default function ListBooster() {
     const classes = useStyles();
     const [allBooster, setAllBoosters] = useState([]);
-
+    const creator = "2";
 
     useEffect(() => {
-        fetchCreatedBooster()
+        fetchCreatedBooster(creator)
             .then((data) => setAllBoosters(data))
             .catch((e) => console.error(e));
     }, [])
@@ -43,7 +43,7 @@ export default function ListBooster() {
 
         <div className={classes.mainPage}>
             <Paper className={classes.paper} elevation={10}>
-            <h3 className={classes.title}>Your created booster</h3>
+                <h3 className={classes.title}>Your created booster</h3>
             </Paper>
             {allBooster.map(booster =>
                 <div id={"boosterList"} key={booster.id}>
@@ -62,17 +62,17 @@ export default function ListBooster() {
                                     <EditIcon/>
                                 </IconButton>
                                 <IconButton className={classes.delIcon} onClick={() => deleteBooster(booster.id)}>
-                                    <DeleteIcon />
+                                    <DeleteIcon/>
                                 </IconButton>
                             </Grid>
                         </Grid>
                     </Paper>
                 </div>)}
-                </div>
+        </div>
 
-                )
+    )
 
-            }
+}
 
 
 

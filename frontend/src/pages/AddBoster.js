@@ -33,9 +33,10 @@ const useStyles = makeStyles(() => ({
 
 export default function AddBooster() {
     const classes = useStyles();
-    const [type, setType] = useState('');
+    const [type, setType] = useState("");
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
+    const [youtube, setYoutube] = useState("");
 
     const boosterToAdd = {
         creator: "2",
@@ -43,6 +44,7 @@ export default function AddBooster() {
         type: type,
         name: name,
         message: message,
+        youtubeLink: youtube,
     }
 
     const handleChangeType = (event) => {
@@ -54,13 +56,14 @@ export default function AddBooster() {
     const handleChangeMessage = (event) => {
         setMessage(event.target.value);
     };
-    const nameElement = document.getElementById("name")
-    const messageElement = document.getElementById("message")
+    const handleChangeYoutube = (event) => {
+        setYoutube(event.target.value);
+    };
+
 
     function handleSubmit(){
         addNewBooster(boosterToAdd);
-        nameElement.value="";
-        messageElement.value="";
+
 
     }
 return(
@@ -81,6 +84,7 @@ return(
                     label="Type"
                     id="type"
                     required
+                    className={classes.field}
                 >
                     <MenuItem value="">
                         <em>Booster Type</em>
@@ -104,7 +108,19 @@ return(
             fullWidth={true}
             required/>
         </form>
-        <br/>
+        </Grid>
+        <Grid>
+            <form className={classes.root} noValidate autoComplete="off">
+                <TextField
+                    className={classes.field}
+                    id="youtube"
+                    label="Youtube-Link (optional)"
+                    variant="outlined"
+                    onChange={handleChangeYoutube}
+                    value={youtube}
+                    fullWidth={true}
+                />
+            </form>
         </Grid>
         <Grid>
         <form className={classes.root} noValidate autoComplete="off">
@@ -121,6 +137,7 @@ return(
             />
         </form>
         </Grid>
+
         <Button
             onClick={handleSubmit}
             color="primary"

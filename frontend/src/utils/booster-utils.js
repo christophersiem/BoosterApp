@@ -1,8 +1,7 @@
 import {getJWTToken} from "./jwt-utils";
 
-export async function fetchCreatedBooster() {
+export async function fetchCreatedBooster(creator) {
     const token = getJWTToken();
-    const creator = 2;
     const response = await fetch("/api/booster?creator=" + creator, {
         method: "GET",
         headers: {
@@ -17,6 +16,22 @@ export async function fetchCreatedBooster() {
     console.log(data);
     return data;
 }
+
+export async function fetchIdFromType(boosterType, owner) {
+    const token = getJWTToken();
+    const response = await fetch(`/api/booster/${boosterType}/${owner}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+    if (response.status !== 200) {
+        throw new Error(`failed to fetch ID: ${response.statusText}`);
+    }
+    return await response.text();
+
+}
+
 
 export async function deleteBooster(id) {
     const token = getJWTToken();

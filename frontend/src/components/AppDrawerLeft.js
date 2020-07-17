@@ -69,7 +69,7 @@ export default function AppDrawerLeft(props) {
             <List>
                 <Grid container justify = "center">
 
-                        <img className={classes.image} src={"./logo.png"} alt="fireSpot" width={"40%"} height={"40%"}/>
+                        <img className={classes.image} src={"/logo.png"} alt="logo_small" width={"40%"} height={"40%"}/>
                 </Grid>
                         <WelcomeMessage/>
 
