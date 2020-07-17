@@ -17,6 +17,7 @@ import UserContextProvider, {LOGIN_FAILED, LOGIN_SUCCESS} from "./context/user/U
 import PrivateRoute from "./pages/PrivateRoute";
 import FAQ from "./pages/FAQ";
 import LogoutPage from "./components/LogoutPage";
+import ShowBooster from "./pages/boosterDisplay/ShowBooster";
 
 
 function Navigation() {
@@ -25,7 +26,7 @@ function Navigation() {
     useEffect(() => {
         if (isJWTTokenValid()) {
             dispatch({type: LOGIN_SUCCESS, payload: getDecodedJWTToken()});
-        }else {
+        } else {
             dispatch({type: LOGIN_FAILED})
         }
 
@@ -57,6 +58,11 @@ function Navigation() {
                         component={FAQ}
                         exact/>
                 </Switch>
+                {/*<PrivateRoute*/}
+                {/*    path="/booster"*/}
+                {/*    component={ShowBooster}*/}
+                {/*    exact*/}
+                {/*/>*/}
                 <Footer/>
             </div>
         </Router>
