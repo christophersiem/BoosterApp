@@ -3,29 +3,31 @@ import ReactPlayer from "react-player";
 import {makeStyles} from "@material-ui/core/styles";
 
 
-export default function YoutubeBooster() {
-    let url = "https://www.youtube.com/watch?v=p-Z3YrHJ1sU";
-    let creator = "Michael"
+const useStyles = makeStyles(() => ({
+    info: {
+        color: "#0030A9",
+        display: "inline",
+    },
 
-    const useStyles = makeStyles(() => ({
-        info: {
-            color: "#0030A9",
-            display: "inline",
-        },
+    video: {
+        justifyContent: "center",
+        marginTop: "20px",
+    },
 
-        video: {
-            justifyContent: "center",
-            marginTop: "20px",
-        },
-
-        text: {
-            fontFamily: "Noto Sans",
-            fontSize: "24px",
-        }
-    }))
+    text: {
+        fontFamily: "Noto Sans",
+        fontSize: "24px",
+    }
+}))
 
 
+
+export default function ShowBooster() {
     const classes = useStyles();
+    const creator =2;
+    const url ="test";
+
+
     return (
 
         <div className={"text"}>
