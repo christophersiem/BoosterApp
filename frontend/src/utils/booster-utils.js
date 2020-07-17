@@ -18,6 +18,24 @@ export async function fetchCreatedBooster() {
     return data;
 }
 
+export async function fetchRandomBooster(boosterType) {
+    const token = getJWTToken();
+    const response = await fetch("/api/booster/random", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(boosterType)
+    });
+    if (response.status !== 200) {
+        throw new Error(response.statusText);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+
 export async function deleteBooster(id) {
     const token = getJWTToken();
     await fetch("api/booster/" + id, {
