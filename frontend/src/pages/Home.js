@@ -9,6 +9,7 @@ export default function Home() {
     return (
 
             <>
+                <h3>Choose a booster</h3>
                     <BoosterButton/>
             </>
 
