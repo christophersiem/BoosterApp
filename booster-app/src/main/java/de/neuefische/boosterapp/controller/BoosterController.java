@@ -33,9 +33,9 @@ public class BoosterController {
     }
 
 
-    @GetMapping("random")
-    public String getIdFromRandomBooster(@RequestParam BoosterType randomBoost, @RequestParam String owner) {
-        return boosterService.getIdFromRandomBooster(randomBoost, owner);
+    @GetMapping("{type}/{owner}")
+    public String getRandomIdFromType(@PathVariable BoosterType type, @PathVariable String owner) {
+        return boosterService.getRandomIdFromType(type, owner);
     }
 
     @PostMapping
