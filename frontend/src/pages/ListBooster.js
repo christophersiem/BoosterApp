@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles(() => ({
     mainPage: {
         flexGrow: 1,
-        overflow: "auto",
+        overflow: "scroll",
         padding: "0 20px",
     },
     paper: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
         color: "#F7A396"
     },
     title: {
-        padding: "10px"
+        padding: "10px",
     }
 }))
 

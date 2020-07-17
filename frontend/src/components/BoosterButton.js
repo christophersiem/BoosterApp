@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
@@ -17,16 +17,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BoosterButton() {
-    const [randomId, setRandomId] = useState([]);
     const classes = useStyles();
     const history = useHistory();
 
 
     function redirect(boosterType) {
         fetchIdFromType(boosterType, owner)
-            .then((data) => setRandomId(data))
+            .then((randomId) =>history.push(`/booster/${randomId}`))
             .catch((e) => console.error(e))
-            .then (history.push(`/booster/${randomId}`))
+
 
     };
 

@@ -57,12 +57,12 @@ function Navigation() {
                         path="/faq"
                         component={FAQ}
                         exact/>
-                <PrivateRoute
-                    path="/booster/:id"
-                    component={ShowBooster}
-                    exact
-                />
-                   </Switch>
+                    <PrivateRoute
+                        path="/booster/:id"
+                        component={ShowBooster}
+                        exact
+                    />
+                </Switch>
                 <Footer/>
             </div>
         </Router>

@@ -14,6 +14,9 @@ const useStyles = makeStyles(() => ({
         alignItems:"center",
         height: "64px",
         backgroundColor:"#f7f5ed",
+
+
+
     },
 }))
 
@@ -30,7 +33,7 @@ export default function SimpleBottomNavigation() {
     const { authStatus } = useContext(UserStateContext);
 
     if (authStatus !== 'SUCCESS') {
-        return null;
+        return <div/>;
     }
 
     return (
