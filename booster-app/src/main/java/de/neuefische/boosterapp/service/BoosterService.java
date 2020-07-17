@@ -48,17 +48,21 @@ public class BoosterService {
         boosterDb.deleteById(id);
     }
 
-    public Booster getRandomBooster(BoosterType randomBoost, String owner) {
+    public String getIdFromRandomBooster(BoosterType randomBoost, String owner) {
         MatchOperation matchStage = Aggregation.match(new Criteria("type").is(randomBoost));
         MatchOperation matchStageOwner = Aggregation.match(new Criteria("owner").is(owner));
         Aggregation aggregation = Aggregation.newAggregation(matchStageOwner, matchStage, Aggregation.sample(1));
         AggregationResults<Booster> output = mongoTemplate.aggregate(aggregation, "booster", Booster.class);
-        return output.getUniqueMappedResult();
+        return output.getUniqueMappedResult().getId();
 
     }
 
     public List<Booster> getCreatedBooster(String creator) {
         return boosterDb.findByCreator(creator);
 
+    }
+
+    public Optional <Booster> getBoosterById(String id) {
+        return boosterDb.findById(id);
     }
 }
