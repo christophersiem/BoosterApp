@@ -94,7 +94,7 @@ export default function LoginPage() {
             <Container component="main" maxWidth="xs">
                 <CssBaseline/>
                 <div className={classes.paper}>
-                    <img className={classes.image} src={"./logo_login.png"} alt="MoodBoost_Logo"/>
+                    <img className={classes.image} src={"./logo_login_2.png"} alt="MoodBoost_Logo"/>
 
                     <h2 className={classes.welcome} >Nice to have you here!<br/> Please sign in</h2>
                     <form className={classes.form} noValidate>
