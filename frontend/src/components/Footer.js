@@ -14,12 +14,8 @@ const useStyles = makeStyles(() => ({
         alignItems:"center",
         height: "64px",
         backgroundColor:"#f7f5ed",
-
-
-
     },
 }))
-
 
 export default function SimpleBottomNavigation() {
     const classes = useStyles();

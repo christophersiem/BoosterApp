@@ -10,20 +10,20 @@ const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
         overflow: "scroll",
-
     },
-
     image: {
         margin: "20px 0px",
         alignSelf: "center",
         justifyContent: "center",
     },
-
     inputField: {
         width: "80%",
-
-
-
+    },
+    welcome: {
+        fontFamily: 'Noto Sans',
+        fontSize: "18px",
+        letterSpacing: "1.5px",
+        textAlign:"start",
     }
 
 }))
@@ -47,14 +47,12 @@ export default function RegisterPage() {
             [name]: value
         });
     }
-
     function handleSubmit(event) {
         event.preventDefault();
         addNewUser(registerState)
             .catch((e) => console.error(e))
             .then(() =>history.push(`/login`))
     }
-
 
     return (
         <div className={classes.root}>
@@ -68,8 +66,7 @@ export default function RegisterPage() {
                     <img className={classes.image} src={"/logo.png"} alt="logo_small" width={"100%"} height={"100%"}/>
 
                 </Grid>
-
-
+                <h2 className={classes.welcome}>Hello stranger!<br/> Who are you?</h2>
                         <TextField
                             className={classes.inputField}
                             margin={"normal"}
@@ -118,7 +115,7 @@ export default function RegisterPage() {
                         id="email"
                     />
                     <Button onClick={handleSubmit}>REGISTER</Button>
-                <Button onClick={history.goBack}>Back to login</Button>
+                <Button onClick={history.goBack}>Go back to login</Button>
 
             </Grid>
         </div>
