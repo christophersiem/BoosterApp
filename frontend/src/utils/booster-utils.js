@@ -78,3 +78,5 @@ export async function addNewBooster(boosterToAdd) {
         return response.json();
     });
 }
+
+

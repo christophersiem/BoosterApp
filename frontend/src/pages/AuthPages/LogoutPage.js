@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {removeJWTToken} from "../utils/jwt-utils";
+import {removeJWTToken} from "../../utils/jwt-utils";
 import Button from "@material-ui/core/Button";
 import {useHistory} from "react-router";
 
