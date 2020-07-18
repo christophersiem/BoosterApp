@@ -29,6 +29,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function RegisterPage() {
+
     const history = useHistory();
     const classes = useStyles();
     const [registerState, setRegisterState] = useState({
@@ -117,7 +118,7 @@ export default function RegisterPage() {
                         id="email"
                     />
                     <Button onClick={handleSubmit}>REGISTER</Button>
-                <Button href="/login">Back to login</Button>
+                <Button onClick={history.goBack}>Back to login</Button>
 
             </Grid>
         </div>
