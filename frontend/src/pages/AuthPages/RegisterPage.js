@@ -4,6 +4,7 @@ import {addNewUser} from "../../utils/auth-utils";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core/styles";
+import {useHistory} from "react-router";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 export default function RegisterPage() {
+    const history = useHistory();
     const classes = useStyles();
     const [registerState, setRegisterState] = useState({
         firstName: "",
@@ -49,6 +51,7 @@ export default function RegisterPage() {
         event.preventDefault();
         addNewUser(registerState)
             .catch((e) => console.error(e))
+            .then(() =>history.push(`/login`))
     }
 
 
@@ -114,6 +117,7 @@ export default function RegisterPage() {
                         id="email"
                     />
                     <Button onClick={handleSubmit}>REGISTER</Button>
+                <Button href="/login">Back to login</Button>
 
             </Grid>
         </div>

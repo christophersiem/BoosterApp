@@ -13,6 +13,7 @@ import {UserDispatchContext, UserStateContext} from "../../context/user/UserCont
 import {LOGIN, LOGIN_FAILED, LOGIN_SUCCESS} from "../../context/user/UserContextProvider";
 import {Redirect} from "react-router-dom";
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: "1",
@@ -139,7 +140,7 @@ export default function LoginPage() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="/register" variant="body2">
                                     {"Sign Up"}
                                 </Link>
                             </Grid>
