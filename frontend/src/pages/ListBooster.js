@@ -12,19 +12,31 @@ const useStyles = makeStyles(() => ({
         flexGrow: 1,
         overflow: "scroll",
         padding: "0 20px",
+
     },
     paper: {
         margin: "5px 0px",
-        padding: "0px 10px"
+        padding: "0px 10px",
+        borderRadius: "8px"
 
     },
+    paper1: {
+        textAlign: "center",
+        backgroundColor: "#f7f5ed",
+        borderRadius: "8px",
+        boxShadow: "0"
+    },
+
     delIcon: {
         alignItems: "right",
         color: "#F7A396"
     },
-    title: {
-        padding: "10px",
+    title:{
+
+        textAlign:"center",
+        margin:"5px"
     }
+
 }))
 
 
@@ -41,35 +53,36 @@ export default function ListBooster() {
 
     return (
 
-        <div className={classes.mainPage}>
-            <Paper className={classes.paper} elevation={10}>
-                <h3 className={classes.title}>Your created booster</h3>
-            </Paper>
-            {allBooster.map(booster =>
-                <div id={"boosterList"} key={booster.id}>
-                    <Paper className={classes.paper} elevation={10}>
-                        <Grid
-                            container
-                            direction="row"
-                            justify="space-between"
-                            alignItems="center"
-                        >
-                            <Grid>
-                                {booster.name}
-                            </Grid>
-                            <Grid>
-                                <IconButton>
-                                    <EditIcon/>
-                                </IconButton>
-                                <IconButton className={classes.delIcon} onClick={() => deleteBooster(booster.id)}>
-                                    <DeleteIcon/>
-                                </IconButton>
-                            </Grid>
-                        </Grid>
-                    </Paper>
-                </div>)}
-        </div>
+        <>
 
+                <h3 className={classes.title}>Your created booster</h3>
+
+            <div className={classes.mainPage}>
+                {allBooster.map(booster =>
+                    <div id={"boosterList"} key={booster.id}>
+                        <Paper className={classes.paper} elevation={10}>
+                            <Grid
+                                container
+                                direction="row"
+                                justify="space-between"
+                                alignItems="center"
+                            >
+                                <Grid>
+                                    {booster.name}
+                                </Grid>
+                                <Grid>
+                                    <IconButton>
+                                        <EditIcon/>
+                                    </IconButton>
+                                    <IconButton className={classes.delIcon} onClick={() => deleteBooster(booster.id)}>
+                                        <DeleteIcon/>
+                                    </IconButton>
+                                </Grid>
+                            </Grid>
+                        </Paper>
+                    </div>)}
+            </div>
+        </>
     )
 
 }
