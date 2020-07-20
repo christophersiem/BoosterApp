@@ -7,10 +7,10 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
-import {performLogin} from "../utils/auth-utils";
-import {getDecodedJWTToken, setJWTToken} from "../utils/jwt-utils";
-import {UserDispatchContext, UserStateContext} from "../context/user/UserContext";
-import {LOGIN, LOGIN_FAILED, LOGIN_SUCCESS} from "../context/user/UserContextProvider";
+import {performLogin} from "../../utils/auth-utils";
+import {getDecodedJWTToken, setJWTToken} from "../../utils/jwt-utils";
+import {UserDispatchContext, UserStateContext} from "../../context/user/UserContext";
+import {LOGIN, LOGIN_FAILED, LOGIN_SUCCESS} from "../../context/user/UserContextProvider";
 import {Redirect} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({

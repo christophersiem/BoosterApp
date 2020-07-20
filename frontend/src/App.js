@@ -8,7 +8,7 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import LoginPage from "./components/LoginPage";
+import LoginPage from "./pages/AuthPages/LoginPage";
 import ListBooster from "./pages/ListBooster";
 import AddBooster from "./pages/AddBoster";
 import {UserDispatchContext} from "./context/user/UserContext";
@@ -16,8 +16,9 @@ import {getDecodedJWTToken, isJWTTokenValid} from "./utils/jwt-utils";
 import UserContextProvider, {LOGIN_FAILED, LOGIN_SUCCESS} from "./context/user/UserContextProvider";
 import PrivateRoute from "./pages/PrivateRoute";
 import FAQ from "./pages/FAQ";
-import LogoutPage from "./components/LogoutPage";
+import LogoutPage from "./pages/AuthPages/LogoutPage";
 import ShowBooster from "./pages/ShowBooster";
+import RegisterPage from "./pages/AuthPages/RegisterPage";
 
 
 function Navigation() {
@@ -40,6 +41,7 @@ function Navigation() {
                 <Switch>
                     <Route path="/login" exact component={LoginPage}/>
                     <Route path="/logout" exact component={LogoutPage}/>
+                    <Route path="/register" exact component={RegisterPage}/>
                     <PrivateRoute
                         path="/list"
                         component={ListBooster}
