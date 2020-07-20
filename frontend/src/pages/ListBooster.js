@@ -6,6 +6,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import {getUserByUsername} from "../utils/auth-utils";
 
 const useStyles = makeStyles((theme) => ({
     mainPage: {
@@ -46,25 +47,34 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.subtitle.fontSize,
         letterSpacing: theme.typography.subtitle.letterSpacing,
     },
-    image:{
+    image: {
         width: "344px",
         paddingBottom: "15px",
-        alignSelf:"center",
+        alignSelf: "center",
     }
 
 }))
 
 
 export default function ListBooster() {
-    const classes = useStyles();
-    const [allBooster, setAllBoosters] = useState([]);
-    const creator = "2";
 
     useEffect(() => {
-        fetchCreatedBooster(creator)
-            .then((data) => setAllBoosters(data))
-            .catch((e) => console.error(e));
+
+
     }, [])
+    const classes = useStyles();
+    const [allBooster, setAllBoosters] = useState([]);
+
+
+    useEffect(() => {
+        const username = sessionStorage.getItem('UserName')
+        fetchCreatedBooster(username)
+            .then(console.log(username))
+            .then((data) => setAllBoosters(data))
+            .catch((e) => console.error(e))
+            .then(console.log(allBooster))
+    }, [])
+
 
     function handleDelete(id) {
         deleteBooster(id)
@@ -76,7 +86,7 @@ export default function ListBooster() {
     return (
         <>
             <p className={classes.title}>Your created booster</p>
-            <img className={classes.image} src={"/jcc2.png"} alt="logo_medium" />
+            <img className={classes.image} src={"/jcc2.png"} alt="logo_medium"/>
             <div className={classes.mainPage}>
 
                 {allBooster.map(booster =>
@@ -108,51 +118,51 @@ export default function ListBooster() {
                         :
                         booster.type === "CALM" ?
                             <div className={classes.paper} key={booster.id}>
-                            <Paper className={classes.paperCalm} elevation={10}>
-                                <Grid
-                                    container
-                                    direction="row"
-                                    justify="space-between"
-                                    alignItems="center"
-                                >
-                                    <Grid className={classes.paperCalm}>
-                                        {booster.name}
+                                <Paper className={classes.paperCalm} elevation={10}>
+                                    <Grid
+                                        container
+                                        direction="row"
+                                        justify="space-between"
+                                        alignItems="center"
+                                    >
+                                        <Grid className={classes.paperCalm}>
+                                            {booster.name}
+                                        </Grid>
+                                        <Grid>
+                                            <IconButton>
+                                                <EditIcon/>
+                                            </IconButton>
+                                            <IconButton className={classes.delIcon}
+                                                        onClick={() => handleDelete(booster.id)}>
+                                                <DeleteIcon/>
+                                            </IconButton>
+                                        </Grid>
                                     </Grid>
-                                    <Grid>
-                                        <IconButton>
-                                            <EditIcon/>
-                                        </IconButton>
-                                        <IconButton className={classes.delIcon}
-                                                    onClick={() => handleDelete(booster.id)}>
-                                            <DeleteIcon/>
-                                        </IconButton>
-                                    </Grid>
-                                </Grid>
-                            </Paper>
+                                </Paper>
                             </div>
                             :
                             <div className={classes.paper} key={booster.id}>
-                            <Paper className={classes.paperConf} elevation={10}>
-                                <Grid
-                                    container
-                                    direction="row"
-                                    justify="space-between"
-                                    alignItems="center"
-                                >
-                                    <Grid className={classes.paperConf}>
-                                        {booster.name}
+                                <Paper className={classes.paperConf} elevation={10}>
+                                    <Grid
+                                        container
+                                        direction="row"
+                                        justify="space-between"
+                                        alignItems="center"
+                                    >
+                                        <Grid className={classes.paperConf}>
+                                            {booster.name}
+                                        </Grid>
+                                        <Grid>
+                                            <IconButton>
+                                                <EditIcon/>
+                                            </IconButton>
+                                            <IconButton className={classes.delIcon}
+                                                        onClick={() => handleDelete(booster.id)}>
+                                                <DeleteIcon/>
+                                            </IconButton>
+                                        </Grid>
                                     </Grid>
-                                    <Grid>
-                                        <IconButton>
-                                            <EditIcon/>
-                                        </IconButton>
-                                        <IconButton className={classes.delIcon}
-                                                    onClick={() => handleDelete(booster.id)}>
-                                            <DeleteIcon/>
-                                        </IconButton>
-                                    </Grid>
-                                </Grid>
-                            </Paper>
+                                </Paper>
                             </div>
                 )}
             </div>

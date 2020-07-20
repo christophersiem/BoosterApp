@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
+import {getUserByUsername} from "../utils/auth-utils";
 
 const useStyles = makeStyles((theme) => ({
     colored: {
@@ -18,7 +19,6 @@ message: {
 
 function greet() {
 
-
     const myDate = new Date();
     const hrs = myDate.getHours();
     let greeting;
@@ -35,16 +35,22 @@ function greet() {
     }
     return greeting
 
-
-
 }
 
 export default function WelcomeMessage() {
     const classes = useStyles();
+    const [userData, setUserData] = useState("")
+    useEffect(() => {
+        const username= sessionStorage.getItem('UserName')
+        getUserByUsername(username)
+            .then((data) => setUserData(data))
+            .catch((e) => console.error(e));
+
+
+    }, [])
+
     return (
-
-        <h2 className={classes.message}> {greet()},<span className={classes.colored}><br/> Christopher!</span></h2>
-
+        <h2 className={classes.message}> {greet()},<span className={classes.colored}><br/> {userData.firstName}</span></h2>
     )
 }
 

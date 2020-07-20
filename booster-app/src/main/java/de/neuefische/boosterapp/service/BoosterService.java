@@ -1,9 +1,12 @@
 package de.neuefische.boosterapp.service;
 
 import de.neuefische.boosterapp.db.BoosterMongoDb;
+
+import de.neuefische.boosterapp.db.UserDb;
 import de.neuefische.boosterapp.model.AddBoosterDto;
 import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterType;
+import de.neuefische.boosterapp.model.BoosterUser;
 import de.neuefische.boosterapp.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -23,12 +26,15 @@ public class BoosterService {
     private final BoosterMongoDb boosterDb;
     private final IdUtils idUtils;
     private final MongoTemplate mongoTemplate;
+    private final UserDb userDb;
+
 
     @Autowired
-    public BoosterService(BoosterMongoDb boosterDb, IdUtils idUtils, MongoTemplate mongoTemplate) {
+    public BoosterService(UserDb userDb, BoosterMongoDb boosterDb, IdUtils idUtils, MongoTemplate mongoTemplate) {
         this.boosterDb = boosterDb;
         this.idUtils = idUtils;
         this.mongoTemplate = mongoTemplate;
+        this.userDb = userDb;
     }
 
     public Booster addNewBooster(AddBoosterDto data) {
@@ -57,8 +63,10 @@ public class BoosterService {
 
     }
 
-    public List<Booster> getCreatedBooster(String creator) {
-        return boosterDb.findByCreator(creator);
+    public List<Booster> getCreatedBooster(String username) {
+        BoosterUser user = userDb.findByUsername(username);
+        String userId = user.getId();
+        return boosterDb.findByCreator(userId);
 
     }
 

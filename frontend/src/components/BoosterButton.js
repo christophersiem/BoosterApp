@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
@@ -6,7 +6,7 @@ import {fetchIdFromType} from "../utils/booster-utils";
 import {useHistory} from "react-router";
 
 const owner = "2";
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     button: {
         width: 120,
         height: 60,

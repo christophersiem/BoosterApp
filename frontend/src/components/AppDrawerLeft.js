@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import clsx from "clsx";
 import List from "@material-ui/core/List";
@@ -11,6 +11,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import MenuIcon from '@material-ui/icons/Menu';
 import WelcomeMessage from "./WelcomeMessage";
 import Grid from "@material-ui/core/Grid";
+
 
 
 const useStyles = makeStyles(() => ({
@@ -40,9 +41,11 @@ const useStyles = makeStyles(() => ({
 }));
 
 export default function AppDrawerLeft(props) {
+
+
     const {container} = props;
     const classes = useStyles();
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         left: false,
     });
     const toggleDrawer = (anchor, open) => (event) => {
@@ -53,6 +56,7 @@ export default function AppDrawerLeft(props) {
     };
     const navLinks = [
         {text: "Home", link: "/",},
+        {text: "My friends", link: "/friends",},
         {text: "My Booster", link: "/list",},
         {text: "Add Booster", link: "/add",},
         {text: "FAQ", link: "/faq",},
