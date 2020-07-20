@@ -48,7 +48,7 @@ export default function ShowBooster() {
 
         fetchBoosterById(id)
             .then(data => setBoosterToDisplay(data))
-    }, [])
+    }, )
 
 
     return (

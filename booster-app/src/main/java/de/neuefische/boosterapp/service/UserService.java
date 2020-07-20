@@ -1,21 +1,12 @@
 package de.neuefische.boosterapp.service;
 
 import de.neuefische.boosterapp.db.UserDb;
-import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterUser;
 import de.neuefische.boosterapp.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.aggregation.Aggregation;
-import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import org.springframework.data.mongodb.core.aggregation.MatchOperation;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLOutput;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
 
 
 @Service

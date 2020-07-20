@@ -8,20 +8,20 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import LoginPage from "./pages/AuthPages/LoginPage";
+import LoginPage from "./pages/authPages/LoginPage";
 import ListBooster from "./pages/ListBooster";
-import AddBooster from "./pages/AddBoster";
+import AddBooster from "./pages/AddBooster";
 import {UserDispatchContext} from "./context/user/UserContext";
 import {getDecodedJWTToken, isJWTTokenValid} from "./utils/jwt-utils";
 import UserContextProvider, {LOGIN_FAILED, LOGIN_SUCCESS} from "./context/user/UserContextProvider";
 import PrivateRoute from "./pages/PrivateRoute";
 import FAQ from "./pages/FAQ";
-import LogoutPage from "./pages/AuthPages/LogoutPage";
+import LogoutPage from "./pages/authPages/LogoutPage";
 import ShowBooster from "./pages/ShowBooster";
-import RegisterPage from "./pages/AuthPages/RegisterPage";
-import { ThemeProvider} from '@material-ui/core/styles';
+import RegisterPage from "./pages/authPages/RegisterPage";
+import {ThemeProvider} from '@material-ui/core/styles';
 import {theme} from "./MoodBoostTheme";
-
+import Friends from "./pages/Friends";
 
 
 function Navigation() {
@@ -54,6 +54,11 @@ function Navigation() {
                         component={AddBooster}
                         exact/>
                     <PrivateRoute
+                        path="/friends"
+                        component={Friends}
+                        exact
+                    />
+                    <PrivateRoute
                         path="/"
                         component={Main}
                         exact
@@ -79,9 +84,9 @@ export default function App() {
 
     return (
         <ThemeProvider theme={theme}>
-        <UserContextProvider>
-            <Navigation/>
-        </UserContextProvider>
+                <UserContextProvider>
+                    <Navigation/>
+                </UserContextProvider>
         </ThemeProvider>
     );
 }

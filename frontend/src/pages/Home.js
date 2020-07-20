@@ -2,6 +2,7 @@ import React from "react";
 import BoosterButton from "../components/BoosterButton";
 import {makeStyles} from "@material-ui/core/styles";
 
+
 const useStyles = makeStyles((theme) => ({
     title: {
         textAlign:"center",
@@ -10,6 +11,8 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: theme.typography.subtitle.letterSpacing,
     },
 }))
+
+
 export default function Home() {
     const classes = useStyles();
     return (
