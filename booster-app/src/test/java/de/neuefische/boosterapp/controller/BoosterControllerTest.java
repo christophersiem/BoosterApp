@@ -7,6 +7,7 @@ import de.neuefische.boosterapp.model.BoosterUser;
 import de.neuefische.boosterapp.model.LoginData;
 import de.neuefische.boosterapp.utils.IdUtils;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -83,8 +84,7 @@ class BoosterControllerTest {
     }
 
     @Test
-
-    public void deleteIdea(){
+    public void deleteBooster(){
         //GIVEN
         String token = loginUser();
         db.save(new Booster("1", JOY, "2", "2", "1Booster", "hello123", "", ""));
@@ -99,5 +99,25 @@ class BoosterControllerTest {
 
         //THEN
         assertTrue(db.findById("2").isEmpty());
+    }
+
+
+    @Test
+    public void getBoosterById(){
+        //GIVEN
+        String token = loginUser();
+        db.save(new Booster("1", JOY, "2", "2", "1Booster", "hello123", "", ""));
+        db.save(new Booster("2", JOY, "2", "2", "3Booster", "hello999", "", "test"));
+
+        //WHEN
+        String url = "http://localhost:" + port + "/api/booster/2";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        HttpEntity entity = new HttpEntity(headers);
+        ResponseEntity<Booster> response = restTemplate.exchange(url, HttpMethod.GET, entity, Booster.class);
+
+        //THEN
+        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertEquals(response.getBody(), new Booster("2", JOY, "2", "2", "3Booster", "hello999", "", "test"));
     }
 }
