@@ -30,8 +30,10 @@ const useStyles = makeStyles(() => ({
 
 export default function RegisterPage() {
 
+
     const history = useHistory();
     const classes = useStyles();
+    const [passwordState, setPasswordState] = useState("");
     const [registerState, setRegisterState] = useState({
         firstName: "",
         username: "",
@@ -47,6 +49,11 @@ export default function RegisterPage() {
             [name]: value
         });
     }
+
+    function handleConfirmPassword(event){
+        setPasswordState(event.target.value);
+    }
+
     function handleSubmit(event) {
         event.preventDefault();
         addNewUser(registerState)
@@ -77,6 +84,7 @@ export default function RegisterPage() {
                             id="firstname"
                             label="Firstname"
                             name="firstName"
+
                         />
 
                     <TextField
@@ -89,6 +97,8 @@ export default function RegisterPage() {
                         name="username"
                         label="Username"
                         id="username"
+                        error={registerState.username.length < 6 && registerState.username.length >0}
+                        helperText={registerState.username.length>0 && registerState.username.length < 6 && "Please enter at least 6 characters"}
                     />
                     <TextField
                         className={classes.inputField}
@@ -101,7 +111,24 @@ export default function RegisterPage() {
                         label="Password"
                         type="password"
                         id="password"
+                        error={registerState.password.length < 6 && registerState.password.length >0}
+                        helperText={registerState.password.length >0 && registerState.password.length <6 && "Please enter at least 6 characters"}
                     />
+                <TextField
+                    className={classes.inputField}
+                    margin={"normal"}
+                    onChange={handleConfirmPassword}
+                    variant="outlined"
+                    required
+                    fullWidth
+                    name="password2"
+                    label="Enter Password again"
+                    type="password"
+                    id="password2"
+                    error={passwordState.length > 0 && registerState.password !== passwordState}
+                    helperText={passwordState.length > 0 && registerState.password !== passwordState && "Passwords don't match"}
+
+                />
                     <TextField
                         className={classes.inputField}
                         margin={"normal"}
@@ -113,8 +140,13 @@ export default function RegisterPage() {
                         label="E-Mail"
                         type="email"
                         id="email"
+                        error={registerState.email.length>0 && ((!registerState.email.includes("@")) || !(registerState.email.includes(".de") || registerState.email.includes(".com") || registerState.email.includes(".net")))}
+                        helperText={registerState.email.length>0 && ((!registerState.email.includes("@")) || !(registerState.email.includes(".de") || registerState.email.includes(".com") || registerState.email.includes(".net"))) && "Please enter a valid E-Mail address"}
                     />
-                    <Button onClick={handleSubmit}>REGISTER</Button>
+                    <Button
+                        onClick={handleSubmit}
+                    >
+                        REGISTER</Button>
                 <Button onClick={history.goBack}>Go back to login</Button>
 
             </Grid>

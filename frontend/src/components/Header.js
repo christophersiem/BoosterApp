@@ -55,7 +55,7 @@ export default function Header() {
 
                 <AppBar style={{background: '#f7f5ed'}} position="static">
                     <Toolbar className={classes.toolbar}>
-                        <div edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                        <div className={classes.menuButton} color="inherit" aria-label="menu">
                             <AppDrawerLeft/>
                         </div>
                         <img className={classes.image} src={"/logo_med.png"} alt="logo_medium" />

@@ -1,18 +1,18 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     colored: {
     color: "#0030A9",
     fontStyle: "italic",
 },
 
 message: {
-    fontFamily: 'Noto Sans, sans-serif',
+    fontFamily: theme.typography.subtitle2.fontFamily,
+    fontSize: theme.typography.subtitle2.fontSize,
+    letterSpacing:theme.typography.subtitle2.letterSpacing,
+    lineHeight:theme.typography.subtitle2.lineHeight,
     paddingLeft: "16px",
-    fontSize: "18px",
-    letterSpacing:"1.5px",
-    lineHeight:"30px",
 }}
     ));
 
