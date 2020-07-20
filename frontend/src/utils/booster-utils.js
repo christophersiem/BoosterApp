@@ -17,6 +17,23 @@ export async function fetchCreatedBooster(creator) {
     return data;
 }
 
+export async function fetchBoosterById(id) {
+    const token = getJWTToken();
+    const response = await fetch(`/api/booster/${id}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+    if (response.status !== 200) {
+        throw new Error(response.statusText);
+    }
+    const data = await response.json();
+    console.log(data);
+    return data;
+
+}
+
 export async function fetchIdFromType(boosterType, owner) {
     const token = getJWTToken();
     const response = await fetch(`/api/booster/${boosterType}/${owner}`, {
@@ -31,7 +48,6 @@ export async function fetchIdFromType(boosterType, owner) {
     return await response.text();
 
 }
-
 
 export async function deleteBooster(id) {
     const token = getJWTToken();
