@@ -15,8 +15,8 @@ import javax.validation.constraints.Size;
 public class BoosterUser {
 
     @Size(min = 5, message = "username min length 5")
-    @Id
     private String id;
+    @Id
     private String username;
     @Size(min = 5, message = "password min length 5")
     private String password;

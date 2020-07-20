@@ -1,10 +1,16 @@
 import React from "react";
-import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
-    mainPage: {
-        flexGrow: 1,
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: "1",
+    },
+    title: {
+        textAlign:"center",
+        margin:"24px",
+        fontFamily:theme.typography.subtitle.fontFamily,
+        fontSize:theme.typography.subtitle.fontSize,
+        letterSpacing:theme.typography.subtitle.letterSpacing,
     },
 }))
 
@@ -12,8 +18,10 @@ export default function FAQ(){
     const classes = useStyles();
 
     return(
-        <div className={classes.mainPage}>
-        <Paper elevation={10}><h3>FAQ</h3></Paper>
+        <div className={classes.root}>
+        <div className={classes.title}>
+        <p>FAQ</p>
+        </div>
         </div>
     )
 

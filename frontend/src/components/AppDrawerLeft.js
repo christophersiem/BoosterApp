@@ -13,12 +13,13 @@ import WelcomeMessage from "./WelcomeMessage";
 import Grid from "@material-ui/core/Grid";
 
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
 
     root:{
         justifyContent:"center",
         display:"flex",
         alignSelf: "center",
+
     },
     list: {
         width: 250,
@@ -52,8 +53,8 @@ export default function AppDrawerLeft(props) {
     };
     const navLinks = [
         {text: "Home", link: "/",},
-        {text: "My created Booster", link: "/list",},
-        {text: "Add new Booster", link: "/add",},
+        {text: "My Booster", link: "/list",},
+        {text: "Add Booster", link: "/add",},
         {text: "FAQ", link: "/faq",},
         {text: "Logout", link: "/logout",}
     ]
@@ -72,13 +73,10 @@ export default function AppDrawerLeft(props) {
                         <img className={classes.image} src={"/logo.png"} alt="logo_small" width={"40%"} height={"40%"}/>
                 </Grid>
                         <WelcomeMessage/>
-
-
                 {navLinks.map((linkItem,) => (
 
                     <ListItem onClick={() => {
                         window.location = linkItem.link
-
                     }
                     } button key={linkItem.text}>
                         <ListItemIcon><HomeIcon/></ListItemIcon>

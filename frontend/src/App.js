@@ -19,6 +19,9 @@ import FAQ from "./pages/FAQ";
 import LogoutPage from "./pages/AuthPages/LogoutPage";
 import ShowBooster from "./pages/ShowBooster";
 import RegisterPage from "./pages/AuthPages/RegisterPage";
+import { ThemeProvider} from '@material-ui/core/styles';
+import {theme} from "./MoodBoostTheme";
+
 
 
 function Navigation() {
@@ -75,8 +78,10 @@ function Navigation() {
 export default function App() {
 
     return (
+        <ThemeProvider theme={theme}>
         <UserContextProvider>
             <Navigation/>
         </UserContextProvider>
+        </ThemeProvider>
     );
 }
