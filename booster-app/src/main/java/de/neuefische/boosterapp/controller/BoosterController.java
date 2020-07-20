@@ -23,8 +23,8 @@ public class BoosterController {
     }
 
     @GetMapping
-    public List<Booster> getCreatedBooster(@RequestParam(required = false) String creator) {
-        return boosterService.getCreatedBooster(creator);
+    public List<Booster> getCreatedBooster(@RequestParam(required = false) String username) {
+        return boosterService.getCreatedBooster(username);
     }
 
     @GetMapping("{id}")

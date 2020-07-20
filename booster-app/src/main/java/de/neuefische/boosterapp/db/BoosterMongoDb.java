@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public interface BoosterMongoDb extends PagingAndSortingRepository<Booster,String>{
-    List<Booster> findByCreator(String creator);
+    List<Booster> findByCreator(String username);
 
 
 }
