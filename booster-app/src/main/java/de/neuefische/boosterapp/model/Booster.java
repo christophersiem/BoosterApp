@@ -17,6 +17,7 @@ public class Booster {
     private String id;
     private BoosterType type;
     private String creator;
+    private String creatorName;
     private String owner;
     private String name;
     private String message;

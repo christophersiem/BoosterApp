@@ -55,7 +55,7 @@ export default function ShowBooster() {
 
         <div className={classes.root}>
             <div className={"text"}>
-                <h2>This is your Booster from <p className={classes.info}>{boosterToDisplay.creator}</p></h2>
+                <h2>This is your Booster from <p className={classes.info}>{boosterToDisplay.creatorName}</p></h2>
                 <p className={classes.title}>Message:</p>
                 <Paper className={classes.textContent}>
                     <div>{boosterToDisplay.message} </div>

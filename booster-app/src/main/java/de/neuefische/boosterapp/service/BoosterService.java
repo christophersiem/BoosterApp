@@ -42,6 +42,7 @@ public class BoosterService {
         booster.setId(idUtils.generateRandomId());
         booster.setName(data.getName());
         booster.setCreator(data.getCreator());
+        booster.setCreatorName(data.getCreatorName());
         booster.setMessage(data.getMessage());
         booster.setOwner(data.getOwner());
         booster.setSpotifyLink(data.getSpotifyLink());

@@ -37,6 +37,7 @@ export default function AddBoosterForm() {
     const [youtube, setYoutube] = useState("");
     const boosterToAdd = {
         creator: userData.id,
+        creatorName: userData.firstName,
         owner: "2",
         type: type,
         name: name,
