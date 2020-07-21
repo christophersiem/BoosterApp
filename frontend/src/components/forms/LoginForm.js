@@ -12,6 +12,7 @@ import {UserDispatchContext} from "../../context/user/UserContext";
 const useStyles = makeStyles(() => ({
     inputField: {
         width: "80%",
+
     },
     submit: {
         margin: "24px 0px 16px",

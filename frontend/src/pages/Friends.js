@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {getUserByUsername} from "../utils/auth-utils";
+import React, {useState} from "react";
+
 import {makeStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -29,14 +29,14 @@ export default function Friends() {
     const [allFriends, setFriends] = useState([]);
     const classes = useStyles();
     const [userData, setUserData] = useState("")
-    useEffect(() => {
-        const username = sessionStorage.getItem('UserName')
-        getUserByUsername(username)
-            .then((data) => setUserData(data))
-            .catch((e) => console.error(e));
+    // useEffect(() => {
+    //     const username = sessionStorage.getItem('UserName')
+    //     getFriendListByUsername(username)
+    //         .then((data) => setUserData(data))
+    //         .catch((e) => console.error(e));
 
 
-    }, [])
+    // }, [])
 
     return (
         <>

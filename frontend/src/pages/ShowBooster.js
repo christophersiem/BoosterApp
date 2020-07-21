@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {fetchBoosterById} from "../utils/booster-utils";
 import {useParams} from "react-router";
-import Paper from "@material-ui/core/Paper";
+import YouTube from '@u-wave/react-youtube';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: "24px",
     },
     textContent: {
-        fontFamily: "Noto Sans",
+        fontFamily: "Courgette",
         fontSize: "18px",
     }
 }))
@@ -45,25 +45,36 @@ export default function ShowBooster() {
     let {id} = useParams();
 
     useEffect(() => {
-
         fetchBoosterById(id)
             .then(data => setBoosterToDisplay(data))
-    }, )
+    },[] )
+
+
+
 
 
     return (
 
         <div className={classes.root}>
             <div className={"text"}>
-                <h2>This is your Booster from <p className={classes.info}>{boosterToDisplay.creator}</p></h2>
+                <h2>This is your Booster from <p className={classes.info}>{boosterToDisplay&& boosterToDisplay.creatorName}</p></h2>
                 <p className={classes.title}>Message:</p>
-                <Paper className={classes.textContent}>
-                    <div>{boosterToDisplay.message} </div>
-                </Paper>
-                {boosterToDisplay.youtubeLink &&
-                <p className={classes.title}>Watch this video now:</p> }
-                <div>{boosterToDisplay.youtubeLink}</div>
+                <div className={classes.textContent}>
+                    <div>{boosterToDisplay && boosterToDisplay.message} </div>
+                </div>
+                {boosterToDisplay &&
+                    <div>
+                <p className={classes.title}>Watch this video now:</p>
+                <YouTube
+                    video={boosterToDisplay.youtubeLink}
+                    allowFullscreen={true}
+                    autoplay
+                    width={320}
+                    height={260}
 
+                />
+                    </div>
+                }
             </div>
         </div>
     )

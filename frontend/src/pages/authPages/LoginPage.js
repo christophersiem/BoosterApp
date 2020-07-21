@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import {UserStateContext} from "../../context/user/UserContext";
 import {Redirect} from "react-router-dom";
 import LoginForm from "../../components/forms/LoginForm";
+import {useLocation} from "react-router";
 
 
 const useStyles = makeStyles(() => ({
@@ -25,10 +26,11 @@ export default function LoginPage() {
     const classes = useStyles();
 
     const {authStatus} = useContext(UserStateContext);
+    const location = useLocation();
     if (authStatus === 'SUCCESS') {
-        return <Redirect to={'/'}/>;
+        const locationState = location.state || {from:{pathname: "/"}};
+        return <Redirect to={locationState.from.pathname}/>;
     }
-
     return (
 
         <div className={classes.root}>

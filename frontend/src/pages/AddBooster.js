@@ -1,7 +1,6 @@
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 
-import Grid from "@material-ui/core/Grid";
 import AddBoosterForm from "../components/forms/AddBoosterForm";
 
 
@@ -33,13 +32,9 @@ export default function AddBooster() {
     return (
         <div className={classes.root}>
             <p className={classes.title}>Add a booster</p>
-            <Grid
-                container
-                direction="column"
-                alignItems="center"
-            >
+
                 <AddBoosterForm/>
-            </Grid>
+
         </div>
     )
 
