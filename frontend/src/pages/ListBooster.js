@@ -1,25 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {deleteBooster, fetchCreatedBooster} from "../utils/booster-utils";
 import {makeStyles} from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from '@material-ui/icons/Delete';
-import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
+import BoosterPaper from "./BoosterPaper";
 
 const useStyles = makeStyles((theme) => ({
     mainPage: {
         flexGrow: 1,
-        overflow: "scroll",
         padding: "0 20px",
-    },
-    paper: {
-        margin: "7px 0px",
-        padding: "0px 10px",
-        fontFamily: 'Noto Sans, sans-serif',
-        fontSize:"14px",
-        letterSpacing: "1.3px",
-        fontWeight: "bold",
 
     },
     paperJoy: {
@@ -36,9 +23,6 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: "10px"
     },
 
-    delIcon: {
-        alignItems: "right",
-    },
     title: {
         textAlign: "center",
         margin: "24px 0px 15px",
@@ -54,30 +38,18 @@ const useStyles = makeStyles((theme) => ({
 
 }))
 
-
 export default function ListBooster() {
 
-    useEffect(() => {
-
-
-    }, [])
     const classes = useStyles();
     const [allBooster, setAllBoosters] = useState([]);
 
 
     useEffect(() => {
-        const username = sessionStorage.getItem('UserName')
+        const username = localStorage.getItem('UserName')
         fetchCreatedBooster(username)
             .then((data) => setAllBoosters(data))
             .catch((e) => console.error(e))
     }, [])
-
-
-    function handleDelete(id) {
-        deleteBooster(id)
-            .catch((e) => console.error(e))
-            .then(window.location.reload())
-    }
 
 
     return (
@@ -89,78 +61,12 @@ export default function ListBooster() {
                 {allBooster.map(booster =>
 
                     booster.type === "JOY" ?
-                        <div className={classes.paper} key={booster.id}>
-                            <Paper className={classes.paperJoy} elevation={10}>
-                                <Grid
-                                    container
-                                    direction="row"
-                                    justify="space-between"
-                                    alignItems="center"
-                                >
-                                    <Grid className={classes.paperJoy}>
-                                        {booster.name}
-                                    </Grid>
-                                    <Grid>
-                                        <IconButton>
-                                            <EditIcon/>
-                                        </IconButton>
-                                        <IconButton className={classes.delIcon}
-                                                    onClick={() => handleDelete(booster.id)}>
-                                            <DeleteIcon/>
-                                        </IconButton>
-                                    </Grid>
-                                </Grid>
-                            </Paper>
-                        </div>
+                      <BoosterPaper moodStyle={classes.paperJoy} id={booster.id} name={booster.name}/>
                         :
                         booster.type === "CALM" ?
-                            <div className={classes.paper} key={booster.id}>
-                                <Paper className={classes.paperCalm} elevation={10}>
-                                    <Grid
-                                        container
-                                        direction="row"
-                                        justify="space-between"
-                                        alignItems="center"
-                                    >
-                                        <Grid className={classes.paperCalm}>
-                                            {booster.name}
-                                        </Grid>
-                                        <Grid>
-                                            <IconButton>
-                                                <EditIcon/>
-                                            </IconButton>
-                                            <IconButton className={classes.delIcon}
-                                                        onClick={() => handleDelete(booster.id)}>
-                                                <DeleteIcon/>
-                                            </IconButton>
-                                        </Grid>
-                                    </Grid>
-                                </Paper>
-                            </div>
+                            <BoosterPaper moodStyle={classes.paperCalm} id={booster.id} name={booster.name}/>
                             :
-                            <div className={classes.paper} key={booster.id}>
-                                <Paper className={classes.paperConf} elevation={10}>
-                                    <Grid
-                                        container
-                                        direction="row"
-                                        justify="space-between"
-                                        alignItems="center"
-                                    >
-                                        <Grid className={classes.paperConf}>
-                                            {booster.name}
-                                        </Grid>
-                                        <Grid>
-                                            <IconButton>
-                                                <EditIcon/>
-                                            </IconButton>
-                                            <IconButton className={classes.delIcon}
-                                                        onClick={() => handleDelete(booster.id)}>
-                                                <DeleteIcon/>
-                                            </IconButton>
-                                        </Grid>
-                                    </Grid>
-                                </Paper>
-                            </div>
+                            <BoosterPaper moodStyle={classes.paperConf} id={booster.id} name={booster.name}/>
                 )}
             </div>
         </>
