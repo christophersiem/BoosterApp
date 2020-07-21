@@ -28,19 +28,8 @@ function reducer(state, action) {
             return { ...state, authStatus: 'FAILED' };
         case LOGOUT:
             return { ...initialState };
-        case REGISTRATION:
-            return { ...state, registrationStatus: 'PENDING' };
-        case REGISTRATION_SUCCESS:
-            return {
-                ...state,
-                registrationStatus: 'SUCCESS',
-                userData: action.payload,
-            };
-        case REGISTRATION_FAILED:
-            return { ...state, registrationStatus: 'FAILED' };
         default:
             return state;
-
     }
 }
 

@@ -6,7 +6,6 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from '@material-ui/icons/Delete';
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import {getUserByUsername} from "../utils/auth-utils";
 
 const useStyles = makeStyles((theme) => ({
     mainPage: {
@@ -69,10 +68,8 @@ export default function ListBooster() {
     useEffect(() => {
         const username = sessionStorage.getItem('UserName')
         fetchCreatedBooster(username)
-            .then(console.log(username))
             .then((data) => setAllBoosters(data))
             .catch((e) => console.error(e))
-            .then(console.log(allBooster))
     }, [])
 
 

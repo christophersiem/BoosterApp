@@ -37,8 +37,8 @@ export default function SimpleBottomNavigation() {
             <BottomNavigation value={value} onChange={handleChange} className={classes.root} style={{background: '#f7f5ed'}}>
                 <BottomNavigationAction label="Home" value="" icon={<HomeIcon/>} />
                 <BottomNavigationAction label="Booster" value="list" icon={<ListIcon/>} />
-                <BottomNavigationAction label="New" value="add" icon={<AddIcon/>} />
-                <BottomNavigationAction label="FAQ" value="faq" icon={<InfoIcon/>} />
+                <BottomNavigationAction label="New" value="add" icon={<AddIcon />} />
+                <BottomNavigationAction label="FAQ" value="faq" icon={<InfoIcon />} />
             </BottomNavigation>
 
         </footer>

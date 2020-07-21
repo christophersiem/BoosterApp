@@ -4,7 +4,7 @@ import {getUserByUsername} from "../utils/auth-utils";
 
 const useStyles = makeStyles((theme) => ({
     colored: {
-    color: "#0030A9",
+    color: "#8b95ba",
     fontStyle: "italic",
 },
 
