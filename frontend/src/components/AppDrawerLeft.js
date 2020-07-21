@@ -7,10 +7,15 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 import Drawer from "@material-ui/core/Drawer";
-import HomeIcon from '@material-ui/icons/Home';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
 import WelcomeMessage from "./WelcomeMessage";
 import Grid from "@material-ui/core/Grid";
+import PeopleOutlinedIcon from '@material-ui/icons/PeopleOutlined';
+import MoodIcon from '@material-ui/icons/Mood';
+import PostAddOutlinedIcon from '@material-ui/icons/PostAddOutlined';
+import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
+import PowerSettingsNewOutlinedIcon from '@material-ui/icons/PowerSettingsNewOutlined';
 
 
 
@@ -33,7 +38,7 @@ const useStyles = makeStyles(() => ({
         backgroundColor:"#f7f5ed"
     },
     image: {
-        marginTop: "10px",
+        margin: "15px 0px",
         alignSelf: "center",
         justifyContent:"center",
     }
@@ -55,12 +60,12 @@ export default function AppDrawerLeft(props) {
         setState({...state, [anchor]: open});
     };
     const navLinks = [
-        {text: "Home", link: "/",},
-        {text: "My friends", link: "/friends",},
-        {text: "My Booster", link: "/list",},
-        {text: "Add Booster", link: "/add",},
-        {text: "FAQ", link: "/faq",},
-        {text: "Logout", link: "/logout",}
+        {text: "Home", link: "/", icon: <HomeOutlinedIcon />},
+        {text: "My friends", link: "/friends",icon: <PeopleOutlinedIcon/>},
+        {text: "My Booster", link: "/list", icon: <MoodIcon/>},
+        {text: "Add Booster", link: "/add", icon: <PostAddOutlinedIcon/>},
+        {text: "FAQ", link: "/faq", icon: <HelpOutlineOutlinedIcon/>},
+        {text: "Logout", link: "/logout", icon: <PowerSettingsNewOutlinedIcon style={{color: '#c20909'}}/>}
     ]
     const list = (anchor) => (
         <div
@@ -83,7 +88,7 @@ export default function AppDrawerLeft(props) {
                         window.location = linkItem.link
                     }
                     } button key={linkItem.text}>
-                        <ListItemIcon><HomeIcon/></ListItemIcon>
+                        <ListItemIcon>{linkItem.icon}</ListItemIcon>
                         <ListItemText primary={linkItem.text}/>
 
                     </ListItem>
