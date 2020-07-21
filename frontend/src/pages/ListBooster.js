@@ -17,7 +17,8 @@ const useStyles = makeStyles((theme) => ({
         margin: "7px 0px",
         padding: "0px 10px",
         fontFamily: 'Noto Sans, sans-serif',
-        letterSpacing: "1.5px",
+        fontSize:"14px",
+        letterSpacing: "1.3px",
         fontWeight: "bold",
 
     },
@@ -37,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 
     delIcon: {
         alignItems: "right",
-        // color: "#000000"
     },
     title: {
         textAlign: "center",
