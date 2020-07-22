@@ -9,16 +9,13 @@ import Button from "@material-ui/core/Button";
 import Drawer from "@material-ui/core/Drawer";
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import MenuIcon from '@material-ui/icons/Menu';
-import WelcomeMessage from "./WelcomeMessage";
+import WelcomeMessage from "../WelcomeMessage";
 import Grid from "@material-ui/core/Grid";
 import PeopleOutlinedIcon from '@material-ui/icons/PeopleOutlined';
 import MoodIcon from '@material-ui/icons/Mood';
 import PostAddOutlinedIcon from '@material-ui/icons/PostAddOutlined';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import PowerSettingsNewOutlinedIcon from '@material-ui/icons/PowerSettingsNewOutlined';
-
-
-
 const useStyles = makeStyles(() => ({
 
     root:{

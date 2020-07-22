@@ -29,15 +29,17 @@ public class UserController {
         return userService.findUserByUsername(username);
     }
 
+    @PostMapping ("/addfriend")
+    public void addUserAsFriend(String usernameToAdd, String userId){
+        userService.addUserAsFriend(usernameToAdd, userId);
+    }
+
 //    @GetMapping("/friends")
 //    public List getFriendListByUserId(@RequestParam String userId){
 //        return userService.getFriendListByUserId(userId);
 //    }
 //
-//    @PostMapping ("/addfriend")
-//    public void addUserAsFriend(String usernameToAdd, String userId){
-//        userService.addUserAsFriend(usernameToAdd, userId);
-//    }
+
 
 
 

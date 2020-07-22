@@ -1,8 +1,8 @@
 import React, {useContext, useEffect} from 'react';
 import './App.css';
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Main from "./components/Main";
+import Header from "./components/navigation/Header";
+import Footer from "./components/navigation/Footer";
+import Main from "./pages/Main";
 import {
     BrowserRouter as Router,
     Switch,
@@ -20,8 +20,9 @@ import LogoutPage from "./pages/authPages/LogoutPage";
 import ShowBooster from "./pages/ShowBooster";
 import RegisterPage from "./pages/authPages/RegisterPage";
 import {ThemeProvider} from '@material-ui/core/styles';
-import {theme} from "./MoodBoostTheme";
+import {theme} from "./theme/MoodBoostTheme";
 import Friends from "./pages/Friends";
+import BoosterProvider from "./context/booster/BoosterContextProvider";
 
 
 function Navigation() {
@@ -84,9 +85,11 @@ export default function App() {
 
     return (
         <ThemeProvider theme={theme}>
-                <UserContextProvider>
+            <UserContextProvider>
+                <BoosterProvider>
                     <Navigation/>
-                </UserContextProvider>
+                </BoosterProvider>
+            </UserContextProvider>
         </ThemeProvider>
     );
 }

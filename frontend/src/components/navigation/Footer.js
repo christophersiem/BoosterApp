@@ -6,7 +6,7 @@ import AddIcon from '@material-ui/icons/Add';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ListIcon from '@material-ui/icons/List';
 import {makeStyles} from "@material-ui/core/styles";
-import {UserStateContext} from "../context/user/UserContext";
+import {UserStateContext} from "../../context/user/UserContext";
 import {useHistory} from "react-router";
 
 const useStyles = makeStyles(() => ({

@@ -23,7 +23,7 @@ export default function BoosterButton() {
     const [userData, setUserData] = useState("")
 
     useEffect(() => {
-        const username = sessionStorage.getItem('UserName')
+        const username = localStorage.getItem('UserName')
         getUserByUsername(username)
             .then((data) => setUserData(data))
             .catch((e) => console.error(e));

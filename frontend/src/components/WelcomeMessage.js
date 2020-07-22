@@ -41,7 +41,7 @@ export default function WelcomeMessage() {
     const classes = useStyles();
     const [userData, setUserData] = useState("")
     useEffect(() => {
-        const username= sessionStorage.getItem('UserName')
+        const username= localStorage.getItem('UserName')
         getUserByUsername(username)
             .then((data) => setUserData(data))
             .catch((e) => console.error(e));

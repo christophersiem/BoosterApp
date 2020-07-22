@@ -1,12 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {deleteBooster, fetchCreatedBooster} from "../utils/booster-utils";
 import {makeStyles} from "@material-ui/core/styles";
 import BoosterPaper from "./BoosterPaper";
+import {BoosterDispatchContext, BoosterStateContext} from "../context/booster/BoosterContext";
+import {fetchBooster} from "../context/booster/booster-actions";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
     mainPage: {
         flexGrow: 1,
         padding: "0 20px",
+        overflow:"scroll"
 
     },
     paperJoy: {
@@ -41,35 +46,35 @@ const useStyles = makeStyles((theme) => ({
 export default function ListBooster() {
 
     const classes = useStyles();
-    const [allBooster, setAllBoosters] = useState([]);
-
-
+    const {booster, fetchStatus} = useContext(BoosterStateContext);
+    const dispatch = useContext(BoosterDispatchContext)
+    const username = localStorage.getItem('UserName')
     useEffect(() => {
-        const username = localStorage.getItem('UserName')
-        fetchCreatedBooster(username)
-            .then((data) => setAllBoosters(data))
-            .catch((e) => console.error(e))
-    }, [])
+        if (!fetchStatus) {
+            fetchBooster(dispatch, username)
+                .catch((e) => console.error(e))
+        }
+    }, [fetchStatus, dispatch])
 
 
     return (
-        <>
+
+        <div className={classes.mainPage}>
             <p className={classes.title}>Your created booster</p>
             <img className={classes.image} src={"/jcc2.png"} alt="logo_medium"/>
-            <div className={classes.mainPage}>
 
-                {allBooster.map(booster =>
 
+                {booster.map(booster =>
                     booster.type === "JOY" ?
-                      <BoosterPaper moodStyle={classes.paperJoy} id={booster.id} name={booster.name}/>
+                        <BoosterPaper moodStyle={classes.paperJoy} booster={booster}/>
                         :
                         booster.type === "CALM" ?
-                            <BoosterPaper moodStyle={classes.paperCalm} id={booster.id} name={booster.name}/>
+                            <BoosterPaper moodStyle={classes.paperCalm} booster={booster}/>
                             :
-                            <BoosterPaper moodStyle={classes.paperConf} id={booster.id} name={booster.name}/>
+                            <BoosterPaper moodStyle={classes.paperConf} booster={booster}/>
                 )}
             </div>
-        </>
+
     )
 
 }
