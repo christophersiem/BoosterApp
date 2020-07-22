@@ -1,13 +1,14 @@
 import React, {useContext} from 'react';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import InfoIcon from '@material-ui/icons/Info';
-import AddIcon from '@material-ui/icons/Add';
+import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import ListIcon from '@material-ui/icons/List';
 import {makeStyles} from "@material-ui/core/styles";
 import {UserStateContext} from "../../context/user/UserContext";
 import {useHistory} from "react-router";
+import PostAddOutlinedIcon from "@material-ui/icons/PostAddOutlined";
+import MoodIcon from "@material-ui/icons/Mood";
+
 
 const useStyles = makeStyles(() => ({
     footer: {
@@ -36,9 +37,9 @@ export default function SimpleBottomNavigation() {
         <footer>
             <BottomNavigation value={value} onChange={handleChange} className={classes.root} style={{background: '#f7f5ed'}}>
                 <BottomNavigationAction label="Home" value="" icon={<HomeOutlinedIcon/>} />
-                <BottomNavigationAction label="Booster" value="list" icon={<ListIcon/>} />
-                <BottomNavigationAction label="New" value="add" icon={<AddIcon />} />
-                <BottomNavigationAction label="FAQ" value="faq" icon={<InfoIcon />} />
+                <BottomNavigationAction label="Booster" value="list" icon={<MoodIcon/>} />
+                <BottomNavigationAction label="New" value="add" icon={<PostAddOutlinedIcon/>} />
+                <BottomNavigationAction label="FAQ" value="faq" icon={<HelpOutlineOutlinedIcon/>} />
             </BottomNavigation>
 
         </footer>
