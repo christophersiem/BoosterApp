@@ -49,7 +49,7 @@ export async function fetchIdFromType(boosterType, owner) {
 
 export function deleteBooster(id) {
     const token = getJWTToken();
-    return fetch("api/booster/" + id, {
+    return fetch("/api/booster/" + id, {
         method: "DELETE",
         headers: {
             Authorization: `Bearer ${token}`,
@@ -86,6 +86,6 @@ export function youTubeGetID(url) {
         ID = url;
     }
     return ID;
-};
+}
 
 
