@@ -1,9 +1,13 @@
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {useHistory} from "react-router";
 import {addNewUser} from "../../utils/auth-utils";
 import {makeStyles} from "@material-ui/core/styles";
+import Alert from "@material-ui/lab/Alert";
+
+import {UserDispatchContext, UserStateContext} from "../../context/user/UserContext";
+import {REGISTRATION, REGISTRATION_FAILED, REGISTRATION_SUCCESS} from "../../context/user/UserContextProvider";
 
 const useStyles = makeStyles(() => ({
     inputField: {
@@ -14,7 +18,8 @@ const useStyles = makeStyles(() => ({
 
 
 export default function RegistrationForm() {
-
+    const dispatch = useContext(UserDispatchContext);
+    const {registrationStatus} = useContext(UserStateContext);
     const history = useHistory();
     const classes = useStyles();
     const [passwordState, setPasswordState] = useState("");
@@ -47,11 +52,15 @@ export default function RegistrationForm() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        dispatch({type: REGISTRATION});
         addNewUser(registerState)
-            .catch((e) => console.error(e))
-            .then(() => history.push(`/login`))
+            .then(data => {
+                dispatch({type: REGISTRATION_SUCCESS, payload: data});
+            })
+            .catch(() => {
+                    dispatch({type: REGISTRATION_FAILED});
+                })
     }
-
     return (
         <>
 
@@ -124,6 +133,12 @@ export default function RegistrationForm() {
                 error={registerState.email.length > 0 && ((!registerState.email.includes("@")) || !(registerState.email.includes(".de") || registerState.email.includes(".com") || registerState.email.includes(".net")))}
                 helperText={registerState.email.length > 0 && ((!registerState.email.includes("@")) || !(registerState.email.includes(".de") || registerState.email.includes(".com") || registerState.email.includes(".net"))) && "Please enter a valid E-Mail address"}
             />
+            {registrationStatus === "SUCCESS" &&<Alert
+                variant="filled" severity="success"
+            > Success! Welcome :) </Alert>}
+            {registrationStatus === "FAIL" &&<Alert
+                variant="filled" severity="error"
+            > Check entries! </Alert>}
             <Button
                 onClick={handleSubmit}
                 disabled={!validation}
@@ -131,7 +146,7 @@ export default function RegistrationForm() {
                 REGISTER</Button>
             <Button
 
-                onClick={history.goBack}>Go back to login</Button>
+                onClick={history.goBack}>Log in </Button>
         </>
     )
 }

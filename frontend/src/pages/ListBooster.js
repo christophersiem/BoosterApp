@@ -1,11 +1,9 @@
-import React, {useContext, useEffect, useState} from "react";
-import {deleteBooster, fetchCreatedBooster} from "../utils/booster-utils";
+import React, {useContext, useEffect} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import BoosterPaper from "./BoosterPaper";
 import {BoosterDispatchContext, BoosterStateContext} from "../context/booster/BoosterContext";
 import {fetchBooster} from "../context/booster/booster-actions";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "@material-ui/core/Typography";
+
 
 const useStyles = makeStyles((theme) => ({
     mainPage: {
@@ -54,7 +52,7 @@ export default function ListBooster() {
             fetchBooster(dispatch, username)
                 .catch((e) => console.error(e))
         }
-    }, [fetchStatus, dispatch])
+    }, [fetchStatus, dispatch,username])
 
 
     return (

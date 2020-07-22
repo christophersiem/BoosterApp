@@ -24,6 +24,6 @@ public class BoosterUser {
     private String firstName;
     private String email;
     private String role;
-    private List friends;
+    private List<String> friends;
 }
 

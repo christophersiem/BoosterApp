@@ -1,6 +1,6 @@
 package de.neuefische.boosterapp.controller;
 
-import de.neuefische.boosterapp.model.AddBoosterDto;
+import de.neuefische.boosterapp.model.dto.AddBoosterDto;
 import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterType;
 import de.neuefische.boosterapp.service.BoosterService;

@@ -23,7 +23,6 @@ public class UserService {
         this.idUtils = idUtils;
     }
 
-
     public void register(BoosterUser user) {
         String codedPw = encoder.encode(user.getPassword());
         user.setPassword(codedPw);
@@ -31,11 +30,6 @@ public class UserService {
         user.setRole("user");
         userDb.save(user);
     }
-
-    public BoosterUser findUserByUsername(String username) {
-        return userDb.findByUsername(username);
-    }
-
 
     public void addUserAsFriend(String usernameToAdd, String userId) {
 

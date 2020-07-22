@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
-import {getUserByUsername} from "../utils/auth-utils";
+import {UserStateContext} from "../context/user/UserContext";
 
 const useStyles = makeStyles((theme) => ({
     colored: {
@@ -39,15 +39,8 @@ function greet() {
 
 export default function WelcomeMessage() {
     const classes = useStyles();
-    const [userData, setUserData] = useState("")
-    useEffect(() => {
-        const username= localStorage.getItem('UserName')
-        getUserByUsername(username)
-            .then((data) => setUserData(data))
-            .catch((e) => console.error(e));
+    const {userData} = useContext(UserStateContext);
 
-
-    }, [])
 
     return (
         <h2 className={classes.message}> {greet()},<span className={classes.colored}><br/> {userData.firstName}</span></h2>

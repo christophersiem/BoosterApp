@@ -26,6 +26,11 @@ export const theme = createMuiTheme({
                 backgroundColor: "#ffffff",
             },
         },
+        MuiAlert:{
+            filledSuccess:{
+                justifyContent:"center",
+            }
+        },
 
         MuiTypography: {
             body1: {

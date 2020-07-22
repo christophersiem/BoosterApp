@@ -3,7 +3,7 @@ package de.neuefische.boosterapp.service;
 import de.neuefische.boosterapp.db.BoosterMongoDb;
 
 import de.neuefische.boosterapp.db.UserDb;
-import de.neuefische.boosterapp.model.AddBoosterDto;
+import de.neuefische.boosterapp.model.dto.AddBoosterDto;
 import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterType;
 import de.neuefische.boosterapp.model.BoosterUser;

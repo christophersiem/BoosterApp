@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext}from 'react';
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
 import {fetchIdFromType} from "../utils/booster-utils";
 import {useHistory} from "react-router";
-import {getUserByUsername} from "../utils/auth-utils";
+import {UserStateContext} from "../context/user/UserContext";
 
 
 const useStyles = makeStyles(() => ({
@@ -19,19 +19,11 @@ const useStyles = makeStyles(() => ({
 
 export default function BoosterButton() {
 
+    const {userData} = useContext(UserStateContext);
 
-    const [userData, setUserData] = useState("")
-
-    useEffect(() => {
-        const username = localStorage.getItem('UserName')
-        getUserByUsername(username)
-            .then((data) => setUserData(data))
-            .catch((e) => console.error(e));
-    },[])
     const owner = userData.id
     const classes = useStyles();
     const history = useHistory();
-
 
     function redirect(boosterType) {
         fetchIdFromType(boosterType, owner)
