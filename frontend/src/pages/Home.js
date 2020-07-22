@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
     const classes = useStyles();
     return (
-
             <>
                 <p className={classes.title}>Choose a booster</p>
 

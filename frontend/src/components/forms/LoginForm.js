@@ -1,12 +1,14 @@
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {LOGIN, LOGIN_FAILED, LOGIN_SUCCESS} from "../../context/user/UserContextProvider";
 import {performLogin} from "../../utils/auth-utils";
 import {getDecodedJWTToken, setJWTToken} from "../../utils/jwt-utils";
 import {UserDispatchContext} from "../../context/user/UserContext";
+
+
 
 
 const useStyles = makeStyles(() => ({
@@ -26,7 +28,6 @@ export default function LoginForm() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
     const dispatch = useContext(UserDispatchContext);
 
     function login() {
@@ -38,11 +39,12 @@ export default function LoginForm() {
                 dispatch({type: LOGIN_SUCCESS, payload: userData});
             })
             .catch(() => {
-                dispatch({type: LOGIN_FAILED});
+                dispatch({type: LOGIN_FAILED})
 
             })
-        sessionStorage.setItem('UserName', username);
+        localStorage.setItem('UserName', username);
     }
+
 
     return (
         <>

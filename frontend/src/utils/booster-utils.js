@@ -47,21 +47,20 @@ export async function fetchIdFromType(boosterType, owner) {
 
 }
 
-export async function deleteBooster(id) {
+export function deleteBooster(id) {
     const token = getJWTToken();
-    await fetch("api/booster/" + id, {
+    return fetch("api/booster/" + id, {
         method: "DELETE",
         headers: {
             Authorization: `Bearer ${token}`,
         },
     })
-    await fetchCreatedBooster()
 }
 
 export async function addNewBooster(boosterToAdd) {
     const token = getJWTToken();
 
-    await fetch("api/booster/", {
+    await fetch("/api/booster/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -76,5 +75,17 @@ export async function addNewBooster(boosterToAdd) {
         return response.json();
     });
 }
+
+export function youTubeGetID(url) {
+    let ID = '';
+    url = url.replace(/(>|<)/gi, '').split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+    if (url[2] !== undefined) {
+        ID = url[2].split(/[^0-9a-z_\-]/i);
+        ID = ID[0];
+    } else {
+        ID = url;
+    }
+    return ID;
+};
 
 

@@ -1,5 +1,5 @@
 import React from "react";
-import Home from "../pages/Home";
+import Home from "./Home";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 
 
 @Service
@@ -36,15 +37,18 @@ public class UserService {
     }
 
 
+    public void addUserAsFriend(String usernameToAdd, String userId) {
+
+        BoosterUser userToAdd = userDb.findByUsername(usernameToAdd);
+        List listToBeModified = userToAdd.getFriends();
+        System.out.println(listToBeModified);
+    }
+
+
 //    public List getFriendListByUserId(String userId) {
 //        BoosterUser user = userDb.findById(userId);
 //        return user.getFriends();
 //    }
 //
-//    public void addUserAsFriend(String usernameToAdd, String userId) {
-//
-//        BoosterUser userToAdd = userDb.findByUsername(usernameToAdd);
-//        List listToBeModified = userToAdd.getFriends();
-//        System.out.println(listToBeModified);
-//    }
+
 }

@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function Friends() {
-    const [friendToAdd, setFriendToAdd] = useState("")
-    const [allFriends, setFriends] = useState([]);
     const classes = useStyles();
-    const [userData, setUserData] = useState("")
+
+    const [friendToAdd, setFriendToAdd] = useState("")
+    // const [allFriends, setFriends] = useState([]);
+    // const [userData, setUserData] = useState("")
     // useEffect(() => {
     //     const username = sessionStorage.getItem('UserName')
     //     getFriendListByUsername(username)
@@ -40,30 +41,30 @@ export default function Friends() {
 
     return (
         <>
-        <div className={classes.root}>
-            <p className={classes.message}>Add a Friend</p>
-            <Grid
-                container
-                direction="column"
-                justify="center"
-                alignItems="center"
-            >
-                <Grid>
-                    <TextField
-                        className={classes.input}
-                        onChange={setFriendToAdd}
-                        id="userToAdd"
-                        label="enter username"
-                        variant="outlined"/>
+            <div className={classes.root}>
+                <p className={classes.message}>Add a Friend</p>
+                <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                >
+                    <Grid>
+                        <TextField
+                            className={classes.input}
+                            onChange={setFriendToAdd}
+                            id="userToAdd"
+                            label="enter username"
+                            variant="outlined"/>
+                    </Grid>
+                    <Grid>
+                        <Button>Add user as friend</Button>
+                    </Grid>
                 </Grid>
-                <Grid>
-                    <Button>Add user as friend</Button>
-                </Grid>
-            </Grid>
-            <p className={classes.message}>Your friends</p>
+                <p className={classes.message}>Your friends</p>
 
-        </div>
-</>
+            </div>
+        </>
     )
 
 }

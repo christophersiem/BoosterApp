@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
@@ -6,6 +6,8 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {makeStyles} from "@material-ui/core/styles";
 import {deleteBooster} from "../utils/booster-utils";
+import {BoosterDispatchContext} from "../context/booster/BoosterContext";
+import {removeBooster} from "../context/booster/booster-actions";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -24,15 +26,15 @@ const useStyles = makeStyles((theme) => ({
 ))
 export default function BoosterPaper(props) {
     const classes = useStyles();
+    const dispatch = useContext(BoosterDispatchContext)
     function handleDelete(id) {
-        deleteBooster(id)
+        removeBooster(dispatch,id)
             .catch((e) => console.error(e))
             .then(window.location.reload())
     }
 
-
     return(
-        <div className={classes.paper} key={props.id}>
+        <div className={classes.paper} key={props.booster.id}>
             <Paper className={props.moodStyle} elevation={10}>
                 <Grid
                     container
@@ -41,12 +43,14 @@ export default function BoosterPaper(props) {
                     alignItems="center"
                 >
                     <Grid item className={props.moodStyle}>
-                        {props.name}
+                        {props.booster.name}
                     </Grid>
                     <Grid item>
-
+                        <IconButton>
+                            <EditIcon/>
+                        </IconButton>
                         <IconButton className={classes.delIcon}
-                                    onClick={() => handleDelete(props.id)}>
+                                    onClick={() => handleDelete(props.booster.id)}>
                             <DeleteIcon/>
                         </IconButton>
                     </Grid>

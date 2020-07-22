@@ -13,7 +13,6 @@ export function removeJWTToken() {
 export function setJWTToken(token) {
     return localStorage.setItem(key, token);
 }
-
 export function isJWTTokenValid() {
     const jwtToken = getJWTToken();
     if (!jwtToken) {

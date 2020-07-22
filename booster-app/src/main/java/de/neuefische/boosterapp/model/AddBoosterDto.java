@@ -15,7 +15,6 @@ public class AddBoosterDto {
     private String creator;
     private String creatorName;
     private String owner;
-    @Size(min = 5, message = "too short")
     private String name;
     private String message;
     private String youtubeLink;

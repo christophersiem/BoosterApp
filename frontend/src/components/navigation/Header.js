@@ -3,7 +3,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
-import {UserStateContext} from "../context/user/UserContext";
+import {UserStateContext} from "../../context/user/UserContext";
 import AppDrawerLeft from "./AppDrawerLeft";
 
 
@@ -15,7 +15,8 @@ const useStyles = makeStyles(() => ({
     menuButton: {
 
         color: "black",
-        padding:"0px"
+        padding:"0px",
+        justifyContent:"flex-start",
     },
     title: {
         flexGrow: 1,
@@ -37,6 +38,10 @@ const useStyles = makeStyles(() => ({
 
     image:{
         paddingTop:"5px",
+
+    },
+    toolbar:{
+        justifyContent:"center"
     }
 
 }));

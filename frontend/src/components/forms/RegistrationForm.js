@@ -25,7 +25,7 @@ export default function RegistrationForm() {
         email: "",
     })
     const validation = registerState.username.length > 5 && registerState.username.length > 0 &&
-        registerState.password.length > 5 && registerState.password.length > 0 &&
+        registerState.password.length > 5 &&
         passwordState.length > 0 && registerState.password === passwordState &&
         registerState.email.length > 0 && ((registerState.email.includes("@")) && (registerState.email.includes(".de") ||
             registerState.email.includes(".com") || registerState.email.includes(".net")))
