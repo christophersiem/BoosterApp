@@ -5,11 +5,11 @@ import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {makeStyles} from "@material-ui/core/styles";
-import {deleteBooster} from "../utils/booster-utils";
 import {BoosterDispatchContext} from "../context/booster/BoosterContext";
 import {removeBooster} from "../context/booster/booster-actions";
 
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles(() => ({
 
     paper: {
         margin: "7px 0px",
@@ -30,7 +30,6 @@ export default function BoosterPaper(props) {
     function handleDelete(id) {
         removeBooster(dispatch,id)
             .catch((e) => console.error(e))
-            .then(window.location.reload())
     }
 
     return(

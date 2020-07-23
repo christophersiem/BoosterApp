@@ -6,20 +6,25 @@ import {makeStyles} from "@material-ui/core/styles";
 import {LOGIN, LOGIN_FAILED, LOGIN_SUCCESS} from "../../context/user/UserContextProvider";
 import {performLogin} from "../../utils/auth-utils";
 import {getDecodedJWTToken, setJWTToken} from "../../utils/jwt-utils";
-import {UserDispatchContext} from "../../context/user/UserContext";
-
-
+import {UserDispatchContext, UserStateContext} from "../../context/user/UserContext";
+import Alert from "@material-ui/lab/Alert";
 
 
 const useStyles = makeStyles(() => ({
     inputField: {
         width: "80%",
-
+        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+            borderColor: "#8b95ba",
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: "purple"
+        }
     },
     submit: {
         margin: "24px 0px 16px",
         width: "80%"
     },
+
 
 }))
 
@@ -29,6 +34,7 @@ export default function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useContext(UserDispatchContext);
+    const {authStatus} = useContext(UserStateContext);
 
     function login() {
         dispatch({type: LOGIN});
@@ -73,6 +79,10 @@ export default function LoginForm() {
                 id="password"
                 autoComplete="current-password"
             />
+
+            {authStatus === "FAILED" && <Alert
+                variant="filled" severity="error"
+            > Check username and password </Alert>}
             <Button
                 fullWidth
                 variant="contained"

@@ -10,11 +10,15 @@ const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
         overflow: "scroll",
+        paddingTop:"20px"
     },
     image: {
         margin: "20px 0px",
+        height:"60%",
+        width:"60%",
         alignSelf: "center",
         justifyContent: "center",
+        paddingLeft:"20px",
     },
 
     welcome: {
@@ -22,6 +26,7 @@ const useStyles = makeStyles(() => ({
         fontSize: "18px",
         letterSpacing: "1.5px",
         textAlign: "start",
+        paddingRight:"20px"
     }
 
 }))
@@ -35,18 +40,17 @@ export default function RegisterPage() {
         <div className={classes.root}>
             <Grid
                 container
-                direction="column"
                 justify="center"
                 alignItems="center"
+
             >
-                <Grid item>
+                <Grid item xs={4}>
                     <img className={classes.image} src={"/logo.png"} alt="logo_small" width={"100%"} height={"100%"}/>
 
                 </Grid>
                 <h2 className={classes.welcome}>Hello stranger!<br/> Who are you?</h2>
-                <RegistrationForm/>
-
             </Grid>
+            <RegistrationForm/>
         </div>
 
     )

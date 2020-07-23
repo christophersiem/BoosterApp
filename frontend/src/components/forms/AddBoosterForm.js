@@ -39,6 +39,7 @@ export default function AddBoosterForm() {
     const [name, setName] = useState("");
     const [message, setMessage] = useState("");
     const [youtube, setYoutube] = useState("");
+    const [image, setImage] = useState("");
 
     const boosterToAdd = {
         creator: userData.id,
@@ -48,6 +49,7 @@ export default function AddBoosterForm() {
         name: name,
         message: message,
         youtubeLink: youtube,
+        image:image,
     }
     const handleChangeOwner = (event) => {
         setOwner(event.target.value);
@@ -65,15 +67,16 @@ export default function AddBoosterForm() {
         setMessage(event.target.value);
     };
     const handleChangeYoutube = (event) => {
-        let youtubeId = youTubeGetID(event.target.value)
-        setYoutube(youtubeId)
+        setYoutube(event.target.value)
+    };
+    const handleChangeImage = (event) => {
+        setImage(event.target.value)
     };
 
     const dispatch = useContext(BoosterDispatchContext);
     function handleSubmit() {
         addBooster(dispatch,boosterToAdd)
             .catch((e) => console.error(e))
-
     }
 
     return (
@@ -101,6 +104,7 @@ export default function AddBoosterForm() {
                     </FormControl>
                 </Grid>
                 <Grid item>
+                    {owner &&
                     <FormControl fullWidth={true} variant="outlined" className={classes.field}>
                         <InputLabel id="type">Booster Type</InputLabel>
                         <Select
@@ -115,8 +119,10 @@ export default function AddBoosterForm() {
                             <MenuItem value="CALM">Calm Booster</MenuItem>
                             <MenuItem value="CONFIDENCE">Confidence Booster</MenuItem>
                         </Select>
-                    </FormControl>
+                    </FormControl>}
+
                 </Grid>
+                {type &&
                 <Grid item>
                     <form noValidate autoComplete="off" className={classes.field}>
                         <TextField
@@ -127,24 +133,39 @@ export default function AddBoosterForm() {
                             onChange={handleChangeName}
                             value={name}
                             fullWidth={true}
-                            required
                             error={name.length > 20 && name.length > 0}
                             helperText={name.length > 20 && name.length > 0 && "Choose a name with maximum 20 characters"}
                         />
                     </form>
-                </Grid>
+                </Grid>}
+                {name &&
                 <Grid item>
                     <form noValidate autoComplete="off" className={classes.field}>
                         <TextField
                             className={classes.root}
                             id="youtube"
+                            value={youtube}
                             label="Youtube-Link (optional)"
                             variant="outlined"
                             onChange={handleChangeYoutube}
                             fullWidth={true}
                         />
                     </form>
-                </Grid>
+                </Grid>}
+                {name && <Grid item>
+                    <form noValidate autoComplete="off" className={classes.field}>
+                        <TextField
+                            className={classes.root}
+                            id="image"
+                            value={image}
+                            label="Image-Link (optional)"
+                            variant="outlined"
+                            onChange={handleChangeImage}
+                            fullWidth={true}
+                        />
+                    </form>
+                </Grid>}
+                {name &&
                 <Grid item>
                     <form noValidate autoComplete="off" className={classes.field}>
                         <TextField
@@ -158,7 +179,7 @@ export default function AddBoosterForm() {
                             value={message}
                         />
                     </form>
-                </Grid>
+                </Grid>}
                 <Grid item>
                     {addStatus === "SUCCESS" &&<Alert
                         variant="filled" severity="success"
@@ -166,6 +187,7 @@ export default function AddBoosterForm() {
                     {addStatus === "FAIL" &&<Alert
                         variant="filled" severity="error"
                     > Check entries! </Alert>}
+                    {name &&
                     <Button
                         className={classes.field}
                         onClick={handleSubmit}
@@ -173,7 +195,7 @@ export default function AddBoosterForm() {
                         disabled={name.length > 20 || name.length < 1 || !owner || !type}
                     >
                         Create Booster
-                    </Button>
+                    </Button>}
 
                 </Grid>
             </FormControl>

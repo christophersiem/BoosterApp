@@ -60,7 +60,7 @@ export function deleteBooster(id) {
 export async function addNewBooster(boosterToAdd) {
     const token = getJWTToken();
 
-    await fetch("/api/booster/", {
+    return await fetch("/api/booster/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

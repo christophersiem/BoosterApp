@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
     button:{
         marginTop:"30px",
+        backgroundColor:"#80c7c5"
     }
 }))
 
@@ -27,9 +28,7 @@ export default function LogoutPage() {
     const classes = useStyles();
 
     const history = useHistory();
-    const handleChange = () => {
-        history.push(`/login`);
-    };
+
 
     useEffect(() => {
             removeJWTToken()
@@ -50,9 +49,12 @@ export default function LogoutPage() {
                 <img className={classes.image} src={"/logo.png"} alt="logo_small" width={"40%"} height={"40%"}/>
                 </Grid>
                 <Grid item>
-                <Button
-                    className={classes.button}
-                    onClick={handleChange}>Login again</Button>
+                    <Button
+                        fullWidth
+                        variant="contained"
+                        color=""
+                        className={classes.button}
+                        onClick={()=>history.push("/login")}>Back to Log in </Button>
                 </Grid>
             </Grid>
         </>

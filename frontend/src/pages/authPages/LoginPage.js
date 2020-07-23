@@ -12,14 +12,23 @@ const useStyles = makeStyles(() => ({
         flexGrow: "1",
     },
     image: {
-        padding: "40px 0px",
-        width: "340px",
+        padding: "60px 0px",
+        width: "300px",
     },
     welcome: {
         fontFamily: 'Noto Sans',
-        fontSize: "18px",
+        fontSize: "24px",
         letterSpacing: "1.5px",
-    }
+        color:"#354ea0"
+    },
+    welcome2: {
+        fontFamily: 'Noto Sans',
+        fontSize: "24px",
+        letterSpacing: "1.5px",
+        color:"#354ea0",
+        alignSelf:"center"
+    },
+
 }))
 
 export default function LoginPage() {
@@ -28,12 +37,13 @@ export default function LoginPage() {
     const {authStatus} = useContext(UserStateContext);
     const location = useLocation();
     if (authStatus === 'SUCCESS') {
-        const locationState = location.state || {from:{pathname: "/"}};
+        const locationState = location.state || {from: {pathname: "/"}};
         return <Redirect to={locationState.from.pathname}/>;
     }
     return (
 
         <div className={classes.root}>
+
             <Grid
                 container
                 direction="column"
@@ -41,10 +51,14 @@ export default function LoginPage() {
                 alignItems="center"
             >
 
+                <Grid item>
+                    <img className={classes.image} src={"./cleanlogo.png"} alt="MoodBoost_Logo"/>
+                </Grid>
+                <Grid item>
+                    <p className={classes.welcome}>Nice to have you here!</p>
 
-                <img className={classes.image} src={"./logo_login_2.png"} alt="MoodBoost_Logo"/>
-                <h2 className={classes.welcome}>Nice to have you here!<br/> Please sign in</h2>
-
+                </Grid>
+                <p className={classes.welcome2}> Please sign in</p>
                 <LoginForm/>
             </Grid>
 

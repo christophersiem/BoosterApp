@@ -46,11 +46,11 @@ export default function FAQ() {
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                     >
-                        <Typography className={classes.heading}>I've created a booster, but now it's gone</Typography>
+                        <Typography className={classes.heading}>How does it work?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography className={classes.text}>
-                            Stop crying like a little baby and create a new booster
+                            Whenever there is a moment in which you feel like you could have a bit more Joy, Calm or Confidence, give yourself a boost! This app gives you a booster that you or your friends have created for you.
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
@@ -60,15 +60,28 @@ export default function FAQ() {
                         aria-controls="panel2a-content"
                         id="panel2a-header"
                     >
-                        <Typography className={classes.heading}>Accordion 2</Typography>
+                        <Typography className={classes.heading}>How does a booster look like?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography className={classes.text}>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                            sit amet blandit leo lobortis eget.
+                            Your booster can contain a message, a song, a youtube video or a picture (coming soon!)
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
+            <Accordion className={classes.accordion}>
+                <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                >
+                    <Typography className={classes.heading}>How can I view a specific booster?</Typography>
+                </AccordionSummary>
+                <AccordionDetails>
+                    <Typography className={classes.text}>
+
+                    </Typography>
+                </AccordionDetails>
+            </Accordion>
 
         </div>
 
