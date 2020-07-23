@@ -6,4 +6,4 @@ MAINTAINER Christopher Siem <christopher.siem@gmail.com>
 
 ADD booster-app/target/moodBoost.jar app.jar
 
-CMD ["sh", "-c", "java -Dserver.port=$PORT -Dspring.data.mongodb.uri=$MONGODB_URI -Dauth.jwt.secret=$JWT_SECRET -Doauth.github.client.id="]
+CMD ["sh", "-c", "java -Dserver.port=$PORT -Dspring.data.mongodb.uri=$MONGODB_URI -Dauth.jwt.secret=$JWT_SECRET "]
