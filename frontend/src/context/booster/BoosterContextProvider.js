@@ -4,7 +4,7 @@ import boosterReducer from "./boosterReducer";
 
 export default function BoosterContextProvider({ children }) {
     const [state, dispatch] = useReducer(boosterReducer, {
-        booster: [],
+        boosterItems: [],
         fetchStatus: undefined,
     });
 
