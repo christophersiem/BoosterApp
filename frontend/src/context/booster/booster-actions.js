@@ -1,8 +1,8 @@
 import {addNewBooster, deleteBooster, fetchCreatedBooster} from "../../utils/booster-utils";
 
-export const FETCH_BOOSTER ="FETCH_BOOSTER";
-export const FETCH_BOOSTER_SUCCESS ="FETCH_BOOSTER_SUCCESS";
-export const FETCH_BOOSTER_FAILED ="FETCH_BOOSTER_FAILED";
+export const FETCH_BOOSTER_ITEMS ="FETCH_BOOSTERITEMS";
+export const FETCH_BOOSTER_ITEMS_SUCCESS ="FETCH_BOOSTERITEMS_SUCCESS";
+export const FETCH_BOOSTER_ITEMS_FAILED ="FETCH_BOOSTERITEMS_FAILED";
 export const ADD_BOOSTER ="ADD_BOOSTER";
 export const ADD_BOOSTER_SUCCESS ="ADD_BOOSTER_SUCCESS";
 export const ADD_BOOSTER_FAILED ="ADD_BOOSTER_FAILED";
@@ -10,13 +10,13 @@ export const DELETE_BOOSTER ="DELETE_BOOSTER";
 export const DELETE_BOOSTER_SUCCESS ="DELETE_BOOSTER_SUCCESS";
 export const DELETE_BOOSTER_FAILED ="DELETE_BOOSTER_FAILED";
 
-export async function fetchBooster(dispatch,username) {
-    dispatch({ type: FETCH_BOOSTER });
+export async function fetchBoosterItems(dispatch,username) {
+    dispatch({ type: FETCH_BOOSTER_ITEMS });
     try {
-        const booster = await fetchCreatedBooster(username);
-        dispatch({ type: FETCH_BOOSTER_SUCCESS, payload: booster });
+        const boosterItems = await fetchCreatedBooster(username);
+        dispatch({ type: FETCH_BOOSTER_ITEMS_SUCCESS, payload: boosterItems });
     } catch (error) {
-        dispatch({ type: FETCH_BOOSTER_FAILED, payload: error });
+        dispatch({ type: FETCH_BOOSTER_ITEMS_FAILED, payload: error });
     }
 }
 
