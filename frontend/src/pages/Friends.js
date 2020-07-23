@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 
 import {makeStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Friends() {
     const classes = useStyles();
 
-    const [friendToAdd, setFriendToAdd] = useState("")
+    // const [friendToAdd, setFriendToAdd] = useState("")
     // const [allFriends, setFriends] = useState([]);
     // const [userData, setUserData] = useState("")
     // useEffect(() => {
@@ -52,7 +52,7 @@ export default function Friends() {
                     <Grid>
                         <TextField
                             className={classes.input}
-                            onChange={setFriendToAdd}
+                            // onChange={setFriendToAdd}
                             id="userToAdd"
                             label="enter username"
                             variant="outlined"/>

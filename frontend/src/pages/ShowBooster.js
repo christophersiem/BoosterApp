@@ -59,7 +59,7 @@ export default function ShowBooster() {
                 setFetchStatus("SUCCESS")
             })
 
-    }, [])
+    }, [id])
 
     return (
 

@@ -55,7 +55,7 @@ export default function ListBooster() {
 
         fetchBoosterItems(dispatch, userData.userName)
 
-    },[dispatch])
+    },[dispatch,userData.userName])
 
 
     return (

@@ -1,8 +1,8 @@
 package de.neuefische.boosterapp.controller;
 
-import de.neuefische.boosterapp.model.dto.AddBoosterDto;
 import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterType;
+import de.neuefische.boosterapp.model.dto.AddBoosterDto;
 import de.neuefische.boosterapp.service.BoosterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +23,8 @@ public class BoosterController {
     }
 
     @GetMapping
-    public List<Booster> getCreatedBooster(@RequestParam(required = false) String username) {
-        return boosterService.getCreatedBooster(username);
+    public List<Booster> getCreatedBooster(@RequestParam(required = false) String creatorUserName) {
+        return boosterService.getCreatedBooster(creatorUserName);
     }
 
     @GetMapping("{id}")

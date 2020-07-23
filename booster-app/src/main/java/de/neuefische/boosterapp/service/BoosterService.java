@@ -1,12 +1,11 @@
 package de.neuefische.boosterapp.service;
 
 import de.neuefische.boosterapp.db.BoosterMongoDb;
-
 import de.neuefische.boosterapp.db.UserDb;
-import de.neuefische.boosterapp.model.dto.AddBoosterDto;
 import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterType;
 import de.neuefische.boosterapp.model.BoosterUser;
+import de.neuefische.boosterapp.model.dto.AddBoosterDto;
 import de.neuefische.boosterapp.utils.IdUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -16,7 +15,8 @@ import org.springframework.data.mongodb.core.aggregation.MatchOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -80,8 +80,8 @@ public class BoosterService {
 
     }
 
-    public List<Booster> getCreatedBooster(String username) {
-        BoosterUser user = userDb.findByUsername(username);
+    public List<Booster> getCreatedBooster(String creatorUserName) {
+        BoosterUser user = userDb.findByUsername(creatorUserName);
         String userId = user.getId();
         return boosterDb.findByCreator(userId);
 
