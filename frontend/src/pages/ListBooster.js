@@ -2,14 +2,11 @@ import React, {useContext, useEffect} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import BoosterPaper from "./BoosterPaper";
 import {BoosterDispatchContext, BoosterStateContext} from "../context/booster/BoosterContext";
-import {
-    FETCH_BOOSTER_ITEMS, FETCH_BOOSTER_ITEMS_FAILED, FETCH_BOOSTER_ITEMS_SUCCESS,
-    fetchBoosterItems,
-} from "../context/booster/booster-actions";
+import {fetchBoosterItems,} from "../context/booster/booster-actions";
 import {UserStateContext} from "../context/user/UserContext";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
-import {LOGIN, LOGIN_FAILED} from "../context/user/UserContextProvider";
+
 
 const useStyles = makeStyles((theme) => ({
     mainPage: {
@@ -55,15 +52,10 @@ export default function ListBooster() {
     const dispatch = useContext(BoosterDispatchContext)
 
     useEffect(() => {
-        dispatch({type: FETCH_BOOSTER_ITEMS});
-        fetchBoosterItems(dispatch, userData.userName)
-            .then((response) => {
-                dispatch({type:FETCH_BOOSTER_ITEMS_SUCCESS,payload:boosterItems})
-            })
-            .catch(() => {
-                dispatch({type: FETCH_BOOSTER_ITEMS_FAILED})
 
-    })},[dispatch])
+        fetchBoosterItems(dispatch, userData.userName)
+
+    },[dispatch])
 
 
     return (

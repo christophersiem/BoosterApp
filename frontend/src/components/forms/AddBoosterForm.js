@@ -6,14 +6,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import React, {useContext, useState} from "react";
-import {youTubeGetID} from "../../utils/booster-utils";
 import {makeStyles} from "@material-ui/core/styles";
 import {BoosterDispatchContext, BoosterStateContext} from "../../context/booster/BoosterContext";
 import {addBooster} from "../../context/booster/booster-actions";
 import {UserStateContext} from "../../context/user/UserContext";
 import Alert from "@material-ui/lab/Alert";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     field: {
         margin: "6px 40px",
         width: "80%",
@@ -192,7 +191,7 @@ export default function AddBoosterForm() {
                         className={classes.field}
                         onClick={handleSubmit}
                         color="primary"
-                        disabled={name.length > 20 || name.length < 1 || !owner || !type}
+                        disabled={name.length > 20 || name.length < 1 || !owner || !type || (!youtube && !image && !message)}
                     >
                         Create Booster
                     </Button>}

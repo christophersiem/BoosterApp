@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {fetchBoosterById} from "../utils/booster-utils";
 import {useParams} from "react-router";
@@ -6,13 +6,6 @@ import YouTube from '@u-wave/react-youtube';
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import DeleteButton from "../components/DeleteButton";
-
-import {BoosterDispatchContext, BoosterStateContext} from "../context/booster/BoosterContext";
-import {
-
-    FETCH_BOOSTER_ITEMS, FETCH_BOOSTER_ITEMS_FAILED, FETCH_BOOSTER_ITEMS_SUCCESS,
-
-} from "../context/booster/booster-actions";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -45,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     textContent: {
         fontFamily: "Noto Sans",
         fontSize: "14px",
-        fontStyle:"italic",
+        fontStyle: "italic",
     },
     delete: {
         color: "#c20909",
@@ -54,21 +47,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ShowBooster() {
     const classes = useStyles();
-    const {fetchStatus} = useContext(BoosterStateContext);
-    const dispatch = useContext(BoosterDispatchContext)
+    const [fetchStatus, setFetchStatus] = useState("")
     const [boosterToDisplay, setBoosterToDisplay] = useState([]);
     let {id} = useParams();
 
     useEffect(() => {
-        dispatch({type: FETCH_BOOSTER_ITEMS});
+
         fetchBoosterById(id)
             .then((data) => {
                 setBoosterToDisplay(data)
-                dispatch({type: FETCH_BOOSTER_ITEMS_SUCCESS, payload: fetchStatus});
+                setFetchStatus("SUCCESS")
             })
-            .catch(() => {
-                dispatch({type: FETCH_BOOSTER_ITEMS_FAILED})
-            })
+
     }, [])
 
     return (
@@ -81,21 +71,26 @@ export default function ShowBooster() {
             <p className={classes.title}>This is your Booster from</p>
             <p className={classes.info}>{boosterToDisplay.creatorName}</p>
 
-                {boosterToDisplay.message &&
-                <p className={classes.title}>Message:</p>}
-                <div className={classes.textContent}> {boosterToDisplay.message}</div>
-                <p className={classes.title}>Yay! {boosterToDisplay.creatorName} sent you a picture </p>
-                <Card className={classes.root}>
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            alt="Contemplative Reptile"
-                            height="180"
-                            image={boosterToDisplay.image}
-                            title="Contemplative Reptile"
-                        />
-                    </CardActionArea>
-                </Card>
+            {boosterToDisplay.message &&
+
+            <p className={classes.title}>Message:</p>}
+            <div className={classes.textContent}> {boosterToDisplay.message}</div>
+
+            {boosterToDisplay.image &&
+
+            <p className={classes.title}>Yay! {boosterToDisplay.creatorName} sent you a picture> </p>}
+            {boosterToDisplay.image &&
+            <Card className={classes.root}>
+                <CardActionArea>
+                    <CardMedia
+                        component="img"
+                        alt="Contemplative Reptile"
+                        height="180"
+                        image={boosterToDisplay.image}
+                        title="Contemplative Reptile"
+                    />
+                </CardActionArea>
+            </Card>}
 
             {boosterToDisplay.youtubeLink &&
             <div>
@@ -124,7 +119,7 @@ export default function ShowBooster() {
                 </Grid>
             </Grid>
 
-</div>
-)
+        </div>
+    )
 
 }
