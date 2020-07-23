@@ -17,6 +17,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Service
@@ -37,6 +39,19 @@ public class BoosterService {
         this.userDb = userDb;
     }
 
+    public static String getYoutubeId(String url) {
+        String pattern = "https?:\\/\\/(?:[0-9A-Z-]+\\.)?(?:youtu\\.be\\/|youtube\\.com\\S*[^\\w\\-\\s])([\\w\\-]{11})(?=[^\\w\\-]|$)(?![?=&+%\\w]*(?:['\"][^<>]*>|<\\/a>))[?=&+%\\w]*";
+
+        Pattern compiledPattern = Pattern.compile(pattern,
+                Pattern.CASE_INSENSITIVE);
+        Matcher matcher = compiledPattern.matcher(url);
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return null;
+    }
+
+
     public Booster addNewBooster(AddBoosterDto data) {
         Booster booster = new Booster();
         booster.setId(idUtils.generateRandomId());
@@ -46,7 +61,8 @@ public class BoosterService {
         booster.setMessage(data.getMessage());
         booster.setOwner(data.getOwner());
         booster.setSpotifyLink(data.getSpotifyLink());
-        booster.setYoutubeLink(data.getYoutubeLink());
+        booster.setYoutubeLink(getYoutubeId(data.getYoutubeLink()));
+        booster.setImage(data.getImage());
         booster.setType(data.getType());
         return boosterDb.save(booster);
     }

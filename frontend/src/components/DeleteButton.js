@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -17,9 +17,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DeleteButton(props) {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const idToDelete =(props.value)
-    console.log(idToDelete)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -28,6 +27,10 @@ export default function DeleteButton(props) {
     const handleClose = () => {
         setOpen(false);
     };
+
+    function handleDelete(idToDelete){
+        deleteBooster(idToDelete)
+    }
 
     return (
         <div>
@@ -48,7 +51,7 @@ export default function DeleteButton(props) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={()=>deleteBooster(idToDelete) }>
+                    <Button onClick={()=>{handleDelete(idToDelete)} }>
                         Delete
                     </Button>
                     <Button onClick={handleClose} color="primary" autoFocus>

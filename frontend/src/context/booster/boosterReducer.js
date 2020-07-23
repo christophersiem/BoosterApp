@@ -21,14 +21,14 @@ export default function boosterReducer(state, action) {
             return {
                 ...state,
                 addStatus: 'SUCCESS',
-                booster: [...state.booster, action.payload],
+                boosterItems: [...state.boosterItems, action.payload],
             };
         case ADD_BOOSTER_FAILED:
             return { ...state, addStatus: 'FAILED' };
         case DELETE_BOOSTER_SUCCESS:
             return {
                 ...state,
-                booster: state.booster.filter((booster) => {
+                boosterItems: state.boosterItems.filter((booster) => {
                     return booster.id !== action.payload;
                 }),
             };

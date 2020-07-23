@@ -23,4 +23,5 @@ public class Booster {
     private String message;
     private String youtubeLink;
     private String spotifyLink;
+    private String image;
 }

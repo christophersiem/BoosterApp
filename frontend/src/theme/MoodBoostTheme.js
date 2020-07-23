@@ -29,6 +29,9 @@ export const theme = createMuiTheme({
         MuiAlert:{
             filledSuccess:{
                 justifyContent:"center",
+            },
+            filledError:{
+                backgroundColor:"#f6866f"
             }
         },
 
@@ -40,6 +43,9 @@ export const theme = createMuiTheme({
         MuiButton: {
             root: {
                 fontFamily: 'Noto Sans, sans-serif',
+            },
+            containedPrimary: {
+                backgroundColor:"#6b87e3"
             }
         },
     }

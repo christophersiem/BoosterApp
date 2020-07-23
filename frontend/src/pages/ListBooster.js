@@ -3,11 +3,13 @@ import {makeStyles} from "@material-ui/core/styles";
 import BoosterPaper from "./BoosterPaper";
 import {BoosterDispatchContext, BoosterStateContext} from "../context/booster/BoosterContext";
 import {
+    FETCH_BOOSTER_ITEMS, FETCH_BOOSTER_ITEMS_FAILED, FETCH_BOOSTER_ITEMS_SUCCESS,
     fetchBoosterItems,
 } from "../context/booster/booster-actions";
 import {UserStateContext} from "../context/user/UserContext";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
+import {LOGIN, LOGIN_FAILED} from "../context/user/UserContextProvider";
 
 const useStyles = makeStyles((theme) => ({
     mainPage: {
@@ -53,10 +55,15 @@ export default function ListBooster() {
     const dispatch = useContext(BoosterDispatchContext)
 
     useEffect(() => {
-            fetchBoosterItems(dispatch, userData.userName);
-            console.log(boosterItems);
+        dispatch({type: FETCH_BOOSTER_ITEMS});
+        fetchBoosterItems(dispatch, userData.userName)
+            .then((response) => {
+                dispatch({type:FETCH_BOOSTER_ITEMS_SUCCESS,payload:boosterItems})
+            })
+            .catch(() => {
+                dispatch({type: FETCH_BOOSTER_ITEMS_FAILED})
 
-    }, [dispatch])
+    })},[dispatch])
 
 
     return (
@@ -71,7 +78,7 @@ export default function ListBooster() {
             <img className={classes.image} src={"/jcc2.png"} alt="logo_medium"/>
 
 
-            {boosterItems && boosterItems.map((booster) =>
+            {boosterItems && boosterItems.map((booster) => (
                 booster.type === "JOY" ?
                     <BoosterPaper moodStyle={classes.paperJoy} booster={booster} key={booster.id}/>
                     :
@@ -79,7 +86,7 @@ export default function ListBooster() {
                         <BoosterPaper moodStyle={classes.paperCalm} booster={booster} key={booster.id}/>
                         :
                         <BoosterPaper moodStyle={classes.paperConf} booster={booster} key={booster.id}/>
-            )}
+            ))}
         </div>
     )
 }

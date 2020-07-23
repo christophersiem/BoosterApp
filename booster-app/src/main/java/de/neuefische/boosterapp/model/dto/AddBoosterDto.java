@@ -20,6 +20,7 @@ public class AddBoosterDto {
     private String message;
     private String youtubeLink;
     private String spotifyLink;
+    private String image;
 
 }
 

@@ -8,13 +8,25 @@ import Alert from "@material-ui/lab/Alert";
 
 import {UserDispatchContext, UserStateContext} from "../../context/user/UserContext";
 import {REGISTRATION, REGISTRATION_FAILED, REGISTRATION_SUCCESS} from "../../context/user/UserContextProvider";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(() => ({
     inputField: {
         width: "80%",
     },
+    submit: {
+        margin: "24px 0px ",
+        width: "40%"
+    },
+    submit2: {
+        margin: "10x 0px ",
+        width: "40%",
+        backgroundColor:"#80c7c5"
+    },
+    alert:{
+        marginBottom:"12px"
+    }
 }))
-
 
 
 export default function RegistrationForm() {
@@ -34,7 +46,6 @@ export default function RegistrationForm() {
         passwordState.length > 0 && registerState.password === passwordState &&
         registerState.email.length > 0 && ((registerState.email.includes("@")) && (registerState.email.includes(".de") ||
             registerState.email.includes(".com") || registerState.email.includes(".net")))
-
 
 
     function handleChange(event) {
@@ -58,11 +69,17 @@ export default function RegistrationForm() {
                 dispatch({type: REGISTRATION_SUCCESS, payload: data});
             })
             .catch(() => {
-                    dispatch({type: REGISTRATION_FAILED});
-                })
+                dispatch({type: REGISTRATION_FAILED});
+            })
     }
+
     return (
-        <>
+        <Grid
+            container
+            justify="center"
+            alignItems="center"
+            direction="column"
+        >
 
             <TextField
                 className={classes.inputField}
@@ -133,20 +150,27 @@ export default function RegistrationForm() {
                 error={registerState.email.length > 0 && ((!registerState.email.includes("@")) || !(registerState.email.includes(".de") || registerState.email.includes(".com") || registerState.email.includes(".net")))}
                 helperText={registerState.email.length > 0 && ((!registerState.email.includes("@")) || !(registerState.email.includes(".de") || registerState.email.includes(".com") || registerState.email.includes(".net"))) && "Please enter a valid E-Mail address"}
             />
-            {registrationStatus === "SUCCESS" &&<Alert
+            {registrationStatus === "SUCCESS" && <Alert
+                className={classes.alert}
                 variant="filled" severity="success"
             > Success! Welcome :) </Alert>}
-            {registrationStatus === "FAIL" &&<Alert
-                variant="filled" severity="error"
-            > Check entries! </Alert>}
+
+            {registrationStatus !== "SUCCESS" &&
             <Button
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
                 onClick={handleSubmit}
                 disabled={!validation}
             >
-                REGISTER</Button>
+                REGISTER</Button>}
             <Button
-
-                onClick={history.goBack}>Log in </Button>
-        </>
+                fullWidth
+                variant="contained"
+                color=""
+                className={classes.submit2}
+                onClick={()=>history.push("/login")}>Go to Log in </Button>
+        </Grid>
     )
 }
