@@ -8,7 +8,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         overflow:"scroll",
-        display:"flex"
     },
 
     paper: {
