@@ -5,7 +5,6 @@ import {useParams} from "react-router";
 import YouTube from '@u-wave/react-youtube';
 import Grid from "@material-ui/core/Grid";
 import DeleteDialog from "../components/DeleteDialog";
-import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Paper from "@material-ui/core/Paper";
@@ -16,19 +15,20 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.subtitle2.fontSize,
         letterSpacing: theme.typography.subtitle.letterSpacing,
         color: "white",
-        marginLeft: "15px"
+        marginLeft: "20px"
     },
     root: {
         flexGrow: "1",
+        overflow: "scroll",
 
     },
+
     info: {
         fontFamily: theme.typography.subtitle.fontFamily,
         color: "#1e2121",
-        fontStyle: "italic",
         fontSize: "18px",
         marginTop: "5px",
-        marginLeft: "15px"
+        marginLeft: "20px"
     },
     video: {
         justifyContent: "center",
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: theme.typography.subtitle.fontFamily,
         fontSize: "18px",
         fontStyle: "italic",
-        marginLeft: "15px"
+        marginLeft: "20px"
     },
     delete: {
         color: "#c20909",
@@ -79,47 +79,58 @@ export default function ShowBooster() {
 
             {boosterToDisplay.message &&
             <Paper className={classes.paperColor}>
-            <p className={classes.title}>Message:</p></Paper>}
+                <p className={classes.title}>Message:</p></Paper>}
             {boosterToDisplay.message &&
             <div className={classes.textContent}> {boosterToDisplay.message}</div>
             }
             {boosterToDisplay.image &&
             <Paper className={classes.paperColor}>
-                <p className={classes.title}>Picutre from {boosterToDisplay.creatorName} </p> </Paper>}
+                <p className={classes.title}>Picture from {boosterToDisplay.creatorName} </p></Paper>}
             {boosterToDisplay.image &&
-            <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="Contemplative Reptile"
-                        height="180"
-                        image={boosterToDisplay.image}
-                        title="Contemplative Reptile"
-                    />
-                </CardActionArea>
-            </Card>}
-
-            {boosterToDisplay.youtubeLink &&
-            <Paper className={classes.paperColor}>
-
-                <p className={classes.title}>Youtube Clip:</p>
-            </Paper>}
-            {boosterToDisplay.youtubeLink &&
-                <YouTube
-                    video={boosterToDisplay.youtubeLink}
-                    allowFullscreen={true}
-                    width={374}
-                    height={260}
-                    autoplay={false}
-                />
-
-            }
             <Grid
                 container
                 direction="row"
                 justify="center"
 
             >
+                <Grid item>
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            alt="Picture from your friend"
+                            height="180"
+                            image={boosterToDisplay.image}
+                            title="Picture from your friend"
+                            style={{maxWidth: "374px"}}
+                        />
+                    </CardActionArea>
+                </Grid>
+            </Grid>
+            }
+
+            {boosterToDisplay.youtubeLink &&
+            <Paper className={classes.paperColor}>
+
+                <p className={classes.title}>Youtube Clip:</p>
+            </Paper>}
+            <Grid
+                container
+                direction="row"
+                justify="center"
+
+            >
+                {boosterToDisplay.youtubeLink &&
+                <Grid item>
+                    <YouTube
+                        video={boosterToDisplay.youtubeLink}
+                        allowFullscreen={true}
+                        width={374}
+                        height={260}
+                        autoplay={false}
+                    />
+                </Grid>
+                }
+
                 <Grid item>
                     <DeleteDialog value={boosterToDisplay.id}/>
                 </Grid>

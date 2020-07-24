@@ -15,12 +15,13 @@ const useStyles = makeStyles(() => ({
         alignItems:"center",
         height: "64px",
     },
-    iconColor:{
-        color:"white"
-    },
+
     root: {
         "& .MuiBottomNavigationAction-root.Mui-selected ": {
-            color: "#ffffff"}
+            color: "#f3f0f0"},
+        "& .MuiBottomNavigationAction-root":{
+            color: "#f3f0f0"
+        }
 }}))
 
 export default function SimpleBottomNavigation() {

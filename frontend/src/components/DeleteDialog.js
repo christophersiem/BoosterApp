@@ -12,6 +12,7 @@ import {deleteBooster} from "../utils/booster-utils";
 const useStyles = makeStyles(() => ({
     delete: {
         color: "#c20909",
+        margin:"15px 0px",
     },
 
 
@@ -37,7 +38,11 @@ export default function DeleteDialog(props) {
 
     return (
         <div>
-            <Button className={classes.delete} Delete booster onClick={handleClickOpen}>
+            <Button className={classes.delete}
+                    onClick={handleClickOpen}
+                    fullWidth
+                    variant="contained"
+                    >
                 Delete this booster
             </Button>
 
