@@ -34,7 +34,7 @@ export default function BoosterButton() {
         fetchIdFromType(boosterType, owner)
             .then((randomId) => history.push(`/booster/${randomId}`))
             .catch((e) => console.error(e))
-    };
+    }
 
     return (
 
@@ -63,6 +63,7 @@ export default function BoosterButton() {
                 </Grid>
                 <Grid>
                     <Card className={classes.root}>
+                        <Button value={"CALM"} onClick={() => redirect("CALM")} variant="outlined" className={classes.button}>
                         <CardActionArea>
                             <CardMedia
                                 component="img"
@@ -72,10 +73,12 @@ export default function BoosterButton() {
                                 title="Calm Picture"
                             />
                         </CardActionArea>
+                        </Button>
                     </Card>
                 </Grid>
                 <Grid>
                     <Card className={classes.root}>
+                        <Button value={"CONFIDENCE"} onClick={() => redirect("CONFIDENCE")} variant="outlined" className={classes.button}>
                         <CardActionArea>
                             <CardMedia
                                 component="img"
@@ -85,6 +88,7 @@ export default function BoosterButton() {
                                 title="Confidence Picture"
                             />
                         </CardActionArea>
+                        </Button>
                     </Card>
                 </Grid>
 
