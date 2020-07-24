@@ -40,9 +40,6 @@ const useStyles = makeStyles(() => ({
         paddingTop:"5px",
 
     },
-    toolbar:{
-        justifyContent:"center"
-    }
 
 }));
 
