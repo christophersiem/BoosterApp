@@ -81,7 +81,7 @@ export default function AddBoosterForm() {
 
         useEffect(() => {
             dispatch({type: ADD_BOOSTER});
-        },[])
+        },[dispatch])
 
     return (
         <>
