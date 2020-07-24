@@ -9,10 +9,10 @@ const useStyles = makeStyles((theme) => ({
 },
 
 message: {
-    fontFamily: theme.typography.subtitle2.fontFamily,
-    fontSize: theme.typography.subtitle2.fontSize,
-    letterSpacing:theme.typography.subtitle2.letterSpacing,
-    lineHeight:theme.typography.subtitle2.lineHeight,
+    fontFamily: theme.typography.subtitle.fontFamily,
+    fontSize: theme.typography.subtitle.fontSize,
+    letterSpacing:theme.typography.subtitle.letterSpacing,
+    lineHeight:theme.typography.subtitle.lineHeight,
     paddingLeft: "16px",
 }}
     ));

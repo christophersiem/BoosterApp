@@ -5,7 +5,9 @@ import {BoosterDispatchContext, BoosterStateContext} from "../context/booster/Bo
 import {fetchBoosterItems,} from "../context/booster/booster-actions";
 import {UserStateContext} from "../context/user/UserContext";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Typography from "@material-ui/core/Typography";
+import Alert from "@material-ui/lab/Alert";
+import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -40,6 +42,14 @@ const useStyles = makeStyles((theme) => ({
         width: "344px",
         paddingBottom: "15px",
         alignSelf: "center",
+    },
+
+    alertButton: {
+        justifyContent: "center",
+        marginTop: "20px"
+    },
+    noBooster: {
+        alignSelf: "center",
     }
 
 }))
@@ -55,32 +65,52 @@ export default function ListBooster() {
 
         fetchBoosterItems(dispatch, userData.userName)
 
-    },[dispatch,userData.userName])
+    }, [dispatch, userData.userName])
 
 
     return (
-        <div className={classes.mainPage}>
-            {fetchStatus === 'PENDING' && <CircularProgress/>}
-            {fetchStatus === 'FAILED' && (
-                <Typography variant="body1" color="error" component="p">
-                    Fetch Booster failed
-                </Typography>
-            )}
+        <>
+        <Grid className={classes.mainPage}>
+
             <p className={classes.title}>Your created booster</p>
             <img className={classes.image} src={"/jcc2.png"} alt="logo_medium"/>
 
+            <Grid
+                container
+                direction="column"
+                justify="center"
+                alignItems="center"
+            >
+                {fetchStatus === 'PENDING' && <CircularProgress/>}
+                {fetchStatus === 'FAILED' &&
+                <Alert variant="outlined" severity="info">
+                    You have no created booster. <br/>
+                </Alert>}
+                {fetchStatus === 'FAILED' &&
+                <Button
+                    className={classes.alertButton}
+                    variant="contained"
+                    color="primary"
+                    href="/add">Create a booster now</Button>
 
-            {boosterItems && boosterItems.map((booster) => (
-                booster.type === "JOY" ?
-                    <BoosterPaper moodStyle={classes.paperJoy} booster={booster} key={booster.id}/>
+                }
+            </Grid>
+        </Grid>
+
+    {
+        boosterItems && boosterItems.map((booster) => (
+            booster.type === "JOY" ?
+                <BoosterPaper moodStyle={classes.paperJoy} booster={booster} key={booster.id}/>
+                :
+                booster.type === "CALM" ?
+                    <BoosterPaper moodStyle={classes.paperCalm} booster={booster} key={booster.id}/>
                     :
-                    booster.type === "CALM" ?
-                        <BoosterPaper moodStyle={classes.paperCalm} booster={booster} key={booster.id}/>
-                        :
-                        <BoosterPaper moodStyle={classes.paperConf} booster={booster} key={booster.id}/>
-            ))}
-        </div>
-    )
+                    <BoosterPaper moodStyle={classes.paperConf} booster={booster} key={booster.id}/>
+        ))
+    }
+
+</>
+)
 }
 
 
