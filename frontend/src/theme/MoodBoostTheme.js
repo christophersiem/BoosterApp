@@ -19,11 +19,10 @@ export const theme = createMuiTheme({
 
     },
 
-
     overrides: {
         MuiPaper: {
             root: {
-                backgroundColor: "#ffffff",
+                backgroundColor: "#f7f5ed",
             },
         },
         MuiAlert:{

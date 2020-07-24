@@ -3,9 +3,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import {fetchBoosterById} from "../utils/booster-utils";
 import {useParams} from "react-router";
 import YouTube from '@u-wave/react-youtube';
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import DeleteButton from "../components/DeleteButton";
+import DeleteDialog from "../components/DeleteDialog";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -108,14 +107,11 @@ export default function ShowBooster() {
             <Grid
                 container
                 direction="row"
-                justify="space-between"
-                alignItems="flex-start"
+                justify="center"
+
             >
                 <Grid item>
-                    <Button>Keep booster</Button>
-                </Grid>
-                <Grid item>
-                    <DeleteButton value={boosterToDisplay.id}/>
+                    <DeleteDialog value={boosterToDisplay.id}/>
                 </Grid>
             </Grid>
 

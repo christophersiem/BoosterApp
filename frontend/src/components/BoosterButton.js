@@ -1,19 +1,24 @@
-import React, {useContext}from 'react';
+import React, {useContext} from 'react';
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
 import {fetchIdFromType} from "../utils/booster-utils";
 import {useHistory} from "react-router";
 import {UserStateContext} from "../context/user/UserContext";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
 
 
 const useStyles = makeStyles(() => ({
     button: {
-        width: 120,
-        height: 60,
-        margin: "20px 0px",
-        borderRadius: "10%"
+        margin: "0px",
+        padding:"0px",
+
     },
+    root:{
+        margin:"0px 0px 20px 0px"
+    }
 
 }));
 
@@ -39,22 +44,50 @@ export default function BoosterButton() {
             justify="space-between"
             alignItems="center"
         >
-            <div className={classes.root}>
+
                 <Grid>
-                    <Button value={"JOY"} onClick={() => redirect("JOY")} variant="outlined" className={classes.button}>Joy
-                        Booster</Button>
+                    <Card className={classes.root}>
+                        <Button value={"JOY"} onClick={() => redirect("JOY")} variant="outlined" className={classes.button}>
+                        <CardActionArea>
+
+                            <CardMedia
+                                component="img"
+                                alt="Joy Picture"
+                                height="180"
+                                image="/joy_button.png"
+                                title="Joy Picture"
+                            />
+                        </CardActionArea>
+                        </Button>
+                    </Card>
                 </Grid>
                 <Grid>
-                    <Button value={"CALM"} onClick={() => redirect("CALM")} variant="outlined"
-                            className={classes.button}>Calm
-                        Booster</Button>
+                    <Card className={classes.root}>
+                        <CardActionArea>
+                            <CardMedia
+                                component="img"
+                                alt="Calm Picture"
+                                height="180"
+                                image="/calm_button.png"
+                                title="Calm Picture"
+                            />
+                        </CardActionArea>
+                    </Card>
                 </Grid>
                 <Grid>
-                    <Button value={"CONFIDENCE"} onClick={() => redirect("CONFIDENCE")} variant="outlined"
-                            className={classes.button}>Confidence
-                        Booster</Button>
+                    <Card className={classes.root}>
+                        <CardActionArea>
+                            <CardMedia
+                                component="img"
+                                alt="Confidence Picture"
+                                height="180"
+                                image="/confidence_button.png"
+                                title="Confidence Picture"
+                            />
+                        </CardActionArea>
+                    </Card>
                 </Grid>
-            </div>
+
         </Grid>
 
     )

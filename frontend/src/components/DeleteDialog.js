@@ -8,17 +8,19 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import {makeStyles} from "@material-ui/core/styles";
 import {deleteBooster} from "../utils/booster-utils";
 
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles(() => ({
     delete: {
         color: "#c20909",
-    }
+    },
+
 
 }))
 
-export default function DeleteButton(props) {
+export default function DeleteDialog(props) {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const idToDelete =(props.value)
+    const idToDelete = (props.value)
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -28,13 +30,14 @@ export default function DeleteButton(props) {
         setOpen(false);
     };
 
-    function handleDelete(idToDelete){
+    function handleDelete(idToDelete) {
         deleteBooster(idToDelete)
     }
 
+
     return (
         <div>
-            <Button className={classes.delete}Delete booster onClick={handleClickOpen}>
+            <Button className={classes.delete} Delete booster onClick={handleClickOpen}>
                 Delete this booster
             </Button>
 
@@ -51,7 +54,10 @@ export default function DeleteButton(props) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={()=>{handleDelete(idToDelete)} }>
+                    <Button
+                        className={classes.delete}
+                        onClick={() => {handleDelete(idToDelete)}}
+                        href="/">
                         Delete
                     </Button>
                     <Button onClick={handleClose} color="primary" autoFocus>
