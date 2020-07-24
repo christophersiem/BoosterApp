@@ -8,39 +8,44 @@ import DeleteDialog from "../components/DeleteDialog";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme) => ({
     title: {
         fontFamily: theme.typography.subtitle.fontFamily,
         fontSize: theme.typography.subtitle2.fontSize,
         letterSpacing: theme.typography.subtitle.letterSpacing,
-
+        color: "white",
+        marginLeft: "15px"
     },
     root: {
         flexGrow: "1",
-        padding: "0px 20px"
+
     },
     info: {
-        color: "#6675b8",
+        fontFamily: theme.typography.subtitle.fontFamily,
+        color: "#1e2121",
         fontStyle: "italic",
-        display: "inline",
-        fontSize: "24px",
+        fontSize: "18px",
+        marginTop: "5px",
+        marginLeft: "15px"
     },
     video: {
         justifyContent: "center",
         margin: "20px, 20px",
     },
-    text: {
-        fontFamily: "Noto Sans",
-        fontSize: "24px",
-    },
+
     textContent: {
-        fontFamily: "Noto Sans",
-        fontSize: "14px",
+        fontFamily: theme.typography.subtitle.fontFamily,
+        fontSize: "18px",
         fontStyle: "italic",
+        marginLeft: "15px"
     },
     delete: {
         color: "#c20909",
+    },
+    paperColor: {
+        backgroundColor: "rgba(149,176,241,0.77)"
     }
 }))
 
@@ -64,20 +69,23 @@ export default function ShowBooster() {
 
         <div className={classes.root}>
 
+
             {fetchStatus === "FETCH_BOOSTER_FAILED" && <p>no booster to display</p>}
 
-
-            <p className={classes.title}>This is your Booster from</p>
+            <Paper className={classes.paperColor}>
+                <p className={classes.title}>This is your Booster from</p>
+            </Paper>
             <p className={classes.info}>{boosterToDisplay.creatorName}</p>
 
             {boosterToDisplay.message &&
-
-            <p className={classes.title}>Message:</p>}
+            <Paper className={classes.paperColor}>
+            <p className={classes.title}>Message:</p></Paper>}
+            {boosterToDisplay.message &&
             <div className={classes.textContent}> {boosterToDisplay.message}</div>
-
+            }
             {boosterToDisplay.image &&
-
-            <p className={classes.title}>Yay! {boosterToDisplay.creatorName} sent you a picture> </p>}
+            <Paper className={classes.paperColor}>
+                <p className={classes.title}>Picutre from {boosterToDisplay.creatorName} </p> </Paper>}
             {boosterToDisplay.image &&
             <Card className={classes.root}>
                 <CardActionArea>
@@ -92,9 +100,11 @@ export default function ShowBooster() {
             </Card>}
 
             {boosterToDisplay.youtubeLink &&
-            <div>
-                <p className={classes.title}>Watch this video now:</p>
+            <Paper className={classes.paperColor}>
 
+                <p className={classes.title}>Youtube Clip:</p>
+            </Paper>}
+            {boosterToDisplay.youtubeLink &&
                 <YouTube
                     video={boosterToDisplay.youtubeLink}
                     allowFullscreen={true}
@@ -102,7 +112,7 @@ export default function ShowBooster() {
                     height={260}
                     autoplay={false}
                 />
-            </div>
+
             }
             <Grid
                 container

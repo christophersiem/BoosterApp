@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import {removeJWTToken} from "../utils/jwt-utils";
-import {Redirect,Route} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import {UserDispatchContext, UserStateContext} from "../context/user/UserContext";
 import {LOGOUT} from "../context/user/UserContextProvider";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -31,6 +31,8 @@ function PrivateRoute({ component: Component, ...rest }) {
                     }
                    return  <Component {...props} />;
                 }
+
+
 
 
                 return <CircularProgress />;
