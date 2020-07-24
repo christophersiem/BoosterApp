@@ -16,6 +16,7 @@ import MoodIcon from '@material-ui/icons/Mood';
 import PostAddOutlinedIcon from '@material-ui/icons/PostAddOutlined';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import PowerSettingsNewOutlinedIcon from '@material-ui/icons/PowerSettingsNewOutlined';
+
 const useStyles = makeStyles(() => ({
 
     root:{
@@ -38,6 +39,9 @@ const useStyles = makeStyles(() => ({
         margin: "15px 0px",
         alignSelf: "center",
         justifyContent:"center",
+    },
+    iconColor:{
+        color: '#225aba'
     }
 
 }));
@@ -57,11 +61,11 @@ export default function AppDrawerLeft(props) {
         setState({...state, [anchor]: open});
     };
     const navLinks = [
-        {text: "Home", link: "/", icon: <HomeOutlinedIcon />},
-        {text: "My friends", link: "/friends",icon: <PeopleOutlinedIcon/>},
-        {text: "My Booster", link: "/list", icon: <MoodIcon/>},
-        {text: "Add Booster", link: "/add", icon: <PostAddOutlinedIcon/>},
-        {text: "FAQ", link: "/faq", icon: <HelpOutlineOutlinedIcon/>},
+        {text: "Home", link: "/", icon: <HomeOutlinedIcon className={classes.iconColor}/>},
+        {text: "My friends", link: "/friends",icon: <PeopleOutlinedIcon className={classes.iconColor}/>},
+        {text: "My Booster", link: "/list", icon: <MoodIcon className={classes.iconColor}/>},
+        {text: "Add Booster", link: "/add", icon: <PostAddOutlinedIcon className={classes.iconColor}/>},
+        {text: "FAQ", link: "/faq", icon: <HelpOutlineOutlinedIcon className={classes.iconColor}/>},
         {text: "Logout", link: "/logout", icon: <PowerSettingsNewOutlinedIcon style={{color: '#c20909'}}/>}
     ]
     const list = (anchor) => (

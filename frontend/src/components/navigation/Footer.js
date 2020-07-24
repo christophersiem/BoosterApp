@@ -14,9 +14,14 @@ const useStyles = makeStyles(() => ({
     footer: {
         alignItems:"center",
         height: "64px",
-        backgroundColor:"#f7f5ed",
     },
-}))
+    iconColor:{
+        color:"white"
+    },
+    root: {
+        "& .MuiBottomNavigationAction-root.Mui-selected ": {
+            color: "#ffffff"}
+}}))
 
 export default function SimpleBottomNavigation() {
     const classes = useStyles();
@@ -35,11 +40,11 @@ export default function SimpleBottomNavigation() {
 
     return (
         <footer>
-            <BottomNavigation value={value} onChange={handleChange} className={classes.root} style={{background: '#f7f5ed'}}>
-                <BottomNavigationAction label="Home" value="" icon={<HomeOutlinedIcon/>} />
-                <BottomNavigationAction label="Booster" value="list" icon={<MoodIcon/>} />
-                <BottomNavigationAction label="New" value="add" icon={<PostAddOutlinedIcon/>} />
-                <BottomNavigationAction label="FAQ" value="faq" icon={<HelpOutlineOutlinedIcon/>} />
+            <BottomNavigation value={value} onChange={handleChange} className={classes.root} style={{background: 'rgb(109 144 199)'}}>
+                <BottomNavigationAction label="Home" value="" icon={<HomeOutlinedIcon className={classes.iconColor}/>} />
+                <BottomNavigationAction label="Booster" value="list" icon={<MoodIcon className={classes.iconColor}/>} />
+                <BottomNavigationAction label="New" value="add" icon={<PostAddOutlinedIcon className={classes.iconColor}/>} />
+                <BottomNavigationAction label="FAQ" value="faq" icon={<HelpOutlineOutlinedIcon className={classes.iconColor}/>} />
             </BottomNavigation>
 
         </footer>

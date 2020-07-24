@@ -25,12 +25,12 @@ export const theme = createMuiTheme({
                 backgroundColor: "#f7f5ed",
             },
         },
-        MuiAlert:{
-            filledSuccess:{
-                justifyContent:"center",
+        MuiAlert: {
+            filledSuccess: {
+                justifyContent: "center",
             },
-            filledError:{
-                backgroundColor:"#f6866f"
+            filledError: {
+                backgroundColor: "#f6866f"
             }
         },
 
@@ -44,8 +44,9 @@ export const theme = createMuiTheme({
                 fontFamily: 'Noto Sans, sans-serif',
             },
             containedPrimary: {
-                backgroundColor:"#6b87e3"
+                backgroundColor: "#6b87e3"
             }
         },
-    }
-});
+
+        }
+    });

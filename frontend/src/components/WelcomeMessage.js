@@ -4,7 +4,7 @@ import {UserStateContext} from "../context/user/UserContext";
 
 const useStyles = makeStyles((theme) => ({
     colored: {
-    color: "#8b95ba",
+    color: "#225aba",
     fontStyle: "italic",
 },
 

@@ -5,6 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 
 import {UserStateContext} from "../../context/user/UserContext";
 import AppDrawerLeft from "./AppDrawerLeft";
+import Grid from "@material-ui/core/Grid";
+import PersonIcon from '@material-ui/icons/Person';
 
 
 const useStyles = makeStyles(() => ({
@@ -37,7 +39,9 @@ const useStyles = makeStyles(() => ({
     },
 
     image:{
-        paddingTop:"5px",
+        padding:"5px 0px 10px",
+        width:"251px",
+        height:"73px"
 
     },
 
@@ -57,11 +61,28 @@ export default function Header() {
 
                 <AppBar style={{background: '#f7f5ed'}} position="static">
                     <Toolbar className={classes.toolbar}>
+                        <Grid
+                            container
+                            direction="row"
+                            justify="space-between"
+                            alignItems="center"
+                        >
+
                         <div className={classes.menuButton} color="inherit" aria-label="menu">
+                            <Grid item>
                             <AppDrawerLeft/>
+                            </Grid>
                         </div>
-                        <img className={classes.image} src={"/logo_med.png"} alt="logo_medium" />
-                    </Toolbar>
+                            <Grid item>
+                        <img className={classes.image} src={"/moodboost_smile.png"} alt="logo_medium" />
+                            </Grid>
+
+                        <Grid item>
+                            <PersonIcon style={{color: '#000000'}}/>
+                        </Grid>
+                        </Grid>
+                        </Toolbar>
+
                 </AppBar>
 
         </header>
