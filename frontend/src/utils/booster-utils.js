@@ -2,7 +2,7 @@ import {getJWTToken} from "./jwt-utils";
 
 export async function fetchCreatedBooster(username) {
     const token = getJWTToken();
-    const response = await fetch("/api/booster?username=" + username, {
+    const response = await fetch("/api/booster?creatorUserName=" + username, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`,

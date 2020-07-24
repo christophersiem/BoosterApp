@@ -66,7 +66,7 @@ export default function ListBooster() {
         fetchBoosterItems(dispatch, userData.userName)
 
     }, [dispatch, userData.userName])
-
+console.log(boosterItems)
 
     return (
         <>
@@ -82,11 +82,11 @@ export default function ListBooster() {
                 alignItems="center"
             >
                 {fetchStatus === 'PENDING' && <CircularProgress/>}
-                {fetchStatus === 'FAILED' &&
+                {!boosterItems.length>0 &&
                 <Alert variant="outlined" severity="info">
                     You have no created booster. <br/>
                 </Alert>}
-                {fetchStatus === 'FAILED' &&
+                {!boosterItems.length>0 &&
                 <Button
                     className={classes.alertButton}
                     variant="contained"
@@ -95,7 +95,7 @@ export default function ListBooster() {
 
                 }
             </Grid>
-        </Grid>
+
 
     {
         boosterItems && boosterItems.map((booster) => (
@@ -108,7 +108,7 @@ export default function ListBooster() {
                     <BoosterPaper moodStyle={classes.paperConf} booster={booster} key={booster.id}/>
         ))
     }
-
+        </Grid>
 </>
 )
 }
