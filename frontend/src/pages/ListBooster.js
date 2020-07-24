@@ -44,13 +44,11 @@ const useStyles = makeStyles((theme) => ({
         alignSelf: "center",
     },
 
-    alertButton: {
+    alert: {
         justifyContent: "center",
-        marginTop: "20px"
+        marginTop: "50px"
     },
-    noBooster: {
-        alignSelf: "center",
-    }
+
 
 }))
 
@@ -73,7 +71,6 @@ console.log(boosterItems)
         <Grid className={classes.mainPage}>
 
             <p className={classes.title}>Your created booster</p>
-            <img className={classes.image} src={"/jcc2.png"} alt="logo_medium"/>
 
             <Grid
                 container
@@ -81,14 +78,17 @@ console.log(boosterItems)
                 justify="center"
                 alignItems="center"
             >
+            <img className={classes.image} src={"/jcc2.png"} alt="logo_medium"/>
+
+
                 {fetchStatus === 'PENDING' && <CircularProgress/>}
                 {!boosterItems.length>0 &&
-                <Alert variant="outlined" severity="info">
+                <Alert className={classes.alert} variant="outlined" severity="info">
                     You have no created booster. <br/>
                 </Alert>}
                 {!boosterItems.length>0 &&
                 <Button
-                    className={classes.alertButton}
+                    className={classes.alert}
                     variant="contained"
                     color="primary"
                     href="/add">Create a booster now</Button>
