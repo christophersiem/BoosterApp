@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from "react";
 import {UserDispatchContext} from "./context/user/UserContext";
 import {getDecodedJWTToken, isJWTTokenValid} from "./utils/jwt-utils";
-import {LOGIN_SUCCESS, LOGOUT} from "./context/user/UserContextProvider";
+import {LOGIN_FAILED, LOGIN_SUCCESS} from "./context/user/UserContextProvider";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Header from "./components/navigation/Header";
 import LoginPage from "./pages/authPages/LoginPage";
@@ -23,7 +23,7 @@ export default function Navigation() {
         if (isJWTTokenValid()) {
             dispatch({type: LOGIN_SUCCESS, payload: getDecodedJWTToken()});
         } else {
-            dispatch({type: LOGOUT})
+            dispatch({type: LOGIN_FAILED})
         }
 
     }, [dispatch]);

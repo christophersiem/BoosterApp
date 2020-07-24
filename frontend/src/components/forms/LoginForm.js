@@ -6,7 +6,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import {LOGIN, LOGIN_FAILED, LOGIN_SUCCESS} from "../../context/user/UserContextProvider";
 import {performLogin} from "../../utils/auth-utils";
 import {getDecodedJWTToken, setJWTToken} from "../../utils/jwt-utils";
-import {UserDispatchContext, UserStateContext} from "../../context/user/UserContext";
+import {UserDispatchContext} from "../../context/user/UserContext";
 import Alert from "@material-ui/lab/Alert";
 
 
@@ -31,10 +31,12 @@ const useStyles = makeStyles(() => ({
 export default function LoginForm() {
     const classes = useStyles();
 
+    const [loginFail, setLoginFail] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useContext(UserDispatchContext);
-    const {authStatus} = useContext(UserStateContext);
+
+
 
     function login() {
         dispatch({type: LOGIN});
@@ -46,6 +48,8 @@ export default function LoginForm() {
             })
             .catch(() => {
                 dispatch({type: LOGIN_FAILED})
+                setLoginFail(true)
+
             })
     }
 
@@ -80,7 +84,7 @@ export default function LoginForm() {
                 autoComplete="current-password"
             />
 
-            {authStatus === "FAILED" && <Alert
+            {loginFail && <Alert
                 variant="filled" severity="error"
             > Check username and password </Alert>}
             <Button
