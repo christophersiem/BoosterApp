@@ -5,7 +5,7 @@ import de.neuefische.boosterapp.db.UserDb;
 import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterUser;
 import de.neuefische.boosterapp.model.LoginData;
-import de.neuefische.boosterapp.utils.IdUtils;
+import de.neuefische.boosterapp.utils.UserUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ class BoosterControllerTest {
     public int port;
 
     @MockBean
-    private IdUtils idUtils;
+    private UserUtils idUtils;
 
     @Autowired
     public PasswordEncoder encoder;
@@ -53,7 +53,7 @@ class BoosterControllerTest {
 
     private String loginUser() {
 
-        BoosterUser user = new BoosterUser("1", "chris2020", encoder.encode("!!21*QqwW"), "hannes", "test@test.de", "user", Arrays.asList("123", "234"));
+        BoosterUser user = new BoosterUser("1", "chris2020", encoder.encode("!!21*QqwW"), "hannes", "test@test.de", "user",0, Arrays.asList("123", "234"));
         userDb.save(user);
 
         String loginUrl = "http://localhost:" + port + "/auth/login";

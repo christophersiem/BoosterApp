@@ -5,8 +5,6 @@ import de.neuefische.boosterapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
 
 @RequestMapping("auth/register")
 @RestController
@@ -24,16 +22,12 @@ public class UserController {
         userService.register(user);
     }
 
+   @DeleteMapping("{username}")
+    public void deleteAccount (@PathVariable String username){
+        userService.deleteAccount(username);
+    }
 
-//    @PostMapping ("/friend")
-//    public void addUserAsFriend(String usernameToAdd, String userId){
-//        userService.addUserAsFriend(usernameToAdd, userId);
-//    }
-//
-//    @GetMapping("/friends")
-//    public List getFriendListByUserId(@RequestParam String userId){
-//        return userService.getFriendListByUserId(userId);
-//    }
+
 
 
 

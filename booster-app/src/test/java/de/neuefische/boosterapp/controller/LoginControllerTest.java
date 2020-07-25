@@ -47,7 +47,7 @@ class LoginControllerTest {
     public void loginWithValidCredentials(){
 
         //GIVEN
-        BoosterUser testUser = new BoosterUser("1","chris2020",encoder.encode("!!21*QqwW"),"hannes","test@test.de","user", Arrays.asList("123", "234"));
+        BoosterUser testUser = new BoosterUser("1","chris2020",encoder.encode("!!21*QqwW"),"hannes","test@test.de","user",0, Arrays.asList("123", "234"));
         userDb.save(testUser);
 
         //WHEN
@@ -64,7 +64,7 @@ class LoginControllerTest {
     public void loginWithInvalidCredentials(){
 
         //GIVEN
-        BoosterUser testUser = new BoosterUser("1","chris2020",encoder.encode("!!21*QqwW"),"hannes","test@test.de","user", Arrays.asList("123", "234"));
+        BoosterUser testUser = new BoosterUser("1","chris2020",encoder.encode("!!21*QqwW"),"hannes","test@test.de","user",0, Arrays.asList("123", "234"));
         userDb.save(testUser);
 
         //WHEN

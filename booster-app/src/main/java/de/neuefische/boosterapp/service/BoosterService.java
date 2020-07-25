@@ -6,7 +6,7 @@ import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterType;
 import de.neuefische.boosterapp.model.BoosterUser;
 import de.neuefische.boosterapp.model.dto.AddBoosterDto;
-import de.neuefische.boosterapp.utils.IdUtils;
+import de.neuefische.boosterapp.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
+import static de.neuefische.boosterapp.utils.BoosterUtils.getYoutubeId;
 
 
 @Service
@@ -26,35 +26,23 @@ import java.util.regex.Pattern;
 public class BoosterService {
 
     private final BoosterMongoDb boosterDb;
-    private final IdUtils idUtils;
+    private final UserUtils userUtils;
     private final MongoTemplate mongoTemplate;
     private final UserDb userDb;
 
 
     @Autowired
-    public BoosterService(UserDb userDb, BoosterMongoDb boosterDb, IdUtils idUtils, MongoTemplate mongoTemplate) {
+    public BoosterService(UserDb userDb, BoosterMongoDb boosterDb, UserUtils userUtils, MongoTemplate mongoTemplate) {
         this.boosterDb = boosterDb;
-        this.idUtils = idUtils;
+        this.userUtils = userUtils;
         this.mongoTemplate = mongoTemplate;
         this.userDb = userDb;
-    }
-
-    public static String getYoutubeId(String url) {
-        String pattern = "https?:\\/\\/(?:[0-9A-Z-]+\\.)?(?:youtu\\.be\\/|youtube\\.com\\S*[^\\w\\-\\s])([\\w\\-]{11})(?=[^\\w\\-]|$)(?![?=&+%\\w]*(?:['\"][^<>]*>|<\\/a>))[?=&+%\\w]*";
-
-        Pattern compiledPattern = Pattern.compile(pattern,
-                Pattern.CASE_INSENSITIVE);
-        Matcher matcher = compiledPattern.matcher(url);
-        if (matcher.find()) {
-            return matcher.group(1);
-        }
-        return null;
     }
 
 
     public Booster addNewBooster(AddBoosterDto data) {
         Booster booster = new Booster();
-        booster.setId(idUtils.generateRandomId());
+        booster.setId(userUtils.generateRandomId());
         booster.setName(data.getName());
         booster.setCreator(data.getCreator());
         booster.setCreatorName(data.getCreatorName());
@@ -63,6 +51,7 @@ public class BoosterService {
         booster.setYoutubeLink(getYoutubeId(data.getYoutubeLink()));
         booster.setImage(data.getImage());
         booster.setType(data.getType());
+        userUtils.increaseBoosterCounter(data.getCreator());
         return boosterDb.save(booster);
     }
 
@@ -83,7 +72,6 @@ public class BoosterService {
         BoosterUser user = userDb.findByUsername(creatorUserName);
         String userId = user.getId();
         return boosterDb.findByCreator(userId);
-
     }
 
     public Optional <Booster> getBoosterById(String id) {
