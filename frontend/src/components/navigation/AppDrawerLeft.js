@@ -104,7 +104,7 @@ export default function AppDrawerLeft(props) {
     return (
 
         <React.Fragment key={"left"}>
-            <Button onClick={toggleDrawer("left", true)}>{<MenuIcon/>}</Button>
+            <Button onClick={toggleDrawer("left", true)}>{<MenuIcon style={{color: 'rgb(109 144 199)'}}/>}</Button>
             <div className={classes.MuiDrawer}>
                 <Drawer
                     container={container}

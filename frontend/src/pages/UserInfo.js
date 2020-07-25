@@ -17,13 +17,12 @@ import {UserStateContext} from "../context/user/UserContext";
 
 import UserDeleteDialog from "../components/dialogs/UserDeleteDialog";
 
-
 const useStyles = makeStyles((theme) => ({
     appBar: {
         position: 'relative',
-        color:"#FFF3F0F0",
-        backgroundColor:"rgb(109 144 199)",
-        height:"70px"
+        color: "#FFF3F0F0",
+        backgroundColor: "rgb(109 144 199)",
+        height: "70px"
     },
     title: {
         marginLeft: theme.spacing(2),
@@ -49,18 +48,26 @@ export default function UserInfo() {
         setOpen(false);
     };
 
+    const userDetails = [
+        {heading: "Firstname", content: userData.firstName},
+        {heading: "Username", content: userData.userName},
+        {heading: "E-Mail", content: userData.email},
+        {heading: "Total created booster", content: ""},
+        {heading: "Number of friends", content: ""},
 
+    ]
 
     return (
         <div>
             <IconButton onClick={handleClickOpen}>
-                <PersonIcon style={{color: '#000000'}}/>
+                <PersonIcon style={{color: 'rgb(109 144 199)'}}/>
             </IconButton>
-            <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition} >
+            <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
                 <AppBar className={classes.appBar}>
-                    <Toolbar >
-                        <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close" style={{marginTop: "16px"}}>
-                            <CloseIcon />
+                    <Toolbar>
+                        <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close"
+                                    style={{marginTop: "16px"}}>
+                            <CloseIcon/>
                         </IconButton>
                         <Typography variant="h6" className={classes.title}>
                             Your Account Details
@@ -71,25 +78,16 @@ export default function UserInfo() {
                     </Toolbar>
                 </AppBar>
                 <List>
-                    <ListItem button>
-                        <ListItemText primary="Firstname" secondary={userData.firstName} />
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemText primary="Username" secondary={userData.userName}/>
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemText primary="E-Mail" secondary={userData.email}/>
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemText primary="Total created booster" secondary=""/>
-                    </ListItem>
-                    <Divider />
-                    <ListItem button>
-                        <ListItemText primary="Number of friends" secondary=""/>
-                    </ListItem>
+
+                    {userDetails.map((detail) => (
+                        <>
+                        <ListItem button>
+
+                            <ListItemText primary={detail.heading} secondary={detail.content}/>
+                        </ListItem>
+                        <Divider />
+                        </>
+                        ))}
 
                 </List>
                 <UserDeleteDialog/>

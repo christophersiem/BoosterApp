@@ -16,12 +16,13 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles(() => ({
     delete: {
         color: "#c20909",
-        margin:"15px 0px",
+        margin: "15px 0px",
 
     },
-    delButton:{
-       color:"red",
-alignSelf:"center",
+    delButton: {
+        color: "red",
+        alignSelf: "center",
+        marginTop: "20px"
     }
 
 
@@ -75,12 +76,14 @@ export default function UserDeleteDialog() {
                         alignItems="center"
                     >
                         <Grid item>
-                    <Button
-                        className={classes.delete}
-                        onClick={() => {handleClickDelete()}}
-                        href="/">
-                        Delete
-                    </Button>
+                            <Button
+                                className={classes.delete}
+                                onClick={() => {
+                                    handleClickDelete()
+                                }}
+                                href="/">
+                                Delete
+                            </Button>
                         </Grid>
                     </Grid>
                     <Button onClick={handleClose} color="primary" autoFocus>
@@ -88,6 +91,6 @@ export default function UserDeleteDialog() {
                     </Button>
                 </DialogActions>
             </Dialog>
-</>
+        </>
     );
 }
