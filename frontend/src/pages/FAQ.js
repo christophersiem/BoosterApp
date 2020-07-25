@@ -48,11 +48,11 @@ export default function FAQ() {
                         aria-controls="panel1a-content"
                         id="panel1a-header"
                     >
-                        <Typography className={classes.heading}>How does it work?</Typography>
+                        <Typography className={classes.heading}>What is MoodBoost?</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography className={classes.text}>
-                            Whenever there is a moment in which you feel like you could have a bit more Joy, Calm or Confidence, give yourself a boost! This app gives you a booster that you or your friends have created for you.
+                            Whenever there is a moment in which you feel like you could have a bit more Joy, Calm or Confidence, give yourself a boost! In such situations MoodBoost gives you a booster that you or your friends have created for you.
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
@@ -66,7 +66,7 @@ export default function FAQ() {
                     </AccordionSummary>
                     <AccordionDetails>
                         <Typography className={classes.text}>
-                            Your booster can contain a message, a song, a youtube video or a picture (coming soon!)
+                            Your booster can contain a private message, a song, a youtube video or a picture
                         </Typography>
                     </AccordionDetails>
                 </Accordion>
@@ -76,10 +76,12 @@ export default function FAQ() {
                     aria-controls="panel2a-content"
                     id="panel2a-header"
                 >
-                    <Typography className={classes.heading}>How can I view a specific booster?</Typography>
+                    <Typography className={classes.heading}>What kind of Booster should I create?</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography className={classes.text}>
+                        You know your friends and yourself best. Probably you share nice memories together - send your friend
+                        a picture to remind him or her. Blabla etc
 
                     </Typography>
                 </AccordionDetails>

@@ -64,7 +64,6 @@ export default function ListBooster() {
         fetchBoosterItems(dispatch, userData.userName)
 
     }, [dispatch, userData.userName])
-console.log(boosterItems)
 
     return (
         <>

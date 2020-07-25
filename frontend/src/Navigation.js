@@ -7,7 +7,7 @@ import Header from "./components/navigation/Header";
 import LoginPage from "./pages/authPages/LoginPage";
 import LogoutPage from "./pages/authPages/LogoutPage";
 import RegisterPage from "./pages/authPages/RegisterPage";
-import PrivateRoute from "./pages/PrivateRoute";
+import PrivateRoute from "./components/navigation/PrivateRoute";
 import ListBooster from "./pages/ListBooster";
 import AddBooster from "./pages/AddBooster";
 import Friends from "./pages/Friends";

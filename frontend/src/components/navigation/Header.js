@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import {UserStateContext} from "../../context/user/UserContext";
 import AppDrawerLeft from "./AppDrawerLeft";
 import Grid from "@material-ui/core/Grid";
-import PersonIcon from '@material-ui/icons/Person';
+import UserInfo from "../../pages/UserInfo";
 
 
 const useStyles = makeStyles(() => ({
@@ -40,8 +40,8 @@ const useStyles = makeStyles(() => ({
 
     image:{
         padding:"5px 0px 10px",
-        width:"251px",
-        height:"73px"
+        width:"227px",
+        height:"66px"
 
     },
 
@@ -78,7 +78,7 @@ export default function Header() {
                             </Grid>
 
                         <Grid item>
-                            <PersonIcon style={{color: '#000000'}}/>
+                            <UserInfo/>
                         </Grid>
                         </Grid>
                         </Toolbar>

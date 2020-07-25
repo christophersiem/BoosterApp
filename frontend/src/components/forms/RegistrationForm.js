@@ -26,6 +26,9 @@ const useStyles = makeStyles(() => ({
     },
     alert:{
         marginBottom:"12px"
+    },
+    grid:{
+        marginTop:"35px"
     }
 }))
 
@@ -80,6 +83,7 @@ export default function RegistrationForm() {
             justify="center"
             alignItems="center"
             direction="column"
+            className={classes.grid}
         >
 
             <TextField

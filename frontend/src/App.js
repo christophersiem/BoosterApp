@@ -7,8 +7,6 @@ import UserContextProvider from "./context/user/UserContextProvider";
 import BoosterContextProvider from "./context/booster/BoosterContextProvider";
 
 
-
-
 export default function App() {
 
     return (

@@ -4,7 +4,7 @@ import {fetchBoosterById} from "../utils/booster-utils";
 import {useParams} from "react-router";
 import YouTube from '@u-wave/react-youtube';
 import Grid from "@material-ui/core/Grid";
-import DeleteDialog from "../components/DeleteDialog";
+import BoosterDeleteDialog from "../components/dialogs/BoosterDeleteDialog";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Paper from "@material-ui/core/Paper";
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: theme.typography.subtitle.fontFamily,
         fontSize: "18px",
         fontStyle: "italic",
-        marginLeft: "20px"
+        margin: "0px 20px"
     },
     delete: {
         color: "#c20909",
@@ -79,13 +79,13 @@ export default function ShowBooster() {
 
             {boosterToDisplay.message &&
             <Paper className={classes.paperColor}>
-                <p className={classes.title}>Message:</p></Paper>}
+                <p className={classes.title}>Message</p></Paper>}
             {boosterToDisplay.message &&
             <div className={classes.textContent}> {boosterToDisplay.message}</div>
             }
             {boosterToDisplay.image &&
             <Paper className={classes.paperColor}>
-                <p className={classes.title}>Picture from {boosterToDisplay.creatorName} </p></Paper>}
+                <p className={classes.title}>Picture</p></Paper>}
             {boosterToDisplay.image &&
             <Grid
                 container
@@ -126,13 +126,13 @@ export default function ShowBooster() {
                         allowFullscreen={true}
                         width={374}
                         height={260}
-                        autoplay={false}
+                        autoplay={true}
                     />
                 </Grid>
                 }
 
                 <Grid item>
-                    <DeleteDialog value={boosterToDisplay.id}/>
+                    <BoosterDeleteDialog value={boosterToDisplay.id}/>
                 </Grid>
             </Grid>
 

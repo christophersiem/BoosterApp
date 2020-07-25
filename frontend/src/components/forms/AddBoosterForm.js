@@ -32,6 +32,7 @@ export default function AddBoosterForm() {
 
     const {addStatus} = useContext(BoosterStateContext);
     const {userData} = useContext(UserStateContext);
+    const dispatch = useContext(BoosterDispatchContext);
 
     const classes = useStyles();
     const [owner, setOwner] = useState("");
@@ -73,7 +74,6 @@ export default function AddBoosterForm() {
         setImage(event.target.value)
     };
 
-    const dispatch = useContext(BoosterDispatchContext);
 
     function handleSubmit() {
         addBooster(dispatch, boosterToAdd)
