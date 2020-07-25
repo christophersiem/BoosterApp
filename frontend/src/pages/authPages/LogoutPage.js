@@ -7,20 +7,40 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     image: {
-        height: "180px",
-        width:"180px"
+        height: "120px",
+        width: "120px",
+        margin: "25px 25px"
     },
 
-    title:{
+    root1: {
+        backgroundImage: "url(logout_mood.jpeg)",
+        backgroundSize: "cover",
+        height: "800px"
+    },
+
+    title: {
         fontFamily: theme.typography.subtitle.fontFamily,
         fontSize: theme.typography.subtitle2.fontSize,
         letterSpacing: theme.typography.subtitle.letterSpacing,
-        marginTop:"50px",
+        marginTop: "50px",
     },
 
-    button:{
-        marginTop:"30px",
-        backgroundColor:"#80c7c5"
+    button: {
+
+        backgroundColor: "#d9c5c5",
+        width: "60%",
+
+    },
+    goodBye: {
+        fontFamily: theme.typography.subtitle.fontFamily,
+        fontSize: theme.typography.subtitle2.fontSize,
+        letterSpacing: theme.typography.subtitle.letterSpacing,
+        paddingRight: "20px"
+    },
+    buttonPos: {
+        justifyContent:"center",
+        display:"flex",
+        marginTop:"400px"
     }
 }))
 
@@ -37,27 +57,28 @@ export default function LogoutPage() {
     )
 
     return (
-        <>
+        <div className={classes.root1}>
+
             <Grid container
-                  direction="column"
+
                   justify="center"
-                  alignItems="center">
-                <Grid item>
-                <p className={classes.title}>See you soon!</p>
-                </Grid>
-                <Grid item>
+                  alignItems="center"
+            >
+
+
                 <img className={classes.image} src={"/logo.png"} alt="logo_small" width={"40%"} height={"40%"}/>
-                </Grid>
-                <Grid item>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        color=""
-                        className={classes.button}
-                        onClick={()=>history.push("/login")}>Back to Log in </Button>
-                </Grid>
+                <div className={classes.goodBye}>Hope to see you<br/> soon again</div>
             </Grid>
-        </>
+            <div className={classes.buttonPos}>
+            <Button
+                fullWidth
+                variant="contained"
+                color=""
+                className={classes.button}
+                onClick={() => history.push("/login")}>Back to Log in
+            </Button>
+            </div>
+        </div>
 
     )
 
