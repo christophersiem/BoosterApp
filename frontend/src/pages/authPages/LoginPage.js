@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     },
     image: {
         padding: "45px 0px 15px",
-        width: "300px",
+        Width: "300px",
     },
     welcome: {
         fontFamily: 'Noto Sans',
@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
         margin:"25px 15px 20px"
     },
     mood:{
-        maxWidth: "415px",
+        maxWidth: "375px",
         opacity:"80"
     }
 
@@ -55,6 +55,8 @@ export default function LoginPage() {
             <Grid
                 container
                 justify="center"
+                direction="column"
+                alignItems="center"
 
 
             >
