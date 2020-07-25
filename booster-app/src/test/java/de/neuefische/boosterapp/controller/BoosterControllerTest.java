@@ -67,7 +67,7 @@ class BoosterControllerTest {
         //GIVEN
         String token = loginUser();
         when(idUtils.generateRandomId()).thenReturn("random-id");
-        Booster booster = new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "https://www.youtube.com/watch?v=ekIMGAmgXSI", "", "");
+        Booster booster = new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "https://www.youtube.com/watch?v=ekIMGAmgXSI", "");
         String url = "http://localhost:" + port + "/api/booster";
 
         HttpHeaders headers = new HttpHeaders();
@@ -78,7 +78,7 @@ class BoosterControllerTest {
         ResponseEntity<Booster> postResponse = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Booster.class);
 
         //THEN
-        Booster expectedBooster = new Booster("random-id", JOY, "2", "2", "TestBooster", "hello", "Hallo", "ekIMGAmgXSI", "", "");
+        Booster expectedBooster = new Booster("random-id", JOY, "2", "2", "TestBooster", "hello", "Hallo", "ekIMGAmgXSI", "");
         assertEquals(HttpStatus.OK, postResponse.getStatusCode());
         assertNotNull(postResponse.getBody());
         assertEquals(expectedBooster, postResponse.getBody());
@@ -93,8 +93,8 @@ class BoosterControllerTest {
         //GIVEN
         String token = loginUser();
 
-        db.save(new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com", "", ""));
-        db.save(new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com", "", ""));
+        db.save(new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com", ""));
+        db.save(new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com", ""));
 
         //WHEN
         String url = "http://localhost:" + port + "/api/booster/2";
@@ -111,8 +111,8 @@ class BoosterControllerTest {
     public void getBoosterById() {
         //GIVEN
         String token = loginUser();
-        db.save(new Booster("1", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", "", ""));
-        db.save(new Booster("2", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", "", ""));
+        db.save(new Booster("1", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", ""));
+        db.save(new Booster("2", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI",""));
 
         //WHEN
         String url = "http://localhost:" + port + "/api/booster/2";
@@ -123,17 +123,17 @@ class BoosterControllerTest {
 
         //THEN
         assertEquals(response.getStatusCode(), HttpStatus.OK);
-        assertEquals(response.getBody(), new Booster("2", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", "", ""));
+        assertEquals(response.getBody(), new Booster("2", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", ""));
     }
 
 //    @Test
 //    public void getBoosterByCreator(){
 //        //GIVEN
-//        when(idUtils.generateRandomId()).thenReturn("random-id");
 //        String token = loginUser();
-//        db.save(new Booster("", JOY, "1", "2", "Test123", "bye", "byebye", "www.youtube.com/ekIMGAmgXSI","",""));
-//        db.save(new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI","",""));
-//
+//        when(idUtils.generateRandomId()).thenReturn("random-id");
+//        db.save(new Booster("1", JOY, "1", "2", "Test123", "bye", "byebye", "www.youtube.com/ekIMGAmgXSI",""));
+//        db.save(new Booster("2", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI",""));
+//        db.save(new Booster("3", JOY, "2", "2", "TestBooster2", "hello2", "Hallo2", "www.youtube.com/ekIMGAmgXSI",""));
 //
 //        //WHEN
 //        String url = "http://localhost:" + port + "/api/booster?creatorUserName=2";
@@ -144,6 +144,9 @@ class BoosterControllerTest {
 //
 //        //THEN
 //
-//        assertEquals(response.getBody(), new Booster("random-id", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI","",""));
+//        assertEquals(response.getBody(), List.of(
+//                new Booster("random-id", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI",""),
+//                new Booster("2", JOY, "2", "2", "TestBooster2", "hello2", "Hallo2", "www.youtube.com/ekIMGAmgXSI","")
+//                ));
 //    }
 }

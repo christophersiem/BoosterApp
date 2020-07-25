@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
-import java.util.ArrayList;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,6 +20,5 @@ public class Booster {
     private String name;
     private String message;
     private String youtubeLink;
-    private String spotifyLink;
     private String image;
 }

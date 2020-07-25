@@ -60,7 +60,6 @@ public class BoosterService {
         booster.setCreatorName(data.getCreatorName());
         booster.setMessage(data.getMessage());
         booster.setOwner(data.getOwner());
-        booster.setSpotifyLink(data.getSpotifyLink());
         booster.setYoutubeLink(getYoutubeId(data.getYoutubeLink()));
         booster.setImage(data.getImage());
         booster.setType(data.getType());
