@@ -18,7 +18,8 @@ const useStyles = makeStyles(() => ({
         },
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: "purple"
-        }
+        },
+        margin:"2px"
     },
     submit: {
         margin: "24px 0px 16px",
@@ -44,6 +45,7 @@ export default function LoginForm() {
             .then((response) => {
                 setJWTToken(response);
                 const userData = getDecodedJWTToken();
+                setLoginFail(false)
                 dispatch({type: LOGIN_SUCCESS, payload: userData});
             })
             .catch(() => {

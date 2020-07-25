@@ -10,24 +10,32 @@ import {useLocation} from "react-router";
 const useStyles = makeStyles(() => ({
     root: {
         flexGrow: "1",
+        overflow:"scroll",
+
     },
     image: {
-        padding: "60px 0px",
+        padding: "45px 0px 15px",
         width: "300px",
     },
     welcome: {
         fontFamily: 'Noto Sans',
-        fontSize: "24px",
+        fontSize: "18px",
         letterSpacing: "1.5px",
-        color:"#354ea0"
+        color:"#354ea0",
+        marginTop:"15px"
     },
     welcome2: {
         fontFamily: 'Noto Sans',
-        fontSize: "24px",
+        fontSize: "18px",
         letterSpacing: "1.5px",
         color:"#354ea0",
-        alignSelf:"center"
+        alignSelf:"center",
+        margin:"25px 15px 20px"
     },
+    mood:{
+        maxWidth: "415px",
+        opacity:"80"
+    }
 
 }))
 
@@ -46,19 +54,23 @@ export default function LoginPage() {
 
             <Grid
                 container
-                direction="column"
                 justify="center"
-                alignItems="center"
+
+
             >
 
                 <Grid item>
                     <img className={classes.image} src={"./cleanlogo.png"} alt="MoodBoost_Logo"/>
                 </Grid>
-                <Grid item>
-                    <p className={classes.welcome}>Nice to have you here!</p>
 
+                <img className={classes.mood} src={"./mood.jpeg"} alt="MoodBoost_Logo"/>
+
+                <Grid item>
+                    <div className={classes.welcome}>Nice to have you here!</div>
                 </Grid>
-                <p className={classes.welcome2}> Please sign in</p>
+                <Grid item>
+                <div className={classes.welcome2}> Please sign in</div>
+                </Grid>
                 <LoginForm/>
             </Grid>
 

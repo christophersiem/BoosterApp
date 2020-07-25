@@ -48,7 +48,7 @@ export default function RegisterPage() {
                     <img className={classes.image} src={"/logo.png"} alt="logo_small" width={"100%"} height={"100%"}/>
 
                 </Grid>
-                <h2 className={classes.welcome}>Hello stranger!<br/> Who are you?</h2>
+                <div className={classes.welcome}>Hello stranger!<br/> Who are you?</div>
             </Grid>
             <RegistrationForm/>
         </div>

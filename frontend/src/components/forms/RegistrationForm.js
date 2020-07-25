@@ -13,6 +13,7 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles(() => ({
     inputField: {
         width: "80%",
+        margin:"3px"
     },
     submit: {
         margin: "24px 0px ",
