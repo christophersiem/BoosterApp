@@ -3,7 +3,6 @@ import BoosterButton from "../components/BoosterButton";
 import {makeStyles} from "@material-ui/core/styles";
 
 
-
 const useStyles = makeStyles((theme) => ({
     title: {
         textAlign:"center",
@@ -19,7 +18,6 @@ export default function Home() {
     return (
             <>
                 <p className={classes.title}>Choose a booster</p>
-
                     <BoosterButton/>
             </>
 

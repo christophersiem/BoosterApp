@@ -1,6 +1,5 @@
-import React from "react";
-import {useReducer} from "react";
-import { UserDispatchContext, UserStateContext } from './UserContext';
+import React, {useReducer} from "react";
+import {UserDispatchContext, UserStateContext} from './UserContext';
 
 export const LOGIN = 'LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

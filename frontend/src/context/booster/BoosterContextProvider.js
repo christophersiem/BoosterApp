@@ -1,5 +1,5 @@
-import React, { useReducer } from 'react';
-import { BoosterStateContext, BoosterDispatchContext } from './BoosterContext';
+import React, {useReducer} from 'react';
+import {BoosterDispatchContext, BoosterStateContext} from './BoosterContext';
 import boosterReducer from "./boosterReducer";
 
 export default function BoosterContextProvider({ children }) {
