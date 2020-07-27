@@ -13,7 +13,7 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles(() => ({
     inputField: {
         width: "80%",
-        margin:"3px"
+        margin: "3px"
     },
     submit: {
         margin: "24px 0px ",
@@ -22,13 +22,13 @@ const useStyles = makeStyles(() => ({
     submit2: {
         margin: "10x 0px ",
         width: "40%",
-        backgroundColor:"#80c7c5"
+        backgroundColor: "#80c7c5"
     },
-    alert:{
-        marginBottom:"12px"
+    alert: {
+        marginBottom: "12px"
     },
-    grid:{
-        marginTop:"35px"
+    grid: {
+        marginTop: "35px"
     }
 }))
 
@@ -160,6 +160,10 @@ export default function RegistrationForm() {
                 variant="filled" severity="success"
             > Success! Welcome :) </Alert>}
 
+            {registrationStatus == "FAILED" && <Alert
+                className={classes.alert}
+                variant="filled" severity="error"
+            > Username already exists </Alert>}
             {registrationStatus !== "SUCCESS" &&
             <Button
                 fullWidth
@@ -176,7 +180,7 @@ export default function RegistrationForm() {
                 variant="contained"
                 color=""
                 className={classes.submit2}
-                onClick={()=>history.push("/login")}>Go to Log in
+                onClick={() => history.push("/login")}>Go to Log in
             </Button>
         </Grid>
     )
