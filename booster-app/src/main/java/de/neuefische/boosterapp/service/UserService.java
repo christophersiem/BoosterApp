@@ -41,7 +41,7 @@ public class UserService {
         List<String> friends = new ArrayList<>(List.of());
         user.setFriends(friends);
         userDb.save(user);
-        boosterUtils.createStandardBooster(randomId);
+        boosterUtils.createStandardBooster(user.getUsername());
     }
 
 
