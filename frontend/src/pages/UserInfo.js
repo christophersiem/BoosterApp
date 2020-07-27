@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -16,6 +16,8 @@ import PersonIcon from "@material-ui/icons/Person";
 import {UserStateContext} from "../context/user/UserContext";
 
 import UserDeleteDialog from "../components/dialogs/UserDeleteDialog";
+
+import {fetchNumberOfCreatedBooster} from "../utils/user-utils";
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -38,7 +40,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function UserInfo() {
     const {userData} = useContext(UserStateContext);
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [createdBooster, setCreatedBooster] = useState(false);
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -48,12 +52,19 @@ export default function UserInfo() {
         setOpen(false);
     };
 
+    useEffect(() => {
+        fetchNumberOfCreatedBooster(userData.userName)
+            .then((data) =>setCreatedBooster(data))
+            .catch((e) => console.error(e))
+
+    }, [userData.userName])
+
     const userDetails = [
-        {heading: "Firstname", content: userData.firstName},
-        {heading: "Username", content: userData.userName},
-        {heading: "E-Mail", content: userData.email},
-        {heading: "Total created booster", content: ""},
-        {heading: "Number of friends", content: ""},
+        {no:"1",heading: "Firstname", content: userData.firstName},
+        {no:"2",heading: "Username", content: userData.userName},
+        {no:"3",heading: "E-Mail", content: userData.email},
+        {no:"4",heading: "Total created booster ", content: createdBooster},
+        {no:"5",heading: "Number of friends", content: userData.friends.length}
 
     ]
 
@@ -80,14 +91,14 @@ export default function UserInfo() {
                 <List>
 
                     {userDetails.map((detail) => (
-                        <>
-                        <ListItem button>
+                        <div key={detail.no}>
+                                <ListItem button key={detail.no}>
+                                    <ListItemText primary={detail.heading} secondary={detail.content} key={detail.no}/>
+                                </ListItem>
 
-                            <ListItemText primary={detail.heading} secondary={detail.content}/>
-                        </ListItem>
-                        <Divider />
-                        </>
-                        ))}
+                            <Divider/>
+                        </div>
+                    ))}
 
                 </List>
                 <UserDeleteDialog/>

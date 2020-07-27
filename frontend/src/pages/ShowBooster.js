@@ -126,7 +126,7 @@ export default function ShowBooster() {
                         allowFullscreen={true}
                         width={374}
                         height={260}
-                        autoplay={true}
+
                     />
                 </Grid>
                 }

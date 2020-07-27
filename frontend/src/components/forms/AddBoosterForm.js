@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     },
     root: {
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#8b95ba"
+            borderColor: "#8b95ba",
         },
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: "purple"
@@ -51,6 +51,7 @@ export default function AddBoosterForm() {
         message: message,
         youtubeLink: youtube,
         image: image,
+        creatorUsername: userData.userName
     }
     const handleChangeOwner = (event) => {
         setOwner(event.target.value);

@@ -62,6 +62,7 @@ export default function ListBooster() {
     useEffect(() => {
 
         fetchBoosterItems(dispatch, userData.userName)
+            .catch((e) => console.error(e))
 
     }, [dispatch, userData.userName])
 

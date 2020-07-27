@@ -169,13 +169,15 @@ export default function RegistrationForm() {
                 onClick={handleSubmit}
                 disabled={!validation}
             >
-                REGISTER</Button>}
+                REGISTER
+            </Button>}
             <Button
                 fullWidth
                 variant="contained"
                 color=""
                 className={classes.submit2}
-                onClick={()=>history.push("/login")}>Go to Log in </Button>
+                onClick={()=>history.push("/login")}>Go to Log in
+            </Button>
         </Grid>
     )
 }

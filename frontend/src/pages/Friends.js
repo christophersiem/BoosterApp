@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 
 import {makeStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import {UserStateContext} from "../context/user/UserContext";
+import {addUserAsFriend} from "../utils/friends-utils";
+import Paper from "@material-ui/core/Paper";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,6 +22,12 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: theme.typography.subtitle2.letterSpacing,
         lineHeight: theme.typography.subtitle2.lineHeight,
         paddingLeft: "16px",
+    },
+
+    paper:{
+        margin: "10px 20px",
+        backgroundColor:"white",
+        padding: "10px 20px"
     }
 
 
@@ -26,18 +36,22 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Friends() {
     const classes = useStyles();
+    const {userData} = useContext(UserStateContext);
+    const [friendToAdd, setFriendToAdd] = useState("")
+    const friendData= {
+        userName: userData.userName,
+        friendToAdd: friendToAdd,
 
-    // const [friendToAdd, setFriendToAdd] = useState("")
-    // const [allFriends, setFriends] = useState([]);
-    // const [userData, setUserData] = useState("")
-    // useEffect(() => {
-    //     const username = sessionStorage.getItem('UserName')
-    //     getFriendListByUsername(username)
-    //         .then((data) => setUserData(data))
-    //         .catch((e) => console.error(e));
+    }
+    function handleChangeUsernameToAdd(event) {
+        setFriendToAdd(event.target.value)
+    }
 
+    function addFriend(){
+        addUserAsFriend(friendData)
+            .catch((e) => console.error(e))
+    }
 
-    // }, [])
 
     return (
         <>
@@ -52,16 +66,35 @@ export default function Friends() {
                     <Grid>
                         <TextField
                             className={classes.input}
-                            // onChange={setFriendToAdd}
+                            onChange={handleChangeUsernameToAdd}
                             id="userToAdd"
                             label="enter username"
                             variant="outlined"/>
                     </Grid>
                     <Grid>
-                        <Button>Add user as friend</Button>
+                        <Button
+                            disabled={friendToAdd.length<6 }
+                            onClick={()=>{addFriend()}}>Add user as friend</Button>
                     </Grid>
                 </Grid>
                 <p className={classes.message}>Your friends</p>
+                {
+                    userData.friends && userData.friends.map((friend) => (
+                        <Paper className={classes.paper} key={friendToAdd}>
+                            <Grid
+                                container
+                                direction="row"
+                                justify="space-between"
+                                alignItems="center"
+                            >
+                                <Grid item>
+                            {friend}
+                                </Grid>
+                                <Grid item>
+                                    <DeleteIcon style={{color:'#c20909'}}/>
+                                </Grid>
+                            </Grid>
+                        </Paper>))}
 
             </div>
         </>
