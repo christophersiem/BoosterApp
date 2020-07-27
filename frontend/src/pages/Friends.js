@@ -1,17 +1,20 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import {makeStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import {UserStateContext} from "../context/user/UserContext";
-import {addUserAsFriend} from "../utils/friends-utils";
+import {addUserAsFriend, deleteFriend} from "../utils/friends-utils";
 import Paper from "@material-ui/core/Paper";
 import DeleteIcon from "@material-ui/icons/Delete";
+import {fetchUserNumbers} from "../utils/user-utils";
+import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: "1",
+        overflow: "scroll"
     },
     input: {
         width: "360px",
@@ -24,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: "16px",
     },
 
-    paper:{
+    paper: {
         margin: "10px 20px",
-        backgroundColor:"white",
+        backgroundColor: "white",
         padding: "10px 20px"
     }
 
@@ -38,20 +41,46 @@ export default function Friends() {
     const classes = useStyles();
     const {userData} = useContext(UserStateContext);
     const [friendToAdd, setFriendToAdd] = useState("")
-    const friendData= {
-        userName: userData.userName,
-        friendToAdd: friendToAdd,
+    const [allFriends, setAllFriends] = useState([])
+    const [friendExists, setFriendExists] = useState(true)
 
+    const dataForFriendship = {
+        userName: userData.userName,
+        friend: friendToAdd,
     }
+
+
+    useEffect(() => {
+        fetchUserNumbers(userData.userName)
+            .then((data) => setAllFriends(data.friends))
+            .catch((e) => console.error(e))
+
+    }, [userData.userName])
+
     function handleChangeUsernameToAdd(event) {
         setFriendToAdd(event.target.value)
     }
 
-    function addFriend(){
-        addUserAsFriend(friendData)
-            .catch((e) => console.error(e))
+    function addFriend() {
+        if (allFriends.includes(friendToAdd)) {
+            setFriendExists(false)
+        } else {
+            addUserAsFriend(dataForFriendship)
+                .then(window.location.reload())
+                .catch((e) => console.error(e))
+        }
     }
 
+    function handleDelete(friend) {
+        const dataForDelete = {
+            userName: userData.userName,
+            friend: friend,
+        }
+        console.log(friend)
+        deleteFriend(dataForDelete)
+            .then(window.location.reload())
+            .catch((e) => console.error(e))
+    }
 
     return (
         <>
@@ -73,14 +102,20 @@ export default function Friends() {
                     </Grid>
                     <Grid>
                         <Button
-                            disabled={friendToAdd.length<6 }
-                            onClick={()=>{addFriend()}}>Add user as friend</Button>
+                            disabled={friendToAdd.length < 6}
+                            onClick={() => {
+                                addFriend()
+                            }}>Add user as friend</Button>
                     </Grid>
+                    {!friendExists &&
+                    <Alert
+
+                        variant="filled" severity="error">User is already your friend</Alert>}
                 </Grid>
                 <p className={classes.message}>Your friends</p>
                 {
-                    userData.friends && userData.friends.map((friend) => (
-                        <Paper className={classes.paper} key={friendToAdd}>
+                    allFriends && allFriends.map((friend) => (
+                        <Paper className={classes.paper}>
                             <Grid
                                 container
                                 direction="row"
@@ -88,10 +123,12 @@ export default function Friends() {
                                 alignItems="center"
                             >
                                 <Grid item>
-                            {friend}
+                                    {friend}
                                 </Grid>
                                 <Grid item>
-                                    <DeleteIcon style={{color:'#c20909'}}/>
+                                    <DeleteIcon
+                                        onClick={() => handleDelete(friend)}
+                                        style={{color: '#c20909'}}/>
                                 </Grid>
                             </Grid>
                         </Paper>))}
