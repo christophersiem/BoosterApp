@@ -11,6 +11,7 @@ import {BoosterDispatchContext, BoosterStateContext} from "../../context/booster
 import {ADD_BOOSTER, addBooster} from "../../context/booster/booster-actions";
 import {UserStateContext} from "../../context/user/UserContext";
 import Alert from "@material-ui/lab/Alert";
+import {fetchUserNumbers} from "../../utils/user-utils";
 
 const useStyles = makeStyles(() => ({
     field: {
@@ -41,6 +42,7 @@ export default function AddBoosterForm() {
     const [message, setMessage] = useState("");
     const [youtube, setYoutube] = useState("");
     const [image, setImage] = useState("");
+    const [allFriends, setAllFriends] = useState([])
 
     const boosterToAdd = {
         creator: userData.id,
@@ -55,12 +57,10 @@ export default function AddBoosterForm() {
     }
     const handleChangeOwner = (event) => {
         setOwner(event.target.value);
-        console.log(owner)
     };
 
     const handleChangeType = (event) => {
         setType(event.target.value);
-        console.log(type)
     };
     const handleChangeName = (event) => {
         setName(event.target.value);
@@ -82,8 +82,10 @@ export default function AddBoosterForm() {
     }
 
     useEffect(() => {
-        dispatch({type: ADD_BOOSTER});
-    }, [dispatch])
+        dispatch({type: ADD_BOOSTER})
+        fetchUserNumbers(userData.userName)
+            .then(data => setAllFriends(data.friends) )
+    }, [dispatch,userData.userName])
 
     return (
         <>
@@ -104,8 +106,10 @@ export default function AddBoosterForm() {
                                 id="owner"
                                 fullWidth={true}
                             >
-                                <MenuItem value={userData.id}>Me</MenuItem>
 
+                                <MenuItem value={userData.userName}>Me</MenuItem>
+                                {allFriends && allFriends.map((friend) => (
+                                    <MenuItem value={friend}>{friend}</MenuItem>))}
                             </Select>
                         </FormControl>
                     </Grid>
