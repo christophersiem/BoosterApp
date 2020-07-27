@@ -17,7 +17,7 @@ import {UserStateContext} from "../context/user/UserContext";
 
 import UserDeleteDialog from "../components/dialogs/UserDeleteDialog";
 
-import {fetchNumberOfCreatedBooster} from "../utils/user-utils";
+import {fetchUserNumbers} from "../utils/user-utils";
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -41,7 +41,7 @@ export default function UserInfo() {
     const {userData} = useContext(UserStateContext);
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const [createdBooster, setCreatedBooster] = useState(false);
+    const [userNumbers, setUserNumbers] = useState(false);
 
 
     const handleClickOpen = () => {
@@ -53,18 +53,20 @@ export default function UserInfo() {
     };
 
     useEffect(() => {
-        fetchNumberOfCreatedBooster(userData.userName)
-            .then((data) =>setCreatedBooster(data))
+        fetchUserNumbers(userData.userName)
+            .then((data) =>setUserNumbers(data))
             .catch((e) => console.error(e))
 
     }, [userData.userName])
+
+    console.log(userNumbers)
 
     const userDetails = [
         {no:"1",heading: "Firstname", content: userData.firstName},
         {no:"2",heading: "Username", content: userData.userName},
         {no:"3",heading: "E-Mail", content: userData.email},
-        {no:"4",heading: "Total created booster ", content: createdBooster},
-        {no:"5",heading: "Number of friends", content: userData.friends.length}
+        {no:"4",heading: "Total created booster ", content: userNumbers.createdBooster},
+        {no:"5",heading: "Number of friends", content: userNumbers && userNumbers.friends.length}
 
     ]
 
