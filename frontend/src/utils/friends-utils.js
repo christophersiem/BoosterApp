@@ -16,3 +16,17 @@ export async function addUserAsFriend(friendData) {
     }
     return await response.json();
 }
+
+export function deleteFriend(friendDeleteData) {
+    const token = getJWTToken();
+    return fetch("/api/friends/", {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(friendDeleteData),
+
+    })
+
+}

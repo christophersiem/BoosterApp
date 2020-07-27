@@ -7,12 +7,14 @@ import de.neuefische.boosterapp.model.dto.UserDataDto;
 import de.neuefische.boosterapp.utils.BoosterUtils;
 import de.neuefische.boosterapp.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Optional;
 
 
 @Service
@@ -31,6 +33,13 @@ public class UserService {
     }
 
     public void register(BoosterUser user) {
+
+      Optional<BoosterUser> userCheck = userDb.findByUsername(user.getUsername());
+      if (userCheck.isPresent()){
+
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN,"Username already exists");
+
+        }else{
         String codedPw = encoder.encode(user.getPassword());
         user.setPassword(codedPw);
         String randomId = userUtils.generateRandomId();
@@ -41,8 +50,8 @@ public class UserService {
         List<String> friends = new ArrayList<>(List.of());
         user.setFriends(friends);
         userDb.save(user);
-        boosterUtils.createStandardBooster(randomId);
-    }
+        boosterUtils.createStandardBooster(user.getUsername());
+    }}
 
 
     public void deleteAccount(String username) {

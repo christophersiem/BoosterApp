@@ -31,7 +31,7 @@ class BoosterControllerTest {
     public int port;
 
     @MockBean
-    private UserUtils idUtils;
+    private UserUtils userUtils;
 
     @Autowired
     public PasswordEncoder encoder;
@@ -66,7 +66,7 @@ class BoosterControllerTest {
     public void addNewBoosterShouldAddBooster() {
         //GIVEN
         String token = loginUser();
-        when(idUtils.generateRandomId()).thenReturn("random-id");
+        when(userUtils.generateRandomId()).thenReturn("random-id");
         Booster booster = new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "https://www.youtube.com/watch?v=ekIMGAmgXSI", "");
         String url = "http://localhost:" + port + "/api/booster";
 

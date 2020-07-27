@@ -1,6 +1,7 @@
 package de.neuefische.boosterapp.utils;
 
 import de.neuefische.boosterapp.db.BoosterMongoDb;
+import de.neuefische.boosterapp.db.UserDb;
 import de.neuefische.boosterapp.model.Booster;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,12 @@ import static de.neuefische.boosterapp.model.BoosterType.*;
 public class BoosterUtils {
     private final BoosterMongoDb boosterMongoDb;
     private final UserUtils idUtils;
+    private final UserDb userDb;
 
-    public BoosterUtils(BoosterMongoDb boosterMongoDb, UserUtils idUtils) {
+    public BoosterUtils(BoosterMongoDb boosterMongoDb, UserUtils idUtils, UserDb userDb) {
         this.boosterMongoDb = boosterMongoDb;
         this.idUtils = idUtils;
+        this.userDb = userDb;
     }
 
 
@@ -40,5 +43,6 @@ public class BoosterUtils {
         boosterMongoDb.save((new Booster(idUtils.generateRandomId(), CALM, "1b764dc5-9bf2-455c-9563-6ff54d0b5b9d", "MoodBoost", ownerId, "Relax", "“You are the sky. Everything else – it’s just the weather. (Pema Chödrön)” ", "7maJOI3QMu0", "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1653&q=80")));
         boosterMongoDb.save((new Booster(idUtils.generateRandomId(), CONFIDENCE, "1b764dc5-9bf2-455c-9563-6ff54d0b5b9d", "MoodBoost", ownerId, "Focus", "Confidence awakens Confidence.", "u_ktRTWMX3M","https://images.unsplash.com/photo-1545281011-95796d6f27ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1652&q=80")));
     }
+
 
 }
