@@ -160,7 +160,7 @@ export default function RegistrationForm() {
                 variant="filled" severity="success"
             > Success! Welcome :) </Alert>}
 
-            {registrationStatus == "FAILED" && <Alert
+            {registrationStatus === "FAILED" && <Alert
                 className={classes.alert}
                 variant="filled" severity="error"
             > Username already exists </Alert>}
