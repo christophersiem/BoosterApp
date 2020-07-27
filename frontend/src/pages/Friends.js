@@ -5,11 +5,11 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import {UserStateContext} from "../context/user/UserContext";
-import {addUserAsFriend, deleteFriend} from "../utils/friends-utils";
+import {addUserAsFriend} from "../utils/friends-utils";
 import Paper from "@material-ui/core/Paper";
-import DeleteIcon from "@material-ui/icons/Delete";
 import {fetchUserNumbers} from "../utils/user-utils";
 import Alert from "@material-ui/lab/Alert";
+import FriendDeleteDialog from "../components/dialogs/FriendDeleteDialog";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,6 +44,7 @@ export default function Friends() {
     const [allFriends, setAllFriends] = useState([])
     const [friendExists, setFriendExists] = useState(true)
 
+
     const dataForFriendship = {
         userName: userData.userName,
         friend: friendToAdd,
@@ -53,6 +54,7 @@ export default function Friends() {
     useEffect(() => {
         fetchUserNumbers(userData.userName)
             .then((data) => setAllFriends(data.friends))
+
             .catch((e) => console.error(e))
 
     }, [userData.userName])
@@ -71,16 +73,6 @@ export default function Friends() {
         }
     }
 
-    function handleDelete(friend) {
-        const dataForDelete = {
-            userName: userData.userName,
-            friend: friend,
-        }
-        console.log(friend)
-        deleteFriend(dataForDelete)
-            .then(window.location.reload())
-            .catch((e) => console.error(e))
-    }
 
     return (
         <>
@@ -107,11 +99,13 @@ export default function Friends() {
                                 addFriend()
                             }}>Add user as friend</Button>
                     </Grid>
-                    {!friendExists &&
-                    <Alert
 
-                        variant="filled" severity="error">User is already your friend</Alert>}
                 </Grid>
+                {!friendExists &&
+                <Alert
+                    variant="filled"
+                    severity="error">User is already your friend</Alert>}
+
                 <p className={classes.message}>Your friends</p>
                 {
                     allFriends && allFriends.map((friend) => (
@@ -126,15 +120,13 @@ export default function Friends() {
                                     {friend}
                                 </Grid>
                                 <Grid item>
-                                    <DeleteIcon
-                                        onClick={() => handleDelete(friend)}
-                                        style={{color: '#c20909'}}/>
+                                    <FriendDeleteDialog friend={friend}/>
                                 </Grid>
                             </Grid>
                         </Paper>))}
 
-            </div>
-        </>
-    )
+                    </div>
+                    </>
+                    )
 
-}
+                }
