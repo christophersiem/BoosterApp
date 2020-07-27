@@ -17,10 +17,11 @@ import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import static de.neuefische.boosterapp.model.BoosterType.JOY;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -30,7 +31,7 @@ class BoosterControllerTest {
     public int port;
 
     @MockBean
-    private UserUtils idUtils;
+    private UserUtils userUtils;
 
     @Autowired
     public PasswordEncoder encoder;
@@ -61,31 +62,31 @@ class BoosterControllerTest {
     }
 
 
-//    @Test
-//    public void addNewBoosterShouldAddBooster() {
-//        //GIVEN
-//        String token = loginUser();
-//        when(idUtils.generateRandomId()).thenReturn("random-id");
-//        Booster booster = new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "https://www.youtube.com/watch?v=ekIMGAmgXSI", "");
-//        String url = "http://localhost:" + port + "/api/booster";
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setBearerAuth(token);
-//        HttpEntity<Booster> requestEntity = new HttpEntity<>(booster, headers);
-//
-//        //WHEN
-//        ResponseEntity<Booster> postResponse = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Booster.class);
-//
-//        //THEN
-//        Booster expectedBooster = new Booster("random-id", JOY, "2", "2", "2", "hello", "Hallo", "ekIMGAmgXSI", "");
-//        assertEquals(HttpStatus.OK, postResponse.getStatusCode());
-//        assertNotNull(postResponse.getBody());
-//        assertEquals(expectedBooster, postResponse.getBody());
-//
-//        Optional<Booster> byId = db.findById("random-id");
-//        assertTrue(byId.isPresent());
-//        assertEquals(byId.get(), expectedBooster);
-//    }
+    @Test
+    public void addNewBoosterShouldAddBooster() {
+        //GIVEN
+        String token = loginUser();
+        when(userUtils.generateRandomId()).thenReturn("random-id");
+        Booster booster = new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "https://www.youtube.com/watch?v=ekIMGAmgXSI", "");
+        String url = "http://localhost:" + port + "/api/booster";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        HttpEntity<Booster> requestEntity = new HttpEntity<>(booster, headers);
+
+        //WHEN
+        ResponseEntity<Booster> postResponse = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Booster.class);
+
+        //THEN
+        Booster expectedBooster = new Booster("random-id", JOY, "2", "2", "TestBooster", "hello", "Hallo", "ekIMGAmgXSI", "");
+        assertEquals(HttpStatus.OK, postResponse.getStatusCode());
+        assertNotNull(postResponse.getBody());
+        assertEquals(expectedBooster, postResponse.getBody());
+
+        Optional<Booster> byId = db.findById("random-id");
+        assertTrue(byId.isPresent());
+        assertEquals(byId.get(), expectedBooster);
+    }
 
     @Test
     public void deleteBooster() {

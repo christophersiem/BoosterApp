@@ -45,7 +45,7 @@ public class BoosterService {
         booster.setId(userUtils.generateRandomId());
         booster.setName(data.getName());
         booster.setCreator(data.getCreator());
-        booster.setCreatorName(data.getCreatorFirstName());
+        booster.setCreatorName(data.getCreatorName());
         booster.setMessage(data.getMessage());
         booster.setOwner(data.getOwner());
         booster.setYoutubeLink(getYoutubeId(data.getYoutubeLink()));

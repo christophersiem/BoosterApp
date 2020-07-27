@@ -13,7 +13,7 @@ public class AddBoosterDto {
     private BoosterType type;
     private String creator;
     private String creatorUsername;
-    private String creatorFirstName;
+    private String creatorName;
     private String owner;
     private String name;
     private String message;

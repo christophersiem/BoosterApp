@@ -47,13 +47,13 @@ export default function AddBoosterForm() {
     const boosterToAdd = {
         creator: userData.id,
         creatorName: userData.firstName,
+        creatorUsername:userData.userName,
         owner: owner,
         type: type,
         name: name,
         message: message,
         youtubeLink: youtube,
         image: image,
-        creatorUsername: userData.userName
     }
     const handleChangeOwner = (event) => {
         setOwner(event.target.value);
