@@ -45,13 +45,13 @@ public class BoosterService {
         booster.setId(userUtils.generateRandomId());
         booster.setName(data.getName());
         booster.setCreator(data.getCreator());
-        booster.setCreatorName(data.getCreatorName());
+        booster.setCreatorName(data.getCreatorFirstName());
         booster.setMessage(data.getMessage());
         booster.setOwner(data.getOwner());
         booster.setYoutubeLink(getYoutubeId(data.getYoutubeLink()));
         booster.setImage(data.getImage());
         booster.setType(data.getType());
-        userUtils.increaseBoosterCounter(data.getCreator());
+        userUtils.increaseBoosterCounter(data.getCreatorUsername());
         return boosterDb.save(booster);
     }
 
@@ -69,7 +69,7 @@ public class BoosterService {
     }
 
     public List<Booster> getCreatedBooster(String creatorUserName) {
-        BoosterUser user = userDb.findByUsername(creatorUserName);
+        BoosterUser user = userUtils.getUserByUsername(creatorUserName);
         String userId = user.getId();
         return boosterDb.findByCreator(userId);
     }

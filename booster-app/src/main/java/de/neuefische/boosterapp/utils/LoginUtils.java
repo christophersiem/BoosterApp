@@ -16,10 +16,10 @@ public class LoginUtils {
 
     private final UserDb userDb;
 
-    public  HashMap<String, Object> getUserTokenData(String username) {
+    public HashMap<String, Object> getUserTokenData(String username) {
         Optional<BoosterUser> userOptional = userDb.findById(username);
         BoosterUser boosterUser = userOptional.get();
 
-        return new HashMap<>(Map.of("firstName", boosterUser.getFirstName(), "userName",boosterUser.getUsername(), "id",boosterUser.getId(),"email",boosterUser.getEmail()));
+        return new HashMap<>(Map.of("firstName", boosterUser.getFirstName(), "userName",boosterUser.getUsername(), "id",boosterUser.getId(),"email",boosterUser.getEmail(),"createdBooster",boosterUser.getCreatedBooster(),"friends",boosterUser.getFriends()));
     }
 }

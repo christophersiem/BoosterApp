@@ -1,6 +1,7 @@
 package de.neuefische.boosterapp.controller;
 
 import de.neuefische.boosterapp.model.BoosterUser;
+import de.neuefische.boosterapp.model.dto.UserDataDto;
 import de.neuefische.boosterapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +29,8 @@ public class UserController {
     }
 
     @GetMapping
-    public int getNumberCreatedBooster(@RequestParam(required = false) String username){
-        return userService.getNumberCreatedBooster(username);
+    public UserDataDto getUserNumbers(@RequestParam(required = false) String username){
+        return userService.getUserNumbers(username);
     }
 
 }

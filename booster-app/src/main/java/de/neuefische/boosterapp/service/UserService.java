@@ -3,6 +3,7 @@ package de.neuefische.boosterapp.service;
 
 import de.neuefische.boosterapp.db.UserDb;
 import de.neuefische.boosterapp.model.BoosterUser;
+import de.neuefische.boosterapp.model.dto.UserDataDto;
 import de.neuefische.boosterapp.utils.BoosterUtils;
 import de.neuefische.boosterapp.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,25 +14,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 @Service
 public class UserService {
 
     private final UserDb userDb;
-    private final UserUtils idUtils;
+    private final UserUtils userUtils;
     private final BoosterUtils boosterUtils;
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Autowired
-    public UserService(UserDb userDb, UserUtils idUtils, BoosterUtils boosterUtils) {
+    public UserService(UserDb userDb, UserUtils userUtils, BoosterUtils boosterUtils) {
         this.userDb = userDb;
-        this.idUtils = idUtils;
+        this.userUtils = userUtils;
         this.boosterUtils = boosterUtils;
     }
 
     public void register(BoosterUser user) {
         String codedPw = encoder.encode(user.getPassword());
         user.setPassword(codedPw);
-        String randomId = idUtils.generateRandomId();
+        String randomId = userUtils.generateRandomId();
         user.setId(randomId);
         user.setRole("user");
         user.setEmail(user.getEmail());
@@ -47,9 +49,15 @@ public class UserService {
         userDb.deleteById(username);
     }
 
-    public int getNumberCreatedBooster(String username) {
-       BoosterUser user =userDb.findByUsername(username);
-        return user.getCreatedBooster();
+
+
+    public UserDataDto getUserNumbers(String username) {
+        UserDataDto userDataDto = new UserDataDto();
+        BoosterUser user = userUtils.getUserByUsername(username);
+        userDataDto.setCreatedBooster(user.getCreatedBooster());
+        userDataDto.setFriends(user.getFriends());
+
+      return userDataDto;
     }
 }
 
