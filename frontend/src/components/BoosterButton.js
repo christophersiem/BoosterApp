@@ -26,7 +26,7 @@ export default function BoosterButton() {
 
     const {userData} = useContext(UserStateContext);
 
-    const owner = userData.id
+    const owner = userData.userName
     const classes = useStyles();
     const history = useHistory();
 
