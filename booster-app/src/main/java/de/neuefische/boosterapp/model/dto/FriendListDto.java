@@ -1,18 +1,15 @@
 package de.neuefische.boosterapp.model.dto;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDataDto {
+public class FriendListDto {
 
-    private int createdBooster;
-    private List friends;
-    private String friendsIds;
+    private String userName;
+    private String friend;
 }
-
