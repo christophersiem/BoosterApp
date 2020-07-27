@@ -18,20 +18,18 @@ public class UserController {
     }
 
     @PostMapping
-    public void register (@RequestBody BoosterUser user){
+    public void register(@RequestBody BoosterUser user) {
         userService.register(user);
     }
 
-   @DeleteMapping("{username}")
-    public void deleteAccount (@PathVariable String username){
+    @DeleteMapping("{username}")
+    public void deleteAccount(@PathVariable String username) {
         userService.deleteAccount(username);
     }
 
-
-
-
-
-
-
+    @GetMapping
+    public int getNumberCreatedBooster(@RequestParam(required = false) String username){
+        return userService.getNumberCreatedBooster(username);
+    }
 
 }

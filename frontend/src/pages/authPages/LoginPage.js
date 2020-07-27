@@ -5,6 +5,7 @@ import {UserStateContext} from "../../context/user/UserContext";
 import {Redirect} from "react-router-dom";
 import LoginForm from "../../components/forms/LoginForm";
 import {useLocation} from "react-router";
+import Button from "@material-ui/core/Button";
 
 
 const useStyles = makeStyles(() => ({
@@ -35,6 +36,10 @@ const useStyles = makeStyles(() => ({
     mood:{
         maxWidth: "375px",
         opacity:"80"
+    },
+    impressum:{
+        marginTop:"110px",
+        fontSize:"12px"
     }
 
 }))
@@ -75,7 +80,14 @@ export default function LoginPage() {
                 </Grid>
                 <LoginForm/>
             </Grid>
-
+            <Grid
+                container
+                justify="flex-end"
+            >
+                <Grid item>
+            <Button className={classes.impressum}>Impressum</Button>
+                </Grid>
+            </Grid>
         </div>
     )
 }
