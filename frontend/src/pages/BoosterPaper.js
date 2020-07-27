@@ -27,6 +27,7 @@ const useStyles = makeStyles(() => ({
 export default function BoosterPaper(props) {
     const classes = useStyles();
     const dispatch = useContext(BoosterDispatchContext)
+
     function handleDelete(id) {
         removeBooster(dispatch,id)
             .catch((e) => console.error(e))

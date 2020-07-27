@@ -1,6 +1,6 @@
 import {getJWTToken} from "./jwt-utils";
 
-export async function fetchNumberOfCreatedBooster(username) {
+export async function fetchUserNumbers(username) {
     const token = getJWTToken();
     const response = await fetch(`/auth/register?username=`+username, {
         method: "GET",
@@ -11,6 +11,6 @@ export async function fetchNumberOfCreatedBooster(username) {
     if (response.status !== 200) {
         throw new Error(`failed to fetch ID: ${response.statusText}`);
     }
-    return await response.text();
+    return await response.json();
 
 }
