@@ -14,7 +14,7 @@ export async function addUserAsFriend(friendData) {
     if (response.status !== 200) {
         throw new Error(`failed to add friend: ${response.statusText}`);
     }
-    return await response.json();
+    return await response.text();
 }
 
 export function deleteFriend(friendDeleteData) {

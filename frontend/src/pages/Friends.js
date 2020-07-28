@@ -11,6 +11,7 @@ import {fetchUserNumbers} from "../utils/user-utils";
 import Alert from "@material-ui/lab/Alert";
 import FriendDeleteDialog from "../components/dialogs/FriendDeleteDialog";
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: "1",
@@ -42,7 +43,6 @@ export default function Friends() {
     const {userData} = useContext(UserStateContext);
     const [friendToAdd, setFriendToAdd] = useState("")
     const [allFriends, setAllFriends] = useState([])
-    const [friendExists, setFriendExists] = useState(true)
 
 
     const dataForFriendship = {
@@ -52,6 +52,7 @@ export default function Friends() {
 
 
     useEffect(() => {
+
         fetchUserNumbers(userData.userName)
             .then((data) => setAllFriends(data.friends))
 
@@ -63,19 +64,28 @@ export default function Friends() {
         setFriendToAdd(event.target.value)
     }
 
+    const [friendExists, setFriendExists] = useState(true)
+    const [userExists, setUserExists] = useState()
+
     function addFriend() {
+        setFriendExists(true)
         if (allFriends.includes(friendToAdd)) {
             setFriendExists(false)
         } else {
             addUserAsFriend(dataForFriendship)
-                .then(window.location.reload())
-                .catch((e) => console.error(e))
+                .then(()=>setUserExists(true))
+                .catch(() => setUserExists(false))
         }
     }
 
 
+
     return (
+
         <>
+
+
+            {userExists === true && window.location.reload()}
             <div className={classes.root}>
                 <p className={classes.message}>Add a Friend</p>
                 <Grid
@@ -101,6 +111,9 @@ export default function Friends() {
                     </Grid>
 
                 </Grid>
+                {userExists === false && <Alert
+                    variant="filled"
+                    severity="error">User doesn't exist</Alert>}
                 {!friendExists &&
                 <Alert
                     variant="filled"
@@ -125,8 +138,8 @@ export default function Friends() {
                             </Grid>
                         </Paper>))}
 
-                    </div>
-                    </>
-                    )
+            </div>
+        </>
+    )
 
-                }
+}
