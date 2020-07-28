@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class BoosterUser {
     @Size(min = 5, message = "password min length 5")
     private String password;
     private String firstName;
+    @Email
     private String email;
     private String role;
     private int createdBooster;

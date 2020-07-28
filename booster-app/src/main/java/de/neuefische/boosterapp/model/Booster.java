@@ -16,7 +16,7 @@ public class Booster {
     private BoosterType type;
     private String creator;
     private String creatorName;
-    private String owner;
+    private String ownerUsername;
     private String name;
     private String message;
     private String youtubeLink;

@@ -24,7 +24,7 @@ public class BoosterController {
 
     @GetMapping
     public List<Booster> getCreatedBooster(@RequestParam(required = false) String creatorUserName) {
-        return boosterService.getCreatedBooster(creatorUserName);
+        return boosterService.getBoosterByCreator(creatorUserName);
     }
 
     @GetMapping("{id}")
