@@ -51,7 +51,6 @@ export default function LoginForm() {
             .catch(() => {
                 dispatch({type: LOGIN_FAILED})
                 setLoginFail(true)
-
             })
     }
 

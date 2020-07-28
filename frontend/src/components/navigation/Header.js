@@ -10,9 +10,6 @@ import UserInfo from "../../pages/UserInfo";
 
 
 const useStyles = makeStyles(() => ({
-    root:{
-        backgroundColor:"#f7f5ed",
-    },
 
     menuButton: {
 

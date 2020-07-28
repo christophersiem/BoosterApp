@@ -17,5 +17,6 @@ export default function App() {
                 </BoosterContextProvider>
             </UserContextProvider>
         </ThemeProvider>
+
     );
 }

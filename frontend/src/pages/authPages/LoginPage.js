@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
         flexGrow: "1",
         overflow:"scroll",
 
+
     },
     image: {
         padding: "45px 0px 15px",
