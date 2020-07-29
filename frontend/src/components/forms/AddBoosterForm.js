@@ -142,8 +142,8 @@ export default function AddBoosterForm() {
                                 onChange={handleChangeName}
                                 value={name}
                                 fullWidth={true}
-                                error={name.length > 20 && name.length > 0}
-                                helperText={name.length > 20 && name.length > 0 && "Choose a name with maximum 20 characters"}
+                                error={name.length > 30 && name.length > 0}
+                                helperText={name.length > 30 && name.length > 0 && "Choose a name with maximum 30 characters"}
                             />
                         </form>
                     </Grid>}
@@ -201,7 +201,7 @@ export default function AddBoosterForm() {
                             className={classes.field}
                             onClick={handleSubmit}
                             color="primary"
-                            disabled={name.length > 20 || name.length < 1 || !owner || !type || (!youtube && !image && !message)}
+                            disabled={name.length > 30 || name.length < 1 || !owner || !type || (!youtube && !image && !message)}
                         >
                             Create Booster
                         </Button>}
