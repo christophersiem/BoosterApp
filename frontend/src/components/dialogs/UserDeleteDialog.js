@@ -13,9 +13,9 @@ import {UserDispatchContext, UserStateContext} from "../../context/user/UserCont
 import Grid from "@material-ui/core/Grid";
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     delete: {
-        color: "#c20909",
+        color: theme.palette.first,
         margin: "15px 0px",
 
     },
@@ -23,6 +23,9 @@ const useStyles = makeStyles(() => ({
         color: "red",
         alignSelf: "center",
         marginTop: "20px"
+    },
+    text:{
+        fontFamily:theme.typography.subtitle2.fontFamily
     }
 
 
@@ -65,14 +68,14 @@ export default function UserDeleteDialog() {
             >
                 <DialogTitle id="caution">{"Caution"}</DialogTitle>
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
+                    <DialogContentText id="alert-dialog-description" className={classes.text}>
                         Are you sure you want to delete your Account? This cannot be undone
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Grid
                         container
-                        justify="center"
+                        justify="space-around"
                         alignItems="center"
                     >
                         <Grid item>
@@ -85,10 +88,11 @@ export default function UserDeleteDialog() {
                                 Delete
                             </Button>
                         </Grid>
-                    </Grid>
-                    <Button onClick={handleClose} color="primary" autoFocus>
+
+                    <Button onClick={handleClose} style={{color:"#47392d"}} autoFocus>
                         Cancel
                     </Button>
+                    </Grid>
                 </DialogActions>
             </Dialog>
         </>

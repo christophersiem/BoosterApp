@@ -14,7 +14,7 @@ import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
     delete: {
-        color: "#c20909",
+        color: "#951010",
         margin: "15px 0px",
 
     },}))
@@ -37,8 +37,8 @@ export default function FriendDeleteDialog(props) {
             userName: userData.userName,
             friend: friend,
         }
-        console.log(friend)
         deleteFriend(dataForDelete)
+            .then(()=>window.location.replace = "/friends")
             .catch((e) => console.error(e))
     }
 
@@ -46,7 +46,7 @@ export default function FriendDeleteDialog(props) {
         <>
             <DeleteIcon
 
-                style={{color: '#c20909'}} onClick={handleClickOpen}/>
+                style={{color: "#43382c"}} onClick={handleClickOpen}/>
 
             <Dialog
                 open={open}
