@@ -10,19 +10,36 @@ import {UserDispatchContext, UserStateContext} from "../../context/user/UserCont
 import {REGISTRATION, REGISTRATION_FAILED, REGISTRATION_SUCCESS} from "../../context/user/UserContextProvider";
 import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     inputField: {
         width: "80%",
-        margin: "3px"
+        margin: "3px",
+
+        ".MuiFormHelperText-root.Mui-error": {
+            color:theme.palette.second
+        },
+
+
+        [theme.breakpoints.up("sm")]: {
+            width: "30%",
+        },
     },
-    submit: {
+    registerButton: {
         margin: "24px 0px ",
-        width: "40%"
+        width: "40%",
+        [theme.breakpoints.up("sm")]: {
+            width: "20%",
+        },
     },
-    submit2: {
+    goToLoginButton: {
         margin: "10x 0px ",
         width: "40%",
-        backgroundColor: "#80c7c5"
+        backgroundColor:"rgb(191,148,115)",
+        fontFamily: 'Lora',
+        color:"#47392d",
+        [theme.breakpoints.up("sm")]: {
+            width: "20%",
+        },
     },
     alert: {
         marginBottom: "12px"
@@ -169,7 +186,7 @@ export default function RegistrationForm() {
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}
+                className={classes.registerButton}
                 onClick={handleSubmit}
                 disabled={!validation}
             >
@@ -179,7 +196,7 @@ export default function RegistrationForm() {
                 fullWidth
                 variant="contained"
                 color=""
-                className={classes.submit2}
+                className={classes.goToLoginButton}
                 onClick={() => history.push("/login")}>Go to Log in
             </Button>
         </Grid>

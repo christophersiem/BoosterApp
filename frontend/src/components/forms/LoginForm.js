@@ -10,21 +10,33 @@ import {UserDispatchContext} from "../../context/user/UserContext";
 import Alert from "@material-ui/lab/Alert";
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     inputField: {
         width: "80%",
-        "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#8b95ba",
+
+        margin: "2px",
+        [theme.breakpoints.up("sm")]: {
+            width: "20%",
         },
-        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "purple"
-        },
-        margin:"2px"
+        fontSize: "10px"
+
     },
-    submit: {
+    signInButton: {
         margin: "24px 0px 16px",
-        width: "80%"
-    },
+        backgroundColor: "rgb(191,148,115)",
+        fontFamily: 'Lora',
+        color: "#47392d",
+        letterSpacing: theme.typography.subtitle2.letterSpacing,
+        width: "40%",
+        [theme.breakpoints.up("sm")]: {
+            width: "20%",
+        },
+},
+    alert: {
+        backgroundColor: "rgb(186,84,38)",
+        marginTop: "10px",
+        color: "#d9d7ce"
+    }
 
 
 }))
@@ -36,7 +48,6 @@ export default function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useContext(UserDispatchContext);
-
 
 
     function login() {
@@ -87,18 +98,19 @@ export default function LoginForm() {
 
             {loginFail && <Alert
                 variant="filled" severity="error"
+                className={classes.alert}
             > Check username and password </Alert>}
             <Button
                 fullWidth
                 variant="contained"
                 color="primary"
-                className={classes.submit}
+                className={classes.signInButton}
                 onClick={login}
             >
                 Sign In
             </Button>
 
-            <Link href="/register" variant="body2">
+            <Link href="/register" variant="body2" style={{color: "#47392d"}}>
                 {"No Account? Sign Up!"}
             </Link>
         </>

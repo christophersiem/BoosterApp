@@ -20,10 +20,10 @@ const useStyles = makeStyles(() => ({
     },
     root: {
         "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#8b95ba",
+            borderColor: "#43382c",
         },
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "purple"
+            borderColor: "#AD6B36"
         },
     },
 
@@ -58,7 +58,6 @@ export default function AddBoosterForm() {
     const handleChangeOwner = (event) => {
         setOwner(event.target.value);
     };
-
     const handleChangeType = (event) => {
         setType(event.target.value);
     };
@@ -74,7 +73,6 @@ export default function AddBoosterForm() {
     const handleChangeImage = (event) => {
         setImage(event.target.value)
     };
-
 
     function handleSubmit() {
         addBooster(dispatch, boosterToAdd)
