@@ -52,7 +52,7 @@ export const theme = createMuiTheme({
                 },
                 color:"#43382c",
                 border: "1.5px solid #AD6B36"
-            },
+            }},
 
             MuiTypography: {
                 body1: {
@@ -110,5 +110,5 @@ export const theme = createMuiTheme({
 
 
         }
-    }});
+    });
 
