@@ -3,6 +3,7 @@
     flex-flow: column nowrap;
     height: 100vh;
     flex-grow: 1;
-    background-color: #f7f5ed;
+    background: linear-gradient(180deg, rgba(205,198,184,1) 13%, rgba(207,181,146,1) 55%, rgba(197,152,117,1) 82%, rgba(197,152,117,1) 100%);
+
 
 }
