@@ -5,42 +5,38 @@ import {UserStateContext} from "../../context/user/UserContext";
 import {Redirect} from "react-router-dom";
 import LoginForm from "../../components/forms/LoginForm";
 import {useLocation} from "react-router";
-import Button from "@material-ui/core/Button";
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: "1",
-        overflow:"scroll",
+        overflow: "scroll",
 
 
     },
     image: {
         padding: "45px 0px 15px",
         Width: "300px",
+        marginBottom:"15px"
     },
-    welcome: {
-        fontFamily: 'Noto Sans',
-        fontSize: "18px",
-        letterSpacing: "1.5px",
-        color:"#354ea0",
-        marginTop:"15px"
-    },
+
     welcome2: {
-        fontFamily: 'Noto Sans',
-        fontSize: "18px",
-        letterSpacing: "1.5px",
-        color:"#354ea0",
-        alignSelf:"center",
-        margin:"25px 15px 20px"
+        fontFamily: 'Lora',
+        fontSize: theme.typography.subtitle2.fontSize,
+        letterSpacing: theme.typography.subtitle2.letterSpacing,
+        color:"#AD6B36",
+        alignSelf: "center",
+        margin: "25px 15px 20px"
     },
-    mood:{
-        maxWidth: "375px",
-        opacity:"80"
+    mood: {
+        maxWidth: "414px",
+
     },
-    impressum:{
-        marginTop:"110px",
-        fontSize:"12px"
+    name: {
+        fontFamily: 'Lora',
+        fontSize:"42px",
+        letterSpacing:theme.typography.subtitle2.letterSpacing,
+        color:"#ad6b36"
     }
 
 }))
@@ -64,20 +60,15 @@ export default function LoginPage() {
                 direction="column"
                 alignItems="center"
 
-
             >
+                <img className={classes.image} src={"./login_logo.png"} alt="MoodBoost_Logo"/>
 
-                <Grid item>
-                    <img className={classes.image} src={"./cleanlogo.png"} alt="MoodBoost_Logo"/>
-                </Grid>
 
                 <img className={classes.mood} src={"./mood.jpeg"} alt="MoodBoost_Logo"/>
 
+
                 <Grid item>
-                    <div className={classes.welcome}>Nice to have you here!</div>
-                </Grid>
-                <Grid item>
-                <div className={classes.welcome2}> Please sign in</div>
+                    <div className={classes.welcome2}> Please sign in</div>
                 </Grid>
                 <LoginForm/>
             </Grid>
@@ -85,9 +76,6 @@ export default function LoginPage() {
                 container
                 justify="flex-end"
             >
-                <Grid item>
-            <Button className={classes.impressum}>Impressum</Button>
-                </Grid>
             </Grid>
         </div>
     )

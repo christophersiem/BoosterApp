@@ -6,7 +6,7 @@ import {makeStyles} from "@material-ui/core/styles";
 import RegistrationForm from "../../components/forms/RegistrationForm";
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         overflow: "scroll",
@@ -19,14 +19,21 @@ const useStyles = makeStyles(() => ({
         alignSelf: "center",
         justifyContent: "center",
         paddingLeft:"20px",
+        [theme.breakpoints.up("sm")]: {
+            height: "40%",
+            width:"40%",
+        },
     },
 
     welcome: {
-        fontFamily: 'Noto Sans',
-        fontSize: "18px",
-        letterSpacing: "1.5px",
+        fontFamily: theme.typography.subtitle2.fontFamily,
+        fontSize: theme.typography.subtitle2.fontSize,
+        letterSpacing: theme.typography.subtitle2.letterSpacing,
         textAlign: "start",
-        paddingRight:"20px"
+        paddingRight:"20px",
+        [theme.breakpoints.up("sm")]: {
+            fontSize: "28px",
+        },
     }
 
 }))
