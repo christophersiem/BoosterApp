@@ -9,7 +9,11 @@ import Grid from "@material-ui/core/Grid";
 import UserInfo from "../../pages/UserInfo";
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
+
+    root:{
+
+    },
 
     menuButton: {
 
@@ -37,10 +41,15 @@ const useStyles = makeStyles(() => ({
 
     image:{
         padding:"5px 0px 10px",
-        width:"227px",
-        height:"66px"
 
     },
+    logo:{
+        fontFamily: 'Lora',
+        fontSize:"32px",
+        color:"#AD6B36",
+        letterSpacing: theme.typography.subtitle2.letterSpacing,
+        margin:"20px 0px"
+    }
 
 }));
 
@@ -56,7 +65,7 @@ export default function Header() {
 
         <header className={classes.root}>
 
-                <AppBar style={{background: '#f7f5ed'}} position="static">
+                <AppBar style={{background: 'rgb(199,192,178)'}} position="static">
                     <Toolbar className={classes.toolbar}>
                         <Grid
                             container
@@ -71,7 +80,7 @@ export default function Header() {
                             </Grid>
                         </div>
                             <Grid item>
-                        <img className={classes.image} src={"/moodboost_smile.png"} alt="logo_medium" />
+                        <p className={classes.logo}>moodboost</p>
                             </Grid>
 
                         <Grid item>

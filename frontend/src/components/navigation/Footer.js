@@ -18,11 +18,14 @@ const useStyles = makeStyles(() => ({
 
     root: {
         "& .MuiBottomNavigationAction-root.Mui-selected ": {
-            color: "#f3f0f0"},
+            color: "#d7c4af"},
         "& .MuiBottomNavigationAction-root":{
-            color: "#f3f0f0"
-        }
-}}))
+            color: "#47392d",
+        },
+
+}
+
+}))
 
 export default function SimpleBottomNavigation() {
     const classes = useStyles();
@@ -41,7 +44,7 @@ export default function SimpleBottomNavigation() {
 
     return (
         <footer>
-            <BottomNavigation value={value} onChange={handleChange} className={classes.root} style={{background: 'rgb(109 144 199)'}}>
+            <BottomNavigation value={value} onChange={handleChange} className={classes.root} style={{background: 'rgb(191,148,115)'}}>
                 <BottomNavigationAction label="Home" value="" icon={<HomeOutlinedIcon className={classes.iconColor}/>} />
                 <BottomNavigationAction label="Booster" value="list" icon={<MoodIcon className={classes.iconColor}/>} />
                 <BottomNavigationAction label="New" value="add" icon={<PostAddOutlinedIcon className={classes.iconColor}/>} />
