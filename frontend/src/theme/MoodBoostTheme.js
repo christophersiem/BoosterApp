@@ -1,16 +1,28 @@
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 
 export const theme = createMuiTheme({
+    palette:{
+        first:{
+            color: "#AD6B36",
+        },
+        second:{
+            color: "#43382c"
+        },
+        third:{
+            color: "#f1eded"
+        },
+
+    },
 
     typography: {
 
         subtitle: {
-            fontFamily: 'Noto Sans',
+            fontFamily: 'Lora',
             fontSize: "24px",
             letterSpacing: "1.5px",
         },
         subtitle2: {
-            fontFamily: 'Noto Sans, sans-serif',
+            fontFamily: 'Lora',
             fontSize: "18px",
             letterSpacing: "1.5px",
             lineHeight: "30px",
@@ -20,9 +32,11 @@ export const theme = createMuiTheme({
     },
 
     overrides: {
+
+
         MuiPaper: {
             root: {
-                backgroundColor: "#f7f5ed",
+                backgroundColor: "#f1eded",
             },
         },
         MuiAlert: {
@@ -36,17 +50,60 @@ export const theme = createMuiTheme({
 
         MuiTypography: {
             body1: {
-                fontFamily: 'Noto Sans, sans-serif',
+                fontFamily: 'Lora',
+                color: "#43382c"
             }
         },
         MuiButton: {
             root: {
-                fontFamily: 'Noto Sans, sans-serif',
+                MuiFocused: {
+                    color: "#43382c"
+                },
+                fontFamily: 'Lora'
             },
             containedPrimary: {
-                backgroundColor: "#6b87e3"
+                '&:hover': {
+                    backgroundColor: "#43382c"
+                },
+                backgroundColor: "#43382c",
+
+
+
+            },
+        },
+
+        MuiFormLabel: {
+            root: {
+                fontFamily: 'Lora',
+                color: "#43382c",
+                "&$focused": {
+                    color: "#AD6B36",
+                }
+            },
+        },
+        MuiDialog: {
+            paperFullScreen: {
+                backgroundColor: "#f1eded"
+            }
+        },
+        MuiFormHelperText:{
+            color:"black"
+        },
+        MuiOutlinedInput: {
+            root: {
+                "& $notchedOutline": {
+                    borderColor: "#43382c"
+                },
+                "&:hover $notchedOutline": {
+                    borderColor: "#AD6B36"
+                },
+                "&$focused $notchedOutline": {
+                    borderColor: "#AD6B36"
+                }
             }
         },
 
-        }
-    });
+
+    }
+});
+
