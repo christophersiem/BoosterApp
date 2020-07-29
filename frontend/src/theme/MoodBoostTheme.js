@@ -65,7 +65,8 @@ export const theme = createMuiTheme({
                     MuiFocused: {
                         color: "#43382c"
                     },
-                    fontFamily: 'Lora'
+                    fontFamily: 'Lora',
+                    borderRadius:"20px",
                 },
                 containedPrimary: {
                     '&:hover': {
