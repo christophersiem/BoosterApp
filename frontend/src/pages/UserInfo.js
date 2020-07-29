@@ -23,14 +23,19 @@ const useStyles = makeStyles((theme) => ({
     appBar: {
         position: 'relative',
         color: "#FFF3F0F0",
-        backgroundColor: "rgb(109 144 199)",
+        backgroundColor: 'rgb(191,148,115)',
         height: "70px"
     },
     title: {
         marginLeft: theme.spacing(2),
         flex: 1,
         marginTop: theme.spacing(2),
+        color: "#f1eded",
     },
+    style: {
+
+    }
+
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -54,7 +59,7 @@ export default function UserInfo() {
 
     useEffect(() => {
         fetchUserNumbers(userData.userName)
-            .then((data) =>setUserNumbers(data))
+            .then((data) => setUserNumbers(data))
             .catch((e) => console.error(e))
 
     }, [userData.userName])
@@ -62,49 +67,54 @@ export default function UserInfo() {
     console.log(userNumbers)
 
     const userDetails = [
-        {no:"1",heading: "Firstname", content: userData.firstName},
-        {no:"2",heading: "Username", content: userData.userName},
-        {no:"3",heading: "E-Mail", content: userData.email},
-        {no:"4",heading: "Total created booster ", content: userNumbers.createdBooster},
-        {no:"5",heading: "Number of friends", content: userNumbers && userNumbers.friends.length}
+        {no: "1", heading: "Firstname", content: userData.firstName},
+        {no: "2", heading: "Username", content: userData.userName},
+        {no: "3", heading: "E-Mail", content: userData.email},
+        {no: "4", heading: "Total created booster ", content: userNumbers.createdBooster},
+        {no: "5", heading: "Number of friends", content: userNumbers && userNumbers.friends.length}
 
     ]
 
     return (
         <div>
             <IconButton onClick={handleClickOpen}>
-                <PersonIcon style={{color: 'rgb(109 144 199)'}}/>
+                <PersonIcon style={{color: "#AD6B36"}}/>
             </IconButton>
-            <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-                <AppBar className={classes.appBar}>
-                    <Toolbar>
-                        <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close"
-                                    style={{marginTop: "16px"}}>
-                            <CloseIcon/>
-                        </IconButton>
-                        <Typography variant="h6" className={classes.title}>
-                            Your Account Details
-                        </Typography>
-                        <Button autoFocus color="inherit" onClick={handleClose} style={{marginTop: "16px"}}>
-                            save
-                        </Button>
-                    </Toolbar>
-                </AppBar>
-                <List>
+            <div className={classes.style}>
+                <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
+                    <AppBar className={classes.appBar}>
+                        <Toolbar>
+                            <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close"
+                                        style={{marginTop: "16px"}}>
+                                <CloseIcon/>
+                            </IconButton>
+                            <Typography variant="h6" className={classes.title}>
+                                Your Account Details
+                            </Typography>
+                            <Button autoFocus color="inherit" onClick={handleClose} style={{marginTop: "16px"}}>
+                                save
+                            </Button>
+                        </Toolbar>
+                    </AppBar>
 
-                    {userDetails.map((detail) => (
-                        <div key={detail.no}>
+                    <List>
+
+                        {userDetails.map((detail) => (
+                            <div key={detail.no}>
                                 <ListItem button key={detail.no}>
                                     <ListItemText primary={detail.heading} secondary={detail.content} key={detail.no}/>
                                 </ListItem>
 
-                            <Divider/>
-                        </div>
-                    ))}
+                                <Divider/>
+                            </div>
+                        ))}
 
-                </List>
-                <UserDeleteDialog/>
-            </Dialog>
+                    </List>
+
+                    <UserDeleteDialog/>
+                </Dialog>
+            </div>
         </div>
+
     );
 }

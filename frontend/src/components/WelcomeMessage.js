@@ -4,12 +4,12 @@ import {UserStateContext} from "../context/user/UserContext";
 
 const useStyles = makeStyles((theme) => ({
     colored: {
-    color: "#225aba",
-    fontStyle: "italic",
+    color: "#AD6B36",
+
 },
 
 message: {
-    fontFamily: theme.typography.subtitle.fontFamily,
+    fontFamily: 'Lora',
     fontSize: theme.typography.subtitle.fontSize,
     letterSpacing:theme.typography.subtitle.letterSpacing,
     lineHeight:theme.typography.subtitle.lineHeight,

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
     accordion: {
         marginBottom: "5px",
-        backgroundColor: "white",
+        backgroundColor: "#f1eded",
 
     },
     text: {

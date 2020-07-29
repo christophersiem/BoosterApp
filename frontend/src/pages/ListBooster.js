@@ -18,17 +18,29 @@ const useStyles = makeStyles((theme) => ({
 
     },
     paperJoy: {
-        backgroundColor: "#d0b3d5",
+        backgroundColor: "rgb(231,203,125)",
         paddingLeft: "10px",
+        [theme.breakpoints.up("sm")]: {
+            width: "50%",
+
+        },
+
+
     },
 
     paperCalm: {
-        backgroundColor: "#b3bfee",
-        paddingLeft: "10px"
+        backgroundColor: "#e7bb98",
+        paddingLeft: "10px",
+        [theme.breakpoints.up("sm")]: {
+            width: "50%",
+        },
     },
     paperConf: {
-        backgroundColor: "#80c7c5",
-        paddingLeft: "10px"
+        backgroundColor: "rgb(145,194,248)",
+        paddingLeft: "10px",
+        [theme.breakpoints.up("sm")]: {
+            width: "50%",
+        },
     },
 
     title: {
@@ -39,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
         letterSpacing: theme.typography.subtitle.letterSpacing,
     },
     image: {
-        width: "344px",
+        width: "300px",
         paddingBottom: "15px",
         alignSelf: "center",
     },
@@ -68,49 +80,49 @@ export default function ListBooster() {
 
     return (
         <>
-        <Grid className={classes.mainPage}>
+            <div className={classes.mainPage}>
 
-            <p className={classes.title}>Your created booster</p>
+                <p className={classes.title}>Your created booster</p>
 
-            <Grid
-                container
-                direction="column"
-                justify="center"
-                alignItems="center"
-            >
-            <img className={classes.image} src={"/jcc2.png"} alt="logo_medium"/>
+                <Grid
+                    container
+                    direction="column"
+                    justify="center"
+                    alignItems="center"
+                >
+                    <img className={classes.image} src={"/jcc2.png"} alt="logo_medium"/>
+
+                </Grid>
+                    {fetchStatus === 'PENDING' && <CircularProgress/>}
+                    {!boosterItems.length > 0 &&
+                    <Alert className={classes.alert} variant="outlined" severity="info">
+                        You have no created booster. <br/>
+                    </Alert>}
+                    {!boosterItems.length > 0 &&
+                    <Button
+                        className={classes.alert}
+                        variant="contained"
+                        color="primary"
+                        href="/add">Create a booster now</Button>
+
+                    }
 
 
-                {fetchStatus === 'PENDING' && <CircularProgress/>}
-                {!boosterItems.length>0 &&
-                <Alert className={classes.alert} variant="outlined" severity="info">
-                    You have no created booster. <br/>
-                </Alert>}
-                {!boosterItems.length>0 &&
-                <Button
-                    className={classes.alert}
-                    variant="contained"
-                    color="primary"
-                    href="/add">Create a booster now</Button>
+                    {
+                        boosterItems && boosterItems.map((booster) => (
+                            booster.type === "JOY" ?
+                                <BoosterPaper moodStyle={classes.paperJoy} booster={booster} key={booster.id}/>
+                                :
+                                booster.type === "CALM" ?
+                                    <BoosterPaper moodStyle={classes.paperCalm} booster={booster} key={booster.id}/>
+                                    :
+                                    <BoosterPaper moodStyle={classes.paperConf} booster={booster} key={booster.id}/>
+                        ))
+                    }
 
-                }
-            </Grid>
-
-
-    {
-        boosterItems && boosterItems.map((booster) => (
-            booster.type === "JOY" ?
-                <BoosterPaper moodStyle={classes.paperJoy} booster={booster} key={booster.id}/>
-                :
-                booster.type === "CALM" ?
-                    <BoosterPaper moodStyle={classes.paperCalm} booster={booster} key={booster.id}/>
-                    :
-                    <BoosterPaper moodStyle={classes.paperConf} booster={booster} key={booster.id}/>
-        ))
-    }
-        </Grid>
-</>
-)
+            </div>
+        </>
+    )
 }
 
 

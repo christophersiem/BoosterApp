@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: "scroll"
     },
     input: {
-        width: "360px",
+        width: "240px",
     },
     message: {
         fontFamily: theme.typography.subtitle2.fontFamily,
@@ -30,8 +30,21 @@ const useStyles = makeStyles((theme) => ({
 
     paper: {
         margin: "10px 20px",
-        backgroundColor: "white",
-        padding: "10px 20px"
+        backgroundColor: theme.palette.first,
+        padding: "10px 20px",
+    },
+    text:{
+        fontFamily:theme.typography.subtitle
+    },
+    addFriendButton:{
+        margin: "24px 0px 16px",
+        backgroundColor: "rgb(191,148,115)",
+        fontFamily: 'Lora',
+        color: "#47392d",
+        letterSpacing: theme.typography.subtitle2.letterSpacing,
+        [theme.breakpoints.up("sm")]: {
+            width: "20%",
+        },
     }
 
 
@@ -104,6 +117,7 @@ export default function Friends() {
                     </Grid>
                     <Grid>
                         <Button
+                            className={classes.addFriendButton}
                             disabled={friendToAdd.length < 6}
                             onClick={() => {
                                 addFriend()
@@ -129,7 +143,7 @@ export default function Friends() {
                                 justify="space-between"
                                 alignItems="center"
                             >
-                                <Grid item>
+                                <Grid item className={classes.text}>
                                     {friend}
                                 </Grid>
                                 <Grid item>

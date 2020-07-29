@@ -10,15 +10,26 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     button: {
         margin: "0px",
         padding:"0px",
 
     },
     root:{
-        margin:"0px 0px 20px 0px"
-    }
+        margin:"20px 0px 0px 0px",
+        [theme.breakpoints.up("sm")]: {
+            marginTop:"40px",
+            maxWidth:"372px",
+        },
+    },
+    root1:{
+        margin:"20px 0px 0px 0px",
+        [theme.breakpoints.up("sm")]: {
+            marginTop:"40px",
+        },
+    },
+
 
 }));
 
@@ -40,21 +51,22 @@ export default function BoosterButton() {
 
         <Grid
             container
-            direction="column"
-            justify="space-between"
+            direction="row"
+            justify="space-around"
             alignItems="center"
         >
 
                 <Grid>
-                    <Card className={classes.root}>
+                    <Card className={classes.root1}>
                         <Button value={"JOY"} onClick={() => redirect("JOY")} variant="outlined" className={classes.button}>
                         <CardActionArea>
 
                             <CardMedia
                                 component="img"
                                 alt="Joy Picture"
-                                height="180"
-                                image="/joy_button.png"
+                                height="170"
+                                width="200"
+                                image="/joy2_button.png"
                                 title="Joy Picture"
                             />
                         </CardActionArea>
@@ -68,8 +80,9 @@ export default function BoosterButton() {
                             <CardMedia
                                 component="img"
                                 alt="Calm Picture"
-                                height="180"
-                                image="/calm_button.png"
+                                height="170"
+                                width="200"
+                                image="/calm2_button.png"
                                 title="Calm Picture"
                             />
                         </CardActionArea>
@@ -83,8 +96,9 @@ export default function BoosterButton() {
                             <CardMedia
                                 component="img"
                                 alt="Confidence Picture"
-                                height="180"
-                                image="/confidence_button.png"
+                                height="170"
+                                width="200"
+                                image="/confidence2_button.png"
                                 title="Confidence Picture"
                             />
                         </CardActionArea>

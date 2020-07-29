@@ -23,6 +23,7 @@ const useStyles = makeStyles(() => ({
         justifyContent:"center",
         display:"flex",
         alignSelf: "center",
+        height:"30px"
 
     },
     list: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles(() => ({
     },
     drawerPaper: {
         height: "100%",
-        backgroundColor:"#f7f5ed"
+        backgroundColor:"#f1eded"
     },
     image: {
         margin: "15px 0px",
@@ -41,7 +42,11 @@ const useStyles = makeStyles(() => ({
         justifyContent:"center",
     },
     iconColor:{
-        color: '#225aba'
+        color: '#ad6b36'
+    },
+    text:{
+        color:"#47392d",
+        fontFamily: 'Lora',
     }
 
 }));
@@ -90,7 +95,7 @@ export default function AppDrawerLeft(props) {
                     }
                     } button key={linkItem.text}>
                         <ListItemIcon>{linkItem.icon}</ListItemIcon>
-                        <ListItemText primary={linkItem.text}/>
+                        <ListItemText primary={linkItem.text} className={classes.text}/>
 
                     </ListItem>
 
@@ -104,7 +109,7 @@ export default function AppDrawerLeft(props) {
     return (
 
         <React.Fragment key={"left"}>
-            <Button onClick={toggleDrawer("left", true)}>{<MenuIcon style={{color: 'rgb(109 144 199)'}}/>}</Button>
+            <Button onClick={toggleDrawer("left", true)}>{<MenuIcon style={{color: '#AD6B36'}}/>}</Button>
             <div className={classes.MuiDrawer}>
                 <Drawer
                     container={container}

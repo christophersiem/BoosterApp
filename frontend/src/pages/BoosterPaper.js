@@ -2,19 +2,18 @@ import React, {useContext} from "react";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
-import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {makeStyles} from "@material-ui/core/styles";
 import {BoosterDispatchContext} from "../context/booster/BoosterContext";
 import {removeBooster} from "../context/booster/booster-actions";
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
 
     paper: {
         margin: "7px 0px",
         padding: "0px 10px",
-        fontFamily: 'Noto Sans, sans-serif',
+        fontFamily: theme.typography.subtitle2.fontFamily,
         fontSize: "14px",
         letterSpacing: "1.3px",
         fontWeight: "bold",
@@ -45,15 +44,13 @@ export default function BoosterPaper(props) {
                     <Grid item className={props.moodStyle}>
                         {props.booster.name}
                     </Grid>
-                    <Grid item>
-                        <IconButton>
-                            <EditIcon/>
-                        </IconButton>
+
+
                         <IconButton className={classes.delIcon}
                                     onClick={() => handleDelete(props.booster.id)}>
                             <DeleteIcon/>
                         </IconButton>
-                    </Grid>
+
                 </Grid>
             </Paper>
         </div>

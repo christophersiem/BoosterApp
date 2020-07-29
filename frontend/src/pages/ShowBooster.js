@@ -8,13 +8,14 @@ import BoosterDeleteDialog from "../components/dialogs/BoosterDeleteDialog";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Paper from "@material-ui/core/Paper";
+import {fade} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     title: {
         fontFamily: theme.typography.subtitle.fontFamily,
         fontSize: theme.typography.subtitle2.fontSize,
         letterSpacing: theme.typography.subtitle.letterSpacing,
-        color: "white",
+        color: "#fcfaeb",
         marginLeft: "20px"
     },
     root: {
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
         color: "#c20909",
     },
     paperColor: {
-        backgroundColor: "rgba(149,176,241,0.77)"
+        backgroundColor: fade("rgb(222,150,93)",0.5)
     }
 }))
 
@@ -111,7 +112,7 @@ export default function ShowBooster() {
             {boosterToDisplay.youtubeLink &&
             <Paper className={classes.paperColor}>
 
-                <p className={classes.title}>Youtube Clip:</p>
+                <p className={classes.title}>Youtube Clip</p>
             </Paper>}
             <Grid
                 container
