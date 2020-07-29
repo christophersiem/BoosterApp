@@ -58,8 +58,20 @@ const useStyles = makeStyles((theme) => ({
 
     alert: {
         justifyContent: "center",
-        marginTop: "50px"
+        marginTop: "50px",
+
     },
+    createButton:{
+        margin: "24px 0px 16px",
+        backgroundColor: "rgb(191,148,115)",
+        fontFamily: 'Lora',
+        color: "#47392d",
+        letterSpacing: theme.typography.subtitle2.letterSpacing,
+        width: "80%",
+        [theme.breakpoints.up("sm")]: {
+            width: "50%",
+        },
+    }
 
 
 }))
@@ -92,7 +104,7 @@ export default function ListBooster() {
                 >
                     <img className={classes.image} src={"/jcc2.png"} alt="logo_medium"/>
 
-                </Grid>
+
                     {fetchStatus === 'PENDING' && <CircularProgress/>}
                     {!boosterItems.length > 0 &&
                     <Alert className={classes.alert} variant="outlined" severity="info">
@@ -100,7 +112,7 @@ export default function ListBooster() {
                     </Alert>}
                     {!boosterItems.length > 0 &&
                     <Button
-                        className={classes.alert}
+                        className={classes.createButton}
                         variant="contained"
                         color="primary"
                         href="/add">Create a booster now</Button>
@@ -119,7 +131,7 @@ export default function ListBooster() {
                                     <BoosterPaper moodStyle={classes.paperConf} booster={booster} key={booster.id}/>
                         ))
                     }
-
+                </Grid>
             </div>
         </>
     )

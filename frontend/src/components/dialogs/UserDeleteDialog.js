@@ -15,12 +15,12 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme) => ({
     delete: {
-        color: theme.palette.first,
+        color: "#951010",
         margin: "15px 0px",
 
     },
     delButton: {
-        color: "red",
+        color: "#951010",
         alignSelf: "center",
         marginTop: "20px"
     },

@@ -71,7 +71,7 @@ export default function AppDrawerLeft(props) {
         {text: "My Booster", link: "/list", icon: <MoodIcon className={classes.iconColor}/>},
         {text: "Add Booster", link: "/add", icon: <PostAddOutlinedIcon className={classes.iconColor}/>},
         {text: "FAQ", link: "/faq", icon: <HelpOutlineOutlinedIcon className={classes.iconColor}/>},
-        {text: "Logout", link: "/logout", icon: <PowerSettingsNewOutlinedIcon style={{color: '#c20909'}}/>}
+        {text: "Logout", link: "/logout", icon: <PowerSettingsNewOutlinedIcon style={{color: '#951010'}}/>}
     ]
     const list = (anchor) => (
         <div

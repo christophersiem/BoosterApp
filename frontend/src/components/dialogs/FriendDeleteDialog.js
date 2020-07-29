@@ -63,7 +63,7 @@ export default function FriendDeleteDialog(props) {
                 <DialogActions>
                     <Grid
                         container
-                        justify="center"
+                        justify="space-around"
                         alignItems="center"
                     >
                         <Grid item>
@@ -75,12 +75,15 @@ export default function FriendDeleteDialog(props) {
                                 Delete
                             </Button>
                         </Grid>
-                    </Grid>
+
                     <Button onClick={handleClose} color="primary" autoFocus>
                         Cancel
                     </Button>
+                    </Grid>
                 </DialogActions>
+
             </Dialog>
+
         </>
     );
 }
