@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     paperJoy: {
         backgroundColor: "rgb(231,203,125)",
         paddingLeft: "10px",
+        borderRadius:"10px",
         [theme.breakpoints.up("sm")]: {
             width: "50%",
 
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     paperCalm: {
         backgroundColor: "#e7bb98",
         paddingLeft: "10px",
+        borderRadius:"10px",
         [theme.breakpoints.up("sm")]: {
             width: "50%",
         },
@@ -38,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     paperConf: {
         backgroundColor: "rgb(145,194,248)",
         paddingLeft: "10px",
+        borderRadius:"10px",
         [theme.breakpoints.up("sm")]: {
             width: "50%",
         },
@@ -118,7 +121,7 @@ export default function ListBooster() {
                         href="/add">Create a booster now</Button>
 
                     }
-
+                </Grid>
 
                     {
                         boosterItems && boosterItems.map((booster) => (
@@ -131,7 +134,7 @@ export default function ListBooster() {
                                     <BoosterPaper moodStyle={classes.paperConf} booster={booster} key={booster.id}/>
                         ))
                     }
-                </Grid>
+
             </div>
         </>
     )

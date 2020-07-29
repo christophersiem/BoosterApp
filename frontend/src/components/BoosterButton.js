@@ -57,9 +57,9 @@ export default function BoosterButton() {
         >
 
                 <Grid>
-                    <Card className={classes.root1}>
+                    <Card className={classes.root1} style={{borderRadius:"20px"}}>
                         <Button value={"JOY"} onClick={() => redirect("JOY")} variant="outlined" className={classes.button}>
-                        <CardActionArea>
+                        <CardActionArea >
 
                             <CardMedia
                                 component="img"
@@ -68,13 +68,14 @@ export default function BoosterButton() {
                                 width="200"
                                 image="/joy2_button.png"
                                 title="Joy Picture"
+
                             />
                         </CardActionArea>
                         </Button>
                     </Card>
                 </Grid>
                 <Grid>
-                    <Card className={classes.root}>
+                    <Card className={classes.root} style={{borderRadius:"20px"}}>
                         <Button value={"CALM"} onClick={() => redirect("CALM")} variant="outlined" className={classes.button}>
                         <CardActionArea>
                             <CardMedia
@@ -90,7 +91,7 @@ export default function BoosterButton() {
                     </Card>
                 </Grid>
                 <Grid>
-                    <Card className={classes.root}>
+                    <Card className={classes.root} style={{borderRadius:"20px"}}>
                         <Button value={"CONFIDENCE"} onClick={() => redirect("CONFIDENCE")} variant="outlined" className={classes.button}>
                         <CardActionArea>
                             <CardMedia

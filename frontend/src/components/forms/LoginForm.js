@@ -13,7 +13,6 @@ import Alert from "@material-ui/lab/Alert";
 const useStyles = makeStyles((theme) => ({
     inputField: {
         width: "80%",
-
         margin: "2px",
         [theme.breakpoints.up("sm")]: {
             width: "20%",
@@ -26,11 +25,13 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "rgb(191,148,115)",
         fontFamily: 'Lora',
         color: "#47392d",
+        borderRadius:"20px",
         letterSpacing: theme.typography.subtitle2.letterSpacing,
         width: "40%",
         [theme.breakpoints.up("sm")]: {
             width: "20%",
         },
+
 },
     alert: {
         backgroundColor: "rgb(186,84,38)",

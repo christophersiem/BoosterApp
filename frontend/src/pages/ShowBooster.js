@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
     },
     paperColor: {
         backgroundColor: fade("rgb(222,150,93)",0.5)
+    },
+    image:{
+        maxWidth: "374px",
+        borderRadius:"10px"
     }
 }))
 
@@ -102,7 +106,8 @@ export default function ShowBooster() {
                             height="180"
                             image={boosterToDisplay.image}
                             title="Picture from your friend"
-                            style={{maxWidth: "374px"}}
+                            className={classes.image}
+
                         />
                     </CardActionArea>
                 </Grid>

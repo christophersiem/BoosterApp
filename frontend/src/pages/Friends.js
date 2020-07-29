@@ -32,12 +32,14 @@ const useStyles = makeStyles((theme) => ({
         margin: "10px 20px",
         backgroundColor: theme.palette.first,
         padding: "10px 20px",
+        borderRadius:"10px"
     },
     text:{
         fontFamily:theme.typography.subtitle
     },
     addFriendButton:{
         margin: "24px 0px 16px",
+        padding:"10px 15px",
         backgroundColor: "rgb(191,148,115)",
         fontFamily: 'Lora',
         color: "#47392d",
@@ -113,7 +115,9 @@ export default function Friends() {
                             onChange={handleChangeUsernameToAdd}
                             id="userToAdd"
                             label="enter username"
-                            variant="outlined"/>
+                            variant="outlined"
+                            helperText={friendToAdd.length > 0 && friendToAdd.length < 6 && "Please enter at least 6 characters"}
+                        />
                     </Grid>
                     <Grid>
                         <Button
