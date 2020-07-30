@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +24,8 @@ public class BoosterController {
     }
 
     @GetMapping
-    public List<Booster> getCreatedBooster(@RequestParam(required = false) String creatorUserName) {
-        return boosterService.getBoosterByCreator(creatorUserName);
+    public List<Booster> getCreatedBooster(Principal principal) {
+        return boosterService.getBoosterByCreator(principal.getName());
     }
 
     @GetMapping("{id}")
@@ -39,8 +40,8 @@ public class BoosterController {
     }
 
     @PostMapping
-    public Booster addNewBooster(@RequestBody @Valid AddBoosterDto data) {
-        return boosterService.addNewBooster(data);
+    public Booster addNewBooster(@RequestBody @Valid AddBoosterDto data, Principal principal) {
+        return boosterService.addNewBooster(data.getName(),data.getCreatorName(),data.getMessage(),data.getOwner(),data.getYoutubeLink(),data.getImage(),data.getType(),principal.getName());
     }
 
     @DeleteMapping("{id}")
