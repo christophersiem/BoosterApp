@@ -107,7 +107,7 @@ export default function AddBoosterForm() {
 
                                 <MenuItem value={userData.userName}>Me</MenuItem>
                                 {allFriends && allFriends.map((friend) => (
-                                    <MenuItem value={friend}>{friend}</MenuItem>))}
+                                    <MenuItem value={friend} key={friend}>{friend}</MenuItem>))}
                             </Select>
                         </FormControl>
                     </Grid>

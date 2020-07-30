@@ -4,7 +4,7 @@ import {fetchBoosterById} from "../utils/booster-utils";
 import {useParams} from "react-router";
 import YouTube from '@u-wave/react-youtube';
 import Grid from "@material-ui/core/Grid";
-import BoosterDeleteDialog from "../components/dialogs/BoosterDeleteDialog";
+import BoosterDeleteDialogButton from "../components/dialogs/BoosterDeleteDialogButton";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
 import Paper from "@material-ui/core/Paper";
@@ -138,7 +138,7 @@ export default function ShowBooster() {
                 }
 
                 <Grid item>
-                    <BoosterDeleteDialog value={boosterToDisplay.id}/>
+                    <BoosterDeleteDialogButton value={boosterToDisplay.id}/>
                 </Grid>
             </Grid>
 

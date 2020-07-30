@@ -7,19 +7,20 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {makeStyles} from "@material-ui/core/styles";
 import {deleteBooster} from "../../utils/booster-utils";
+import Grid from "@material-ui/core/Grid";
 
 
 const useStyles = makeStyles(() => ({
     delete: {
-        color: "#fcfaeb",
+        color: "#951010",
         margin:"15px 0px",
-        backgroundColor: "rgb(186,84,38)"
+
     },
 
 
 }))
 
-export default function BoosterDeleteDialog(props) {
+export default function BoosterDeleteDialogButton(props) {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const idToDelete = (props.value)
@@ -60,15 +61,23 @@ export default function BoosterDeleteDialog(props) {
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
+                    <Grid
+                        container
+                        justify="space-around"
+                        alignItems="center"
+                    >
+                        <Grid item>
                     <Button
                         className={classes.delete}
                         onClick={() => {handleDelete(idToDelete)}}
                         href="/">
                         Delete
                     </Button>
+                        </Grid>
                     <Button onClick={handleClose} color="primary" autoFocus>
                         Cancel
                     </Button>
+                    </Grid>
                 </DialogActions>
             </Dialog>
         </div>

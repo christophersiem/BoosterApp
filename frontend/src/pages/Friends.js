@@ -140,7 +140,7 @@ export default function Friends() {
                 <p className={classes.message}>Your friends</p>
                 {
                     allFriends && allFriends.map((friend) => (
-                        <Paper className={classes.paper}>
+                        <Paper className={classes.paper} key={friend}>
                             <Grid
                                 container
                                 direction="row"

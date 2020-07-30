@@ -44,7 +44,7 @@ export default function FaqAccordion() {
     return (
         <>
             {faqQuestions.map((faqQuestion) => (
-                <Accordion className={classes.accordion}>
+                <Accordion className={classes.accordion} key={faqQuestion.question}>
                     <AccordionSummary
                         expandIcon={<ExpandMoreIcon/>}
                         aria-controls="faq-content"
