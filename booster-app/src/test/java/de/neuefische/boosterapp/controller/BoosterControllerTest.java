@@ -79,7 +79,7 @@ class BoosterControllerTest {
         ResponseEntity<Booster> postResponse = restTemplate.exchange(url, HttpMethod.POST, requestEntity, Booster.class);
 
         //THEN
-        Booster expectedBooster = new Booster("random-id", JOY, "2", "Chris", "chris2020", "TollerBooster", "Hallo", "ekIMGAmgXSI", "");
+        Booster expectedBooster = new Booster("random-id", JOY, "chris2020", "Chris", "chris2020", "TollerBooster", "Hallo", "ekIMGAmgXSI", "");
         assertEquals(HttpStatus.OK, postResponse.getStatusCode());
         assertNotNull(postResponse.getBody());
         assertEquals(expectedBooster, postResponse.getBody());
