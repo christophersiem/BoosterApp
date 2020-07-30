@@ -61,7 +61,7 @@ public class BoosterService {
 
     public String getRandomIdFromType(BoosterType type, String owner) {
         MatchOperation matchStage = Aggregation.match(new Criteria("type").is(type));
-        MatchOperation matchStageOwner = Aggregation.match(new Criteria("owner").is(owner));
+        MatchOperation matchStageOwner = Aggregation.match(new Criteria("ownerUsername").is(owner));
         Aggregation aggregation = Aggregation.newAggregation(matchStageOwner, matchStage, Aggregation.sample(1));
         AggregationResults<Booster> output = mongoTemplate.aggregate(aggregation, "booster", Booster.class);
         return output.getUniqueMappedResult().getId();
