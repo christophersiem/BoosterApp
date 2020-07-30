@@ -4,8 +4,6 @@ import de.neuefische.boosterapp.db.BoosterMongoDb;
 import de.neuefische.boosterapp.db.UserDb;
 import de.neuefische.boosterapp.model.Booster;
 import de.neuefische.boosterapp.model.BoosterType;
-import de.neuefische.boosterapp.model.BoosterUser;
-import de.neuefische.boosterapp.model.dto.AddBoosterDto;
 import de.neuefische.boosterapp.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -16,6 +14,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static de.neuefische.boosterapp.utils.BoosterUtils.getYoutubeId;
@@ -40,18 +39,19 @@ public class BoosterService {
     }
 
 
-    public Booster addNewBooster(AddBoosterDto data) {
+    public Booster addNewBooster(String name, String creatorName, String message, String owner, String youtube, String image, BoosterType type, String user) {
         Booster booster = new Booster();
         booster.setId(userUtils.generateRandomId());
-        booster.setName(data.getName());
-        booster.setCreator(data.getCreator());
-        booster.setCreatorName(data.getCreatorName());
-        booster.setMessage(data.getMessage());
-        booster.setOwnerUsername(data.getOwner());
-        booster.setYoutubeLink(getYoutubeId(data.getYoutubeLink()));
-        booster.setImage(data.getImage());
-        booster.setType(data.getType());
-        userUtils.increaseBoosterCounter(data.getCreatorUsername());
+        booster.setName(name);
+        booster.setCreatorName(creatorName);
+        booster.setMessage(message);
+        booster.setOwnerUsername(owner);
+        booster.setYoutubeLink(getYoutubeId(youtube));
+        booster.setImage(image);
+        booster.setType(type);
+        booster.setCreator(user);
+        userUtils.increaseBoosterCounter(user);
+
         return boosterDb.save(booster);
     }
 
@@ -64,14 +64,13 @@ public class BoosterService {
         MatchOperation matchStageOwner = Aggregation.match(new Criteria("ownerUsername").is(owner));
         Aggregation aggregation = Aggregation.newAggregation(matchStageOwner, matchStage, Aggregation.sample(1));
         AggregationResults<Booster> output = mongoTemplate.aggregate(aggregation, "booster", Booster.class);
-        return output.getUniqueMappedResult().getId();
+        return Objects.requireNonNull(output.getUniqueMappedResult()).getId();
 
     }
 
     public List<Booster> getBoosterByCreator(String creatorUserName) {
-        BoosterUser user = userUtils.getUserByUsername(creatorUserName);
-        String userId = user.getId();
-        return boosterDb.findByCreator(userId);
+
+        return boosterDb.findByCreator(creatorUserName);
     }
 
     public Optional <Booster> getBoosterById(String id) {

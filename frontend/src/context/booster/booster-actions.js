@@ -10,10 +10,10 @@ export const DELETE_BOOSTER ="DELETE_BOOSTER";
 export const DELETE_BOOSTER_SUCCESS ="DELETE_BOOSTER_SUCCESS";
 export const DELETE_BOOSTER_FAILED ="DELETE_BOOSTER_FAILED";
 
-export async function fetchBoosterItems(dispatch,username) {
+export async function fetchBoosterItems(dispatch) {
     dispatch({ type: FETCH_BOOSTER_ITEMS });
     try {
-        const boosterItems = await fetchCreatedBooster(username);
+        const boosterItems = await fetchCreatedBooster();
         dispatch({ type: FETCH_BOOSTER_ITEMS_SUCCESS, payload: boosterItems });
     } catch (error) {
         dispatch({ type: FETCH_BOOSTER_ITEMS_FAILED, payload: error });
