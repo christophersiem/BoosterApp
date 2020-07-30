@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Lora',
         fontSize:"32px",
         color:"#AD6B36",
-        letterSpacing: theme.typography.subtitle2.letterSpacing,
+        letterSpacing: "6px",
         margin:"20px 0px"
     }
 
