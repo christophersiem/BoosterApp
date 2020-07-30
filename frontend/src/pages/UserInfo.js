@@ -113,6 +113,7 @@ export default function UserInfo() {
 
                     <UserDeleteDialog/>
                 </Dialog>
+
             </div>
         </div>
 
