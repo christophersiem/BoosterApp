@@ -2,8 +2,7 @@
 
 ## About
 
-This app lets you create individual Booster for those moments where you or your friends need a heavy dose of joy, calm or confidence.
-Simply create a booster with your personal message, image or youtube Video and call them up, whenever you need them.
+In today’s fast-paced, stressed world, emotional resources such as joy, calm, and confidence are scarce. Broaden your resources with Moodboost and create individual boosters in form of personal messages, YouTube videos, or images for yourself and friends that lift your mood when you need it.
 
 ## Functionality overview
 
@@ -15,6 +14,10 @@ Simply create a booster with your personal message, image or youtube Video and c
 - Access booster that were created for you using the Joy, Calm or Confidence - button.
 - View your userprofile to access some basic data
 - Delete your account
+
+## Impressions
+
+![Overview](frontend/public/overview.png)
 
 
 ### Frontend
