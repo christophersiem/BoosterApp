@@ -111,7 +111,7 @@ export default function LoginForm() {
                 Sign In
             </Button>
 
-            <Link href="/register" variant="body2" style={{color: "#47392d"}}>
+            <Link href="/register" variant="body2" style={{color: "#47392d", fontFamily:"Nora"}}>
                 {"No Account? Sign Up!"}
             </Link>
         </>
