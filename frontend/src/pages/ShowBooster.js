@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
     info: {
         fontFamily: theme.typography.subtitle.fontFamily,
-        color: "#1e2121",
+        color: "#43382c",
         fontSize: "18px",
         marginTop: "5px",
         marginLeft: "20px"
@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: theme.typography.subtitle.fontFamily,
         fontSize: "18px",
         fontStyle: "italic",
+        color:"#43382c",
         margin: "0px 20px"
     },
     delete: {

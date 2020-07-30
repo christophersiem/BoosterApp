@@ -28,15 +28,19 @@ export default function FaqAccordion() {
     const faqQuestions = [
         {
             question: "What is MoodBoost?",
-            answer: "Whenever there is a moment in which you feel like you could have a bit more Joy, Calm or Confidence, give yourself a boost! In such situations MoodBoost gives you a booster that you or your friends have created for you."
+            answer: "In today’s fast-paced, stressed world, emotional resources such as joy, calm, and confidence are scarce. Broaden your resources with Moodboost and create individual boosters in form of personal messages, YouTube videos, or images for yourself and friends that lift your mood when you need it."
         },
         {
-            question: "How does a booster look like?",
-            answer: "Your booster can contain a private message, a song, a youtube video or a picture"
+            question: "How can I create a booster for my friends",
+            answer: "Simply go to the friends page, enter the username of your friend and add him/her to your friendlist. You now have the option to create a booster for your friend."
         },
         {
-            question: "What kind of Booster should I create?",
-            answer: "You know your friends and yourself best. Probably you share nice memories together - send your friend a picture to remind him or her. Blabla etc"
+            question: "What kind of Booster can I create?",
+            answer: "You have the option to create a booster with a personal message and/or send a picture or share a youtube video"
+        },
+        {
+            question: "How can I delete a booster that I've created?",
+            answer: "Go to the My Booster section and delete the booster of your choice. Caution: if the booster was made for a friend, he/she won't be able to see this booster anymore."
         },
 
     ]
