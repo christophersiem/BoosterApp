@@ -7,7 +7,6 @@ import AddBoosterForm from "../components/forms/AddBoosterForm";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        overflow:"scroll",
     },
 
     paper: {
