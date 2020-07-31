@@ -1,15 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 
 import {makeStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import {addUserAsFriend} from "../utils/friends-utils";
-import Paper from "@material-ui/core/Paper";
 import {fetchUserNumbers} from "../utils/user-utils";
 import Alert from "@material-ui/lab/Alert";
-import FriendDeleteDialog from "../components/dialogs/FriendDeleteDialog";
-
+import FriendPaper from "./FriendPaper";
+import {UserStateContext} from "../context/user/UserContext";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,30 +25,15 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: "16px",
     },
 
-    paper: {
-        margin: "10px 40px",
-        backgroundColor: "#f5d3ae",
-        padding: "10px 20px",
-        borderRadius: "10px",
-        width:"70%"
-    },
-    text: {
-        fontFamily: theme.typography.subtitle
-    },
     addFriendButton: {
         margin: "24px 0px 16px",
         padding: "10px 15px",
         backgroundColor: "rgb(191,148,115)",
-        fontFamily: 'Lora',
+        fontFamily: theme.typography.subtitle2.fontFamily,
         color: "#47392d",
         letterSpacing: theme.typography.subtitle2.letterSpacing,
 
     },
-    alert: {
-        justifyContent: "center",
-
-    },
-
 
 }))
 
@@ -58,8 +42,8 @@ export default function Friends() {
     const classes = useStyles();
     const [friendToAdd, setFriendToAdd] = useState("")
     const [allFriends, setAllFriends] = useState([])
-
-
+    const [selfAdd, setSelfAdd] = useState(false)
+    const {userData} = useContext(UserStateContext);
 
     useEffect(() => {
 
@@ -74,39 +58,32 @@ export default function Friends() {
         setFriendToAdd(event.target.value)
     }
 
-    function handleDeleteSuccess(friendToRemove){
-
-        setAllFriends(allFriends.filter(friend => friend!==friendToRemove)
-        )
-
-
-    }
 
     const [friendExists, setFriendExists] = useState(true)
     const [userExists, setUserExists] = useState()
 
     function addFriend() {
+        setSelfAdd(false)
         setFriendExists(true)
         if (allFriends.includes(friendToAdd)) {
             setFriendExists(false)
+        }
+        if (userData.userName === friendToAdd) {
+            setSelfAdd(true)
         } else {
             addUserAsFriend(friendToAdd)
                 .then(() => {
                     setUserExists(true)
-                    setAllFriends([...allFriends,friendToAdd])
+                    setAllFriends([...allFriends, friendToAdd])
 
                 })
                 .catch(() => setUserExists(false))
         }
     }
 
-
     return (
 
         <>
-
-
-
             <div className={classes.root}>
                 <Grid
                     container
@@ -134,8 +111,10 @@ export default function Friends() {
                                 addFriend()
                             }}>Add user as friend</Button>
 
-
                     </Grid>
+                    {selfAdd === true && <Alert
+                        variant="filled"
+                        severity="error">You can't put yourself to your friendlist</Alert>}
                     {userExists === false && <Alert
                         variant="filled"
                         severity="error">User doesn't exist</Alert>}
@@ -146,27 +125,7 @@ export default function Friends() {
 
                     <p className={classes.message}>Your friends</p>
                 </Grid>
-                {!allFriends.length > 0 &&
-                <Alert className={classes.alert} variant="outlined" severity="info">
-                    You have no friends in your list. <br/>
-                </Alert>}
-                {
-                    allFriends && allFriends.map((friend) => (
-                        <Paper className={classes.paper} key={friend}>
-                            <Grid
-                                container
-                                direction="row"
-                                justify="space-between"
-                                alignItems="center"
-                            >
-                                <Grid item className={classes.text}>
-                                    {friend}
-                                </Grid>
-                                <Grid item>
-                                    <FriendDeleteDialog friend={friend} handleDeleteSuccess={()=>handleDeleteSuccess(friend)}/>
-                                </Grid>
-                            </Grid>
-                        </Paper>))}
+                <FriendPaper allFriends={allFriends} setallFriends={setAllFriends}/>
 
             </div>
         </>

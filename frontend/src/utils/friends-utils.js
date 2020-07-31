@@ -9,7 +9,7 @@ export async function addUserAsFriend(friend) {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({friend}),
+        body: (friend),
     });
     if (response.status !== 200) {
         throw new Error(`failed to add friend: ${response.statusText}`);
@@ -17,7 +17,7 @@ export async function addUserAsFriend(friend) {
     return await response.text();
 }
 
-export function deleteFriend(friendDeleteData) {
+export function deleteFriend(friendToDelete) {
     const token = getJWTToken();
     return fetch("/api/friends/", {
         method: "DELETE",
@@ -25,7 +25,7 @@ export function deleteFriend(friendDeleteData) {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(friendDeleteData),
+        body: (friendToDelete),
 
     })
 

@@ -1,5 +1,4 @@
-import React, {useContext, useState} from "react";
-import {UserStateContext} from "../../context/user/UserContext";
+import React, {useState} from "react";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -17,12 +16,12 @@ const useStyles = makeStyles(() => ({
         color: "#951010",
         margin: "15px 0px",
 
-    },}))
+    },
+}))
 
 export default function FriendDeleteDialog({friend, handleDeleteSuccess}) {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const {userData} = useContext(UserStateContext);
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -32,14 +31,10 @@ export default function FriendDeleteDialog({friend, handleDeleteSuccess}) {
     };
 
 
-
     function handleDelete(friend) {
-        const dataForDelete = {
-            userName: userData.userName,
-            friend: friend,
-        }
-        deleteFriend(dataForDelete)
-            .then(()=> {
+
+        deleteFriend(friend)
+            .then(() => {
                 handleClose()
                 handleDeleteSuccess()
 
@@ -76,14 +71,14 @@ export default function FriendDeleteDialog({friend, handleDeleteSuccess}) {
                                 className={classes.delete}
                                 onClick={() =>
                                     handleDelete(friend)}
-                                >
+                            >
                                 Delete
                             </Button>
                         </Grid>
 
-                    <Button onClick={handleClose} color="primary" autoFocus>
-                        Cancel
-                    </Button>
+                        <Button onClick={handleClose} color="primary" autoFocus>
+                            Cancel
+                        </Button>
                     </Grid>
                 </DialogActions>
 
