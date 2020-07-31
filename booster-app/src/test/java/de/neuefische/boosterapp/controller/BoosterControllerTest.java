@@ -44,12 +44,11 @@ class BoosterControllerTest {
     public TestRestTemplate restTemplate;
 
     @Autowired
-    private BoosterMongoDb boosterDv;
+    private BoosterMongoDb boosterMongoDb;
 
     @BeforeEach
     public void resetDatabase() {
-        boosterDv.deleteAll();
-        userDb.deleteAll();
+        boosterMongoDb.deleteAll();
     }
 
     private String loginUser() {
@@ -84,7 +83,7 @@ class BoosterControllerTest {
         assertNotNull(postResponse.getBody());
         assertEquals(expectedBooster, postResponse.getBody());
 
-        Optional<Booster> byId = boosterDv.findById("random-id");
+        Optional<Booster> byId = boosterMongoDb.findById("random-id");
         assertTrue(byId.isPresent());
         assertEquals(byId.get(), expectedBooster);
     }
@@ -94,8 +93,8 @@ class BoosterControllerTest {
         //GIVEN
         String token = loginUser();
 
-        boosterDv.save(new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com", ""));
-        boosterDv.save(new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com", ""));
+        boosterMongoDb.save(new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com", ""));
+        boosterMongoDb.save(new Booster("", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com", ""));
 
         //WHEN
         String url = "http://localhost:" + port + "/api/booster/2";
@@ -105,15 +104,15 @@ class BoosterControllerTest {
         restTemplate.exchange(url, HttpMethod.DELETE, entity, Void.class);
 
         //THEN
-        assertTrue(boosterDv.findById("2").isEmpty());
+        assertTrue(boosterMongoDb.findById("2").isEmpty());
     }
 
     @Test
     public void getBoosterById() {
         //GIVEN
         String token = loginUser();
-        boosterDv.save(new Booster("1", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", ""));
-        boosterDv.save(new Booster("2", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", ""));
+        boosterMongoDb.save(new Booster("1", JOY, "1", "1", "Test111", "summer2020", "That was nice", "www.youtube.com/ekIMGAmgXSI", ""));
+        boosterMongoDb.save(new Booster("2", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", ""));
 
         //WHEN
         String url = "http://localhost:" + port + "/api/booster/2";
@@ -127,28 +126,25 @@ class BoosterControllerTest {
         assertEquals(response.getBody(), new Booster("2", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", ""));
     }
 
-//    @Test
-//    public void getBoosterByCreator() {
-//        //GIVEN
-//        String token = loginUser();
-//        when(userUtils.generateRandomId()).thenReturn("random-id");
-//        when(userUtils.getUserByUsername("chris2020")).thenReturn(new BoosterUser("chris2020", "chris2020", "!!21*QqwW", "Chris", "chris@mail.de", "user", 2, Arrays.asList("123", "234")));
-//        boosterDv.save(new Booster("1", JOY, "klaus999", "Klaus", "klaus999", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", ""));
-//        boosterDv.save(new Booster("2", JOY, "chris2020", "Chris", "chris2020", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", ""));
-//
-//
-//        //WHEN
-//        String url = "http://localhost:" + port + "/api/booster?creatorUserName=chris2020";
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setBearerAuth(token);
-//        HttpEntity entity = new HttpEntity(headers);
-//        ResponseEntity<Booster> response = restTemplate.exchange(url, HttpMethod.GET, entity, Booster.class);
-//
-//        //THEN
-//
-//        assertEquals(
-//                new Booster("2", JOY, "2", "2", "2", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", "")
-//                ,response.getBody()
-//        );
-//    }
+    @Test
+    public void getBoosterListByCreator() {
+
+        //GIVEN
+        String token = loginUser();
+        when(userUtils.generateRandomId()).thenReturn("random-id");
+        boosterMongoDb.save(new Booster("1", JOY, "1", "1", "Test111", "summer2020", "That was nice", "www.youtube.com/ekIMGAmgXSI", ""));
+        boosterMongoDb.save(new Booster("2", JOY, "2", "2", "TestBooster", "hello", "Hallo", "www.youtube.com/ekIMGAmgXSI", ""));
+
+        //WHEN
+        String url = "http://localhost:" + port + "/api/booster";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(token);
+        HttpEntity entity = new HttpEntity(headers);
+        ResponseEntity <Booster[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, Booster[].class);
+
+        //THEN
+        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        Booster[] booster = response.getBody();
+
+    }
 }
