@@ -67,11 +67,15 @@ const useStyles = makeStyles((theme) => ({
         margin: "24px 0px 16px",
         backgroundColor: "rgb(191,148,115)",
         fontFamily: 'Lora',
+
         color: "#47392d",
         letterSpacing: theme.typography.subtitle2.letterSpacing,
         width: "80%",
         [theme.breakpoints.up("sm")]: {
             width: "50%",
+        },
+        [theme.breakpoints.up("m")]: {
+            width: "25%",
         },
     }
 

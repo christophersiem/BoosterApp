@@ -55,7 +55,7 @@ export const theme = createMuiTheme({
                     color: "#43382c"
                 },
                 color: "#43382c",
-                border: "1.5px solid #AD6B36"
+                border: "1.5px solid #AD6B36",
             }
         },
 

@@ -15,10 +15,17 @@ const useStyles = makeStyles((theme) => ({
     },
     accordion: {
         marginBottom: "5px",
+        [theme.breakpoints.up("sm")]: {
+            maxWidth: "300px",
+        },
 
     },
     text: {
-        fontSize: "13px"
+        fontSize: "13px",
+        [theme.breakpoints.up("sm")]: {
+
+        },
+
     },
 }))
 
