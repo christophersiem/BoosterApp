@@ -1,6 +1,6 @@
 import {getJWTToken} from "./jwt-utils";
 
-export async function addUserAsFriend(friendData) {
+export async function addUserAsFriend(friend) {
     const token = getJWTToken();
     const response = await fetch('/api/friends', {
 
@@ -9,7 +9,7 @@ export async function addUserAsFriend(friendData) {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(friendData),
+        body: JSON.stringify({friend}),
     });
     if (response.status !== 200) {
         throw new Error(`failed to add friend: ${response.statusText}`);

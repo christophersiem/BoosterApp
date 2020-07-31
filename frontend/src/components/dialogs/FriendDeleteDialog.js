@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
 
     },}))
 
-export default function FriendDeleteDialog(props) {
+export default function FriendDeleteDialog({friend, handleDeleteSuccess}) {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const {userData} = useContext(UserStateContext);
@@ -32,13 +32,18 @@ export default function FriendDeleteDialog(props) {
     };
 
 
+
     function handleDelete(friend) {
         const dataForDelete = {
             userName: userData.userName,
             friend: friend,
         }
         deleteFriend(dataForDelete)
-            .then(()=>window.location.replace = "/friends")
+            .then(()=> {
+                handleClose()
+                handleDeleteSuccess()
+
+            })
             .catch((e) => console.error(e))
     }
 
@@ -46,7 +51,7 @@ export default function FriendDeleteDialog(props) {
         <>
             <DeleteIcon
 
-                style={{color: "#43382c"}} onClick={handleClickOpen}/>
+                style={{color: "rgb(185 77 77)"}} onClick={handleClickOpen}/>
 
             <Dialog
                 open={open}
@@ -57,7 +62,7 @@ export default function FriendDeleteDialog(props) {
                 <DialogTitle id="caution">{"Caution"}</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Are you sure you want to remove {props.friend} from your friendlist?
+                        Are you sure you want to remove {friend} from your friendlist?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -70,8 +75,8 @@ export default function FriendDeleteDialog(props) {
                             <Button
                                 className={classes.delete}
                                 onClick={() =>
-                                    handleDelete(props.friend)}
-                                href="/">
+                                    handleDelete(friend)}
+                                >
                                 Delete
                             </Button>
                         </Grid>

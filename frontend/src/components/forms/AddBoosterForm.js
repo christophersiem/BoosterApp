@@ -13,8 +13,16 @@ import {UserStateContext} from "../../context/user/UserContext";
 import Alert from "@material-ui/lab/Alert";
 import {fetchUserNumbers} from "../../utils/user-utils";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     field: {
+        margin: "6px 40px",
+        width: "80%",
+    },
+    addBoosterButton:{
+        backgroundColor: "rgb(191,148,115)",
+        fontFamily: 'Lora',
+        color: "#47392d",
+        letterSpacing: theme.typography.subtitle2.letterSpacing,
         margin: "6px 40px",
         width: "80%",
     },
@@ -79,10 +87,11 @@ export default function AddBoosterForm() {
     }
 
     useEffect(() => {
+
         dispatch({type: ADD_BOOSTER})
         fetchUserNumbers(userData.userName)
-            .then(data => setAllFriends(data.friends) )
-    }, [dispatch,userData.userName])
+            .then(data => setAllFriends(data.friends))
+    }, [dispatch, userData.userName])
 
     return (
         <>
@@ -104,9 +113,10 @@ export default function AddBoosterForm() {
                                 fullWidth={true}
                             >
 
-                                <MenuItem value={userData.userName}>Me</MenuItem>
+                                <MenuItem value={userData.userName} style={{fontFamily: "Lora"}}>Me</MenuItem>
                                 {allFriends && allFriends.map((friend) => (
-                                    <MenuItem value={friend} key={friend}>{friend}</MenuItem>))}
+                                    <MenuItem value={friend} key={friend}
+                                              style={{fontFamily: "Lora"}}>{friend}</MenuItem>))}
                             </Select>
                         </FormControl>
                     </Grid>
@@ -123,9 +133,9 @@ export default function AddBoosterForm() {
                                 id="type"
                                 displayEmpty={true}
                             >
-                                <MenuItem value="JOY">Joy Booster</MenuItem>
-                                <MenuItem value="CALM">Calm Booster</MenuItem>
-                                <MenuItem value="CONFIDENCE">Confidence Booster</MenuItem>
+                                <MenuItem value="JOY" style={{fontFamily: "Lora"}}>Joy Booster</MenuItem>
+                                <MenuItem value="CALM" style={{fontFamily: "Lora"}}>Calm Booster</MenuItem>
+                                <MenuItem value="CONFIDENCE" style={{fontFamily: "Lora"}}>Confidence Booster</MenuItem>
                             </Select>
                         </FormControl>}
 
@@ -197,9 +207,8 @@ export default function AddBoosterForm() {
                         > Check entries! </Alert>}
                         {name &&
                         <Button
-                            className={classes.field}
+                            className={classes.addBoosterButton}
                             onClick={handleSubmit}
-                            color="primary"
                             disabled={name.length > 30 || name.length < 1 || !owner || !type || (!youtube && !image && !message)}
                         >
                             Create Booster

@@ -1,10 +1,9 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {makeStyles} from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import {UserStateContext} from "../context/user/UserContext";
 import {addUserAsFriend} from "../utils/friends-utils";
 import Paper from "@material-ui/core/Paper";
 import {fetchUserNumbers} from "../utils/user-utils";
@@ -28,10 +27,11 @@ const useStyles = makeStyles((theme) => ({
     },
 
     paper: {
-        margin: "10px 20px",
-        backgroundColor: theme.palette.first,
+        margin: "10px 40px",
+        backgroundColor: "#f5d3ae",
         padding: "10px 20px",
-        borderRadius: "10px"
+        borderRadius: "10px",
+        width:"70%"
     },
     text: {
         fontFamily: theme.typography.subtitle
@@ -56,28 +56,30 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Friends() {
     const classes = useStyles();
-    const {userData} = useContext(UserStateContext);
     const [friendToAdd, setFriendToAdd] = useState("")
     const [allFriends, setAllFriends] = useState([])
 
 
-    const dataForFriendship = {
-        userName: userData.userName,
-        friend: friendToAdd,
-    }
-
 
     useEffect(() => {
 
-        fetchUserNumbers(userData.userName)
+        fetchUserNumbers()
             .then((data) => setAllFriends(data.friends))
 
             .catch((e) => console.error(e))
 
-    }, [userData.userName])
+    }, [])
 
     function handleChangeUsernameToAdd(event) {
         setFriendToAdd(event.target.value)
+    }
+
+    function handleDeleteSuccess(friendToRemove){
+
+        setAllFriends(allFriends.filter(friend => friend!==friendToRemove)
+        )
+
+
     }
 
     const [friendExists, setFriendExists] = useState(true)
@@ -88,8 +90,12 @@ export default function Friends() {
         if (allFriends.includes(friendToAdd)) {
             setFriendExists(false)
         } else {
-            addUserAsFriend(dataForFriendship)
-                .then(() => setUserExists(true))
+            addUserAsFriend(friendToAdd)
+                .then(() => {
+                    setUserExists(true)
+                    setAllFriends([...allFriends,friendToAdd])
+
+                })
                 .catch(() => setUserExists(false))
         }
     }
@@ -100,7 +106,7 @@ export default function Friends() {
         <>
 
 
-            {userExists === true && window.location.reload()}
+
             <div className={classes.root}>
                 <Grid
                     container
@@ -157,7 +163,7 @@ export default function Friends() {
                                     {friend}
                                 </Grid>
                                 <Grid item>
-                                    <FriendDeleteDialog friend={friend}/>
+                                    <FriendDeleteDialog friend={friend} handleDeleteSuccess={()=>handleDeleteSuccess(friend)}/>
                                 </Grid>
                             </Grid>
                         </Paper>))}
