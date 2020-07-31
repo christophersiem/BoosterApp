@@ -32,7 +32,11 @@ export const theme = createMuiTheme({
     },
 
     overrides: {
-
+MuiSelect:{
+    outlined:{
+        fontFamily:"Nora",
+    }
+},
 
         MuiPaper: {
             root: {
