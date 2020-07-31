@@ -12,7 +12,6 @@ import java.util.List;
 public class UserDataDto {
 
     private int createdBooster;
-    private List friends;
-    private String friendsIds;
+    private List<String> friends;
 }
 

@@ -2,7 +2,6 @@ package de.neuefische.boosterapp.service;
 
 import de.neuefische.boosterapp.db.UserDb;
 import de.neuefische.boosterapp.model.BoosterUser;
-import de.neuefische.boosterapp.model.dto.FriendListDto;
 import de.neuefische.boosterapp.utils.UserUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,34 +20,33 @@ public class FriendService {
         this.userUtils = userUtils;
     }
 
-    public void addUserAsFriend(String username, String friendToAdd) {
+    public void addUserAsFriend(String friendToAdd, String username) {
 
         BoosterUser firstUser = userUtils.getUserByUsername(username);
-        BoosterUser secondUser= userUtils.getUserByUsername(friendToAdd);
+        BoosterUser secondUser = userUtils.getUserByUsername(friendToAdd);
 
-        if(firstUser.equals(secondUser)){
+        if (firstUser.equals(secondUser)) {
             throw new ResponseStatusException(HttpStatus.CONFLICT);
         } else {
 
-            List firstListToModify = firstUser.getFriends();
+            List<String> firstListToModify = firstUser.getFriends();
             firstListToModify.add(friendToAdd);
-            List secondListToModify = secondUser.getFriends();
+            List<String> secondListToModify = secondUser.getFriends();
             secondListToModify.add(username);
             userDb.save(firstUser);
             userDb.save(secondUser);
         }
 
-
     }
 
-    public void deleteFriend(FriendListDto friendListDto) {
-        BoosterUser firstUser = userUtils.getUserByUsername(friendListDto.getUserName());
-        List FirstListToModify = firstUser.getFriends();
-        FirstListToModify.remove(friendListDto.getFriend());
+    public void deleteFriend(String friendToDelete, String username) {
+        BoosterUser firstUser = userUtils.getUserByUsername(username);
+        List<String> FirstListToModify = firstUser.getFriends();
+        FirstListToModify.remove(friendToDelete);
 
-        BoosterUser secondUser = userUtils.getUserByUsername(friendListDto.getFriend());
-        List SecondListToModify = secondUser.getFriends();
-        SecondListToModify.remove(friendListDto.getUserName());
+        BoosterUser secondUser = userUtils.getUserByUsername(friendToDelete);
+        List<String> SecondListToModify = secondUser.getFriends();
+        SecondListToModify.remove(username);
 
         userDb.save(firstUser);
         userDb.save(secondUser);
