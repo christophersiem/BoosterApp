@@ -15,7 +15,6 @@ import FriendDeleteDialog from "../components/dialogs/FriendDeleteDialog";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: "1",
-        overflow: "scroll"
     },
     input: {
         width: "240px",
@@ -32,22 +31,25 @@ const useStyles = makeStyles((theme) => ({
         margin: "10px 20px",
         backgroundColor: theme.palette.first,
         padding: "10px 20px",
-        borderRadius:"10px"
+        borderRadius: "10px"
     },
-    text:{
-        fontFamily:theme.typography.subtitle
+    text: {
+        fontFamily: theme.typography.subtitle
     },
-    addFriendButton:{
+    addFriendButton: {
         margin: "24px 0px 16px",
-        padding:"10px 15px",
+        padding: "10px 15px",
         backgroundColor: "rgb(191,148,115)",
         fontFamily: 'Lora',
         color: "#47392d",
         letterSpacing: theme.typography.subtitle2.letterSpacing,
-        [theme.breakpoints.up("sm")]: {
-            width: "20%",
-        },
-    }
+
+    },
+    alert: {
+        justifyContent: "center",
+        margin: "50px",
+
+    },
 
 
 }))
@@ -88,11 +90,10 @@ export default function Friends() {
             setFriendExists(false)
         } else {
             addUserAsFriend(dataForFriendship)
-                .then(()=>setUserExists(true))
+                .then(() => setUserExists(true))
                 .catch(() => setUserExists(false))
         }
     }
-
 
 
     return (
@@ -102,13 +103,14 @@ export default function Friends() {
 
             {userExists === true && window.location.reload()}
             <div className={classes.root}>
-                <p className={classes.message}>Add a Friend</p>
                 <Grid
                     container
                     direction="column"
                     justify="center"
                     alignItems="center"
                 >
+                    <p className={classes.message}>Add a Friend</p>
+
                     <Grid>
                         <TextField
                             className={classes.input}
@@ -126,18 +128,23 @@ export default function Friends() {
                             onClick={() => {
                                 addFriend()
                             }}>Add user as friend</Button>
+
+
                     </Grid>
+                    {userExists === false && <Alert
+                        variant="filled"
+                        severity="error">User doesn't exist</Alert>}
+                    {!friendExists &&
+                    <Alert
+                        variant="filled"
+                        severity="error">User is already your friend</Alert>}
 
+                    <p className={classes.message}>Your friends</p>
                 </Grid>
-                {userExists === false && <Alert
-                    variant="filled"
-                    severity="error">User doesn't exist</Alert>}
-                {!friendExists &&
-                <Alert
-                    variant="filled"
-                    severity="error">User is already your friend</Alert>}
-
-                <p className={classes.message}>Your friends</p>
+                {!allFriends.length > 0 &&
+                <Alert className={classes.alert} variant="outlined" severity="info">
+                    You have no friends in your list. <br/>
+                </Alert>}
                 {
                     allFriends && allFriends.map((friend) => (
                         <Paper className={classes.paper} key={friend}>
