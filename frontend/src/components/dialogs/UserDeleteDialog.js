@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
         alignSelf: "center",
         marginTop: "20px"
     },
-    text:{
-        fontFamily:theme.typography.subtitle2.fontFamily
+    text: {
+        fontFamily: theme.typography.subtitle2.fontFamily
     }
 
 
@@ -89,9 +89,9 @@ export default function UserDeleteDialog() {
                             </Button>
                         </Grid>
 
-                    <Button onClick={handleClose} style={{color:"#47392d"}} autoFocus>
-                        Cancel
-                    </Button>
+                        <Button onClick={handleClose} style={{color: "#47392d"}} autoFocus>
+                            Cancel
+                        </Button>
                     </Grid>
                 </DialogActions>
             </Dialog>

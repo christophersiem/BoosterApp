@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     paperJoy: {
         backgroundColor: "rgb(231,203,125)",
         paddingLeft: "10px",
-        borderRadius:"10px",
+        borderRadius: "10px",
         [theme.breakpoints.up("sm")]: {
             width: "50%",
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     paperCalm: {
         backgroundColor: "#e7bb98",
         paddingLeft: "10px",
-        borderRadius:"10px",
+        borderRadius: "10px",
         [theme.breakpoints.up("sm")]: {
             width: "50%",
         },
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     paperConf: {
         backgroundColor: "rgb(145,194,248)",
         paddingLeft: "10px",
-        borderRadius:"10px",
+        borderRadius: "10px",
         [theme.breakpoints.up("sm")]: {
             width: "50%",
         },
@@ -63,10 +63,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "50px",
 
     },
-    createButton:{
+    createButton: {
         margin: "24px 0px 16px",
         backgroundColor: "rgb(191,148,115)",
-        fontFamily: 'Lora',
+        fontFamily: theme.typography.subtitle2.fontFamily,
 
         color: "#47392d",
         letterSpacing: theme.typography.subtitle2.letterSpacing,
@@ -126,17 +126,17 @@ export default function ListBooster() {
                     }
                 </Grid>
 
-                    {
-                        boosterItems && boosterItems.map((booster) => (
-                            booster.type === "JOY" ?
-                                <BoosterPaper moodStyle={classes.paperJoy} booster={booster} key={booster.id}/>
+                {
+                    boosterItems && boosterItems.map((booster) => (
+                        booster.type === "JOY" ?
+                            <BoosterPaper moodStyle={classes.paperJoy} booster={booster} key={booster.id}/>
+                            :
+                            booster.type === "CALM" ?
+                                <BoosterPaper moodStyle={classes.paperCalm} booster={booster} key={booster.id}/>
                                 :
-                                booster.type === "CALM" ?
-                                    <BoosterPaper moodStyle={classes.paperCalm} booster={booster} key={booster.id}/>
-                                    :
-                                    <BoosterPaper moodStyle={classes.paperConf} booster={booster} key={booster.id}/>
-                        ))
-                    }
+                                <BoosterPaper moodStyle={classes.paperConf} booster={booster} key={booster.id}/>
+                    ))
+                }
 
             </div>
         </>

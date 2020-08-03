@@ -13,7 +13,7 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles(() => ({
     delete: {
         color: "#951010",
-        margin:"15px 0px",
+        margin: "15px 0px",
 
     },
 
@@ -44,7 +44,7 @@ export default function BoosterDeleteDialogButton(props) {
                     onClick={handleClickOpen}
                     fullWidth
                     variant="contained"
-                    >
+            >
                 Delete booster
             </Button>
 
@@ -67,16 +67,18 @@ export default function BoosterDeleteDialogButton(props) {
                         alignItems="center"
                     >
                         <Grid item>
-                    <Button
-                        className={classes.delete}
-                        onClick={() => {handleDelete(idToDelete)}}
-                        href="/">
-                        Delete
-                    </Button>
+                            <Button
+                                className={classes.delete}
+                                onClick={() => {
+                                    handleDelete(idToDelete)
+                                }}
+                                href="/">
+                                Delete
+                            </Button>
                         </Grid>
-                    <Button onClick={handleClose} color="primary" autoFocus>
-                        Cancel
-                    </Button>
+                        <Button onClick={handleClose} color="primary" autoFocus>
+                            Cancel
+                        </Button>
                     </Grid>
                 </DialogActions>
             </Dialog>

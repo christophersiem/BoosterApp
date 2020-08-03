@@ -12,20 +12,20 @@ import CardMedia from "@material-ui/core/CardMedia";
 const useStyles = makeStyles((theme) => ({
     button: {
         margin: "0px",
-        padding:"0px",
+        padding: "0px",
 
     },
-    root:{
-        margin:"20px 0px 0px 0px",
+    root: {
+        margin: "20px 0px 0px 0px",
         [theme.breakpoints.up("sm")]: {
-            marginTop:"40px",
-            maxWidth:"372px",
+            marginTop: "40px",
+            maxWidth: "372px",
         },
     },
-    root1:{
-        margin:"20px 0px 0px 0px",
+    root1: {
+        margin: "20px 0px 0px 0px",
         [theme.breakpoints.up("sm")]: {
-            marginTop:"40px",
+            marginTop: "40px",
         },
     },
 
@@ -55,48 +55,50 @@ export default function BoosterButton() {
             alignItems="center"
         >
 
-                <Grid>
-                    <Card className={classes.root1} style={{borderRadius:"20px"}}>
-                        <Button value={"JOY"} onClick={() => redirect("JOY")} variant="outlined" className={classes.button}>
-                            <CardMedia
-                                component="img"
-                                alt="Joy Picture"
-                                height="170"
-                                width="200"
-                                image="/joy2_button.png"
-                                title="Joy Picture"
-                            />
-                        </Button>
-                    </Card>
-                </Grid>
-                <Grid>
-                    <Card className={classes.root} style={{borderRadius:"20px"}}>
-                        <Button value={"CALM"} onClick={() => redirect("CALM")} variant="outlined" className={classes.button}>
-                            <CardMedia
-                                component="img"
-                                alt="Calm Picture"
-                                height="170"
-                                width="200"
-                                image="/calm2_button.png"
-                                title="Calm Picture"
-                            />
-                        </Button>
-                    </Card>
-                </Grid>
-                <Grid>
-                    <Card className={classes.root} style={{borderRadius:"20px"}}>
-                        <Button value={"CONFIDENCE"} onClick={() => redirect("CONFIDENCE")} variant="outlined" className={classes.button}>
-                            <CardMedia
-                                component="img"
-                                alt="Confidence Picture"
-                                height="170"
-                                width="200"
-                                image="/confidence2_button.png"
-                                title="Confidence Picture"
-                            />
-                        </Button>
-                    </Card>
-                </Grid>
+            <Grid>
+                <Card className={classes.root1} style={{borderRadius: "20px"}}>
+                    <Button value={"JOY"} onClick={() => redirect("JOY")} variant="outlined" className={classes.button}>
+                        <CardMedia
+                            component="img"
+                            alt="Joy Picture"
+                            height="170"
+                            width="200"
+                            image="/joy2_button.png"
+                            title="Joy Picture"
+                        />
+                    </Button>
+                </Card>
+            </Grid>
+            <Grid>
+                <Card className={classes.root} style={{borderRadius: "20px"}}>
+                    <Button value={"CALM"} onClick={() => redirect("CALM")} variant="outlined"
+                            className={classes.button}>
+                        <CardMedia
+                            component="img"
+                            alt="Calm Picture"
+                            height="170"
+                            width="200"
+                            image="/calm2_button.png"
+                            title="Calm Picture"
+                        />
+                    </Button>
+                </Card>
+            </Grid>
+            <Grid>
+                <Card className={classes.root} style={{borderRadius: "20px"}}>
+                    <Button value={"CONFIDENCE"} onClick={() => redirect("CONFIDENCE")} variant="outlined"
+                            className={classes.button}>
+                        <CardMedia
+                            component="img"
+                            alt="Confidence Picture"
+                            height="170"
+                            width="200"
+                            image="/confidence2_button.png"
+                            title="Confidence Picture"
+                        />
+                    </Button>
+                </Card>
+            </Grid>
 
         </Grid>
 

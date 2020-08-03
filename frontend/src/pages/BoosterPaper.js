@@ -10,17 +10,18 @@ import {removeBooster} from "../context/booster/booster-actions";
 
 const useStyles = makeStyles((theme) => ({
 
-    paper: {
-        margin: "7px 0px",
-        padding: "0px 10px",
-        fontFamily: theme.typography.subtitle2.fontFamily,
-        fontSize: "14px",
-        letterSpacing: "1.3px",
-        fontWeight: "bold",
-    },
+        paper: {
+            margin: "7px 0px",
+            padding: "0px 10px",
+            fontFamily: theme.typography.subtitle2.fontFamily,
+            fontSize: "14px",
+            letterSpacing: "1.3px",
+            fontWeight: "bold",
+        },
         delIcon: {
             alignItems: "right",
-        },}
+        },
+    }
 
 ))
 export default function BoosterPaper(props) {
@@ -28,11 +29,11 @@ export default function BoosterPaper(props) {
     const dispatch = useContext(BoosterDispatchContext)
 
     function handleDelete(id) {
-        removeBooster(dispatch,id)
+        removeBooster(dispatch, id)
             .catch((e) => console.error(e))
     }
 
-    return(
+    return (
         <div className={classes.paper} key={props.booster.id}>
             <Paper className={props.moodStyle} elevation={10}>
                 <Grid
@@ -46,10 +47,10 @@ export default function BoosterPaper(props) {
                     </Grid>
 
 
-                        <IconButton className={classes.delIcon}
-                                    onClick={() => handleDelete(props.booster.id)}>
-                            <DeleteIcon/>
-                        </IconButton>
+                    <IconButton className={classes.delIcon}
+                                onClick={() => handleDelete(props.booster.id)}>
+                        <DeleteIcon/>
+                    </IconButton>
 
                 </Grid>
             </Paper>

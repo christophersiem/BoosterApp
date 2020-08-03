@@ -40,18 +40,18 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: theme.typography.subtitle.fontFamily,
         fontSize: "18px",
         fontStyle: "italic",
-        color:"#43382c",
+        color: "#43382c",
         margin: "0px 20px"
     },
     delete: {
         color: "#c20909",
     },
     paperColor: {
-        backgroundColor: fade("rgb(222,150,93)",0.5)
+        backgroundColor: fade("rgb(222,150,93)", 0.5)
     },
-    image:{
+    image: {
         maxWidth: "374px",
-        borderRadius:"10px"
+        borderRadius: "10px"
     }
 }))
 

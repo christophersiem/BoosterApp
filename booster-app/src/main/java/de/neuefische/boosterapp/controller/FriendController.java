@@ -17,7 +17,7 @@ public class FriendController {
 
     @PostMapping
     public void addUserAsFriend(@RequestBody String friendToAdd, Principal principal) {
-        friendService.addUserAsFriend(friendToAdd,principal.getName());
+        friendService.addUserAsFriend(friendToAdd, principal.getName());
     }
 
     @DeleteMapping

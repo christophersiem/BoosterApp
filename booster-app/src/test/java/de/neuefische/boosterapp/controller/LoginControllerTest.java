@@ -39,37 +39,37 @@ class LoginControllerTest {
     public JWTUtils jwtUtils;
 
     @BeforeEach
-    public void resetDb(){
+    public void resetDb() {
         userDb.deleteAll();
     }
 
     @Test
-    public void loginWithValidCredentials(){
+    public void loginWithValidCredentials() {
 
         //GIVEN
-        BoosterUser testUser = new BoosterUser("1","chris2020",encoder.encode("!!21*QqwW"),"hannes","test@test.de","user",0, Arrays.asList("123", "234"));
+        BoosterUser testUser = new BoosterUser("1", "chris2020", encoder.encode("!!21*QqwW"), "hannes", "test@test.de", "user", 0, Arrays.asList("123", "234"));
         userDb.save(testUser);
 
         //WHEN
-        String url = "http://localhost:"+ port + "/auth/login";
-        ResponseEntity<String> tokenResponse = restTemplate.postForEntity(url, new LoginData("chris2020","!!21*QqwW"), String.class);
+        String url = "http://localhost:" + port + "/auth/login";
+        ResponseEntity<String> tokenResponse = restTemplate.postForEntity(url, new LoginData("chris2020", "!!21*QqwW"), String.class);
 
         //THEN
         assertEquals(HttpStatus.OK, tokenResponse.getStatusCode());
-        assertTrue(jwtUtils.validateToken(tokenResponse.getBody(),"chris2020"));
+        assertTrue(jwtUtils.validateToken(tokenResponse.getBody(), "chris2020"));
 
     }
 
     @Test
-    public void loginWithInvalidCredentials(){
+    public void loginWithInvalidCredentials() {
 
         //GIVEN
-        BoosterUser testUser = new BoosterUser("1","chris2020",encoder.encode("!!21*QqwW"),"hannes","test@test.de","user",0, Arrays.asList("123", "234"));
+        BoosterUser testUser = new BoosterUser("1", "chris2020", encoder.encode("!!21*QqwW"), "hannes", "test@test.de", "user", 0, Arrays.asList("123", "234"));
         userDb.save(testUser);
 
         //WHEN
-        String url = "http://localhost:"+ port + "/auth/login";
-        ResponseEntity<String> tokenResponse = restTemplate.postForEntity(url, new LoginData("chris2020","??21*QqwW"), String.class);
+        String url = "http://localhost:" + port + "/auth/login";
+        ResponseEntity<String> tokenResponse = restTemplate.postForEntity(url, new LoginData("chris2020", "??21*QqwW"), String.class);
 
         //THEN
         assertEquals(HttpStatus.BAD_REQUEST, tokenResponse.getStatusCode());

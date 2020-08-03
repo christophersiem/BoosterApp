@@ -5,9 +5,9 @@ import BoosterButton from "../components/BoosterButton";
 export default function Home() {
 
     return (
-            <>
-                    <BoosterButton/>
-            </>
+        <>
+            <BoosterButton/>
+        </>
 
     )
 }

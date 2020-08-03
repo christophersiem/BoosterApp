@@ -17,7 +17,7 @@ const initialState = {
 function reducer(state, action) {
     switch (action.type) {
         case LOGIN:
-            return { ...state, authStatus: 'PENDING' };
+            return {...state, authStatus: 'PENDING'};
         case LOGIN_SUCCESS:
             return {
                 ...state,
@@ -25,11 +25,11 @@ function reducer(state, action) {
                 userData: action.payload,
             };
         case LOGIN_FAILED:
-            return { ...state, authStatus: 'FAILED' };
+            return {...state, authStatus: 'FAILED'};
         case LOGOUT:
-            return { ...initialState };
+            return {...initialState};
         case REGISTRATION:
-            return { ...state, registrationStatus: 'PENDING' };
+            return {...state, registrationStatus: 'PENDING'};
         case REGISTRATION_SUCCESS:
             return {
                 ...state,
@@ -37,13 +37,13 @@ function reducer(state, action) {
                 userData: action.payload,
             };
         case REGISTRATION_FAILED:
-            return { ...state, registrationStatus: 'FAILED' };
+            return {...state, registrationStatus: 'FAILED'};
         default:
             return state;
     }
 }
 
-function UserContextProvider({ children }) {
+function UserContextProvider({children}) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     return (

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "3px",
 
         ".MuiFormHelperText-root.Mui-error": {
-            color:theme.palette.second
+            color: theme.palette.second
         },
 
 
@@ -34,9 +34,9 @@ const useStyles = makeStyles((theme) => ({
     goToLoginButton: {
         margin: "10x 0px ",
         width: "40%",
-        backgroundColor:"rgb(191,148,115)",
-        fontFamily: 'Lora',
-        color:"#47392d",
+        backgroundColor: "rgb(191,148,115)",
+        fontFamily: theme.typography.subtitle2.fontFamily,
+        color: "#47392d",
         [theme.breakpoints.up("sm")]: {
             width: "20%",
         },

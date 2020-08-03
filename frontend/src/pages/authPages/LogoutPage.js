@@ -38,9 +38,9 @@ const useStyles = makeStyles((theme) => ({
         paddingRight: "20px"
     },
     buttonPos: {
-        justifyContent:"center",
-        display:"flex",
-        marginTop:"400px"
+        justifyContent: "center",
+        display: "flex",
+        marginTop: "400px"
     }
 }))
 
@@ -70,13 +70,13 @@ export default function LogoutPage() {
                 <div className={classes.goodBye}>Hope to see you<br/> soon again</div>
             </Grid>
             <div className={classes.buttonPos}>
-            <Button
-                fullWidth
-                variant="contained"
-                color=""
-                className={classes.button}
-                onClick={() => history.push("/login")}>Back to Log in
-            </Button>
+                <Button
+                    fullWidth
+                    variant="contained"
+                    color=""
+                    className={classes.button}
+                    onClick={() => history.push("/login")}>Back to Log in
+                </Button>
             </div>
         </div>
 

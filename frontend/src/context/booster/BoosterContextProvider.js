@@ -2,7 +2,7 @@ import React, {useReducer} from 'react';
 import {BoosterDispatchContext, BoosterStateContext} from './BoosterContext';
 import boosterReducer from "./boosterReducer";
 
-export default function BoosterContextProvider({ children }) {
+export default function BoosterContextProvider({children}) {
     const [state, dispatch] = useReducer(boosterReducer, {
         boosterItems: [],
         fetchStatus: undefined,

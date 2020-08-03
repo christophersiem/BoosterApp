@@ -3,19 +3,20 @@ import {makeStyles} from "@material-ui/core/styles";
 import {UserStateContext} from "../context/user/UserContext";
 
 const useStyles = makeStyles((theme) => ({
-    colored: {
-    color: "#AD6B36",
+        colored: {
+            color: "#AD6B36",
 
-},
+        },
 
-message: {
-    fontFamily: 'Lora',
-    fontSize: theme.typography.subtitle.fontSize,
-    letterSpacing:theme.typography.subtitle.letterSpacing,
-    lineHeight:theme.typography.subtitle.lineHeight,
-    paddingLeft: "16px",
-}}
-    ));
+        message: {
+            fontFamily: theme.typography.subtitle2.fontFamily,
+            fontSize: theme.typography.subtitle.fontSize,
+            letterSpacing: theme.typography.subtitle.letterSpacing,
+            lineHeight: theme.typography.subtitle.lineHeight,
+            paddingLeft: "16px",
+        }
+    }
+));
 
 function greet() {
 
@@ -29,8 +30,7 @@ function greet() {
     } else if (hrs >= 12 && hrs <= 17) {
         greeting = "Good Afternoon";
 
-    }
-    else if (hrs >= 17 && hrs <= 24) {
+    } else if (hrs >= 17 && hrs <= 24) {
         greeting = "Good Evening";
     }
     return greeting
@@ -43,7 +43,8 @@ export default function WelcomeMessage() {
 
 
     return (
-        <h2 className={classes.message}> {greet()},<span className={classes.colored}><br/> {userData.firstName}</span></h2>
+        <h2 className={classes.message}> {greet()},<span className={classes.colored}><br/> {userData.firstName}</span>
+        </h2>
     )
 }
 

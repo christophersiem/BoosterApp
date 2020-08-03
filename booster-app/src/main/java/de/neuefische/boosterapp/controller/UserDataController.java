@@ -19,7 +19,7 @@ public class UserDataController {
     }
 
     @GetMapping
-    public UserDataDto getUserNumbers(Principal principal){
+    public UserDataDto getUserNumbers(Principal principal) {
         return userDataService.getUserNumbers(principal.getName());
     }
 }

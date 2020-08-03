@@ -11,15 +11,13 @@ import UserInfo from "../../pages/UserInfo";
 
 const useStyles = makeStyles((theme) => ({
 
-    root:{
-
-    },
+    root: {},
 
     menuButton: {
 
         color: "black",
-        padding:"0px",
-        justifyContent:"flex-start",
+        padding: "0px",
+        justifyContent: "flex-start",
     },
     title: {
         flexGrow: 1,
@@ -39,23 +37,23 @@ const useStyles = makeStyles((theme) => ({
         color: "black"
     },
 
-    image:{
-        padding:"5px 0px 10px",
+    image: {
+        padding: "5px 0px 10px",
 
     },
-    logo:{
-        fontFamily: 'Lora',
-        fontSize:"32px",
-        color:"#AD6B36",
+    logo: {
+        fontFamily: theme.typography.subtitle2.fontFamily,
+        fontSize: "32px",
+        color: "#AD6B36",
         letterSpacing: "6px",
-        margin:"20px 0px"
+        margin: "20px 0px"
     }
 
 }));
 
 export default function Header() {
     const classes = useStyles();
-    const { authStatus } = useContext(UserStateContext);
+    const {authStatus} = useContext(UserStateContext);
 
     if (authStatus !== 'SUCCESS') {
         return null;
@@ -65,31 +63,31 @@ export default function Header() {
 
         <header className={classes.root}>
 
-                <AppBar style={{background: 'rgb(199,192,178)'}} position="static">
-                    <Toolbar className={classes.toolbar}>
-                        <Grid
-                            container
-                            direction="row"
-                            justify="space-between"
-                            alignItems="center"
-                        >
+            <AppBar style={{background: 'rgb(199,192,178)'}} position="static">
+                <Toolbar className={classes.toolbar}>
+                    <Grid
+                        container
+                        direction="row"
+                        justify="space-between"
+                        alignItems="center"
+                    >
 
                         <div className={classes.menuButton} color="inherit" aria-label="menu">
                             <Grid item>
-                            <AppDrawerLeft/>
+                                <AppDrawerLeft/>
                             </Grid>
                         </div>
-                            <Grid item>
-                        <p className={classes.logo}>moodboost</p>
-                            </Grid>
+                        <Grid item>
+                            <p className={classes.logo}>moodboost</p>
+                        </Grid>
 
                         <Grid item>
                             <UserInfo/>
                         </Grid>
-                        </Grid>
-                        </Toolbar>
+                    </Grid>
+                </Toolbar>
 
-                </AppBar>
+            </AppBar>
 
         </header>
     );

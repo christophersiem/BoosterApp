@@ -32,11 +32,12 @@ export const theme = createMuiTheme({
     },
 
     overrides: {
-MuiSelect:{
-    outlined:{
-        fontFamily:"Nora",
-    }
-},
+        MuiSelect: {
+            outlined: {
+                fontFamily: "Nora",
+            }
+        },
+
 
         MuiPaper: {
             root: {
@@ -108,6 +109,9 @@ MuiSelect:{
             color: "black"
         },
         MuiOutlinedInput: {
+            input:{
+              fontFamily:"Nora",
+            },
             root: {
                 "& $notchedOutline": {
                     borderColor: "#43382c"

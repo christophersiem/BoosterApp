@@ -6,7 +6,7 @@ export async function performLogin(username, password) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({username, password}),
     });
 
     if (response.status !== 200) {
