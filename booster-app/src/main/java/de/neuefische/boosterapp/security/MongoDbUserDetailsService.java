@@ -26,8 +26,8 @@ public class MongoDbUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<BoosterUser> optionalUser = userDb.findById(username);
-        if (optionalUser.isEmpty()){
-            throw new UsernameNotFoundException("user with username: \""+username+"\" not found");
+        if (optionalUser.isEmpty()) {
+            throw new UsernameNotFoundException("user with username: \"" + username + "\" not found");
         }
 
         BoosterUser boosterUser = optionalUser.get();

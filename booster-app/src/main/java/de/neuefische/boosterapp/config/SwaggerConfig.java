@@ -20,7 +20,7 @@ import java.util.List;
 public class SwaggerConfig {
 
     @Bean
-    public Docket api(){
+    public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
 
                 .select()

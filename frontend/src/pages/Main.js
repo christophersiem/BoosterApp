@@ -14,10 +14,10 @@ const useStyles = makeStyles(() => ({
 export default function Main() {
     const classes = useStyles();
 
-return (
+    return (
 
-    <main className={classes.root}>
-        <Home/>
-    </main>
-);
+        <main className={classes.root}>
+            <Home/>
+        </main>
+    );
 }

@@ -10,18 +10,18 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         overflow: "scroll",
-        paddingTop:"20px"
+        paddingTop: "20px"
     },
     image: {
         margin: "20px 0px",
-        height:"60%",
-        width:"60%",
+        height: "60%",
+        width: "60%",
         alignSelf: "center",
         justifyContent: "center",
-        paddingLeft:"20px",
+        paddingLeft: "20px",
         [theme.breakpoints.up("sm")]: {
             height: "40%",
-            width:"40%",
+            width: "40%",
         },
     },
 
@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: theme.typography.subtitle2.fontSize,
         letterSpacing: theme.typography.subtitle2.letterSpacing,
         textAlign: "start",
-        paddingRight:"20px",
+        paddingRight: "20px",
         [theme.breakpoints.up("sm")]: {
             fontSize: "28px",
         },

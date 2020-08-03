@@ -17,13 +17,13 @@ import PostAddOutlinedIcon from '@material-ui/icons/PostAddOutlined';
 import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 import PowerSettingsNewOutlinedIcon from '@material-ui/icons/PowerSettingsNewOutlined';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
 
-    root:{
-        justifyContent:"center",
-        display:"flex",
+    root: {
+        justifyContent: "center",
+        display: "flex",
         alignSelf: "center",
-        height:"30px"
+        height: "30px"
 
     },
     list: {
@@ -34,19 +34,19 @@ const useStyles = makeStyles(() => ({
     },
     drawerPaper: {
         height: "100%",
-        backgroundColor:"#f1eded"
+        backgroundColor: "#f1eded"
     },
     image: {
         margin: "15px 0px",
         alignSelf: "center",
-        justifyContent:"center",
+        justifyContent: "center",
     },
-    iconColor:{
+    iconColor: {
         color: '#ad6b36'
     },
-    text:{
-        color:"#47392d",
-        fontFamily: 'Lora',
+    text: {
+        color: "#47392d",
+        fontFamily: theme.typography.subtitle2.fontFamily,
     }
 
 }));
@@ -67,7 +67,7 @@ export default function AppDrawerLeft(props) {
     };
     const navLinks = [
         {text: "Home", link: "/", icon: <HomeOutlinedIcon className={classes.iconColor}/>},
-        {text: "My friends", link: "/friends",icon: <PeopleOutlinedIcon className={classes.iconColor}/>},
+        {text: "My friends", link: "/friends", icon: <PeopleOutlinedIcon className={classes.iconColor}/>},
         {text: "My Booster", link: "/list", icon: <MoodIcon className={classes.iconColor}/>},
         {text: "Add Booster", link: "/add", icon: <PostAddOutlinedIcon className={classes.iconColor}/>},
         {text: "FAQ", link: "/faq", icon: <HelpOutlineOutlinedIcon className={classes.iconColor}/>},
@@ -83,11 +83,11 @@ export default function AppDrawerLeft(props) {
             onKeyDown={toggleDrawer(anchor, false)}
         >
             <List>
-                <Grid container justify = "center">
+                <Grid container justify="center">
 
-                        <img className={classes.image} src={"/logo.png"} alt="logo_small" width={"50%"} height={"50%"}/>
+                    <img className={classes.image} src={"/logo.png"} alt="logo_small" width={"50%"} height={"50%"}/>
                 </Grid>
-                        <WelcomeMessage/>
+                <WelcomeMessage/>
                 {navLinks.map((linkItem,) => (
 
                     <ListItem onClick={() => {
@@ -104,7 +104,6 @@ export default function AppDrawerLeft(props) {
 
         </div>
     );
-
 
     return (
 

@@ -73,7 +73,7 @@ public class BoosterService {
         return boosterDb.findByCreator(creatorUserName);
     }
 
-    public Optional <Booster> getBoosterById(String id) {
+    public Optional<Booster> getBoosterById(String id) {
         return boosterDb.findById(id);
     }
 }

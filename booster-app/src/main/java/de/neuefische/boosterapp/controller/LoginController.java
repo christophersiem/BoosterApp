@@ -23,20 +23,20 @@ public class LoginController {
     private final LoginUtils loginUtils;
 
 
-    public LoginController(AuthenticationManager authenticationManager, JWTUtils jwtUtils,  LoginUtils loginUtils) {
+    public LoginController(AuthenticationManager authenticationManager, JWTUtils jwtUtils, LoginUtils loginUtils) {
         this.authenticationManager = authenticationManager;
         this.jwtUtils = jwtUtils;
         this.loginUtils = loginUtils;
     }
 
     @PostMapping
-    public String login(@RequestBody LoginData data){
+    public String login(@RequestBody LoginData data) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword()));
             HashMap<String, Object> tokenData = loginUtils.getUserTokenData(data.getUsername());
 
             return jwtUtils.createToken(tokenData, data.getUsername());
-        }catch (Exception e){
+        } catch (Exception e) {
 
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid credentials");
         }

@@ -24,17 +24,18 @@ public class UserUtils {
 
     public void increaseBoosterCounter(String creatorUserName) {
         BoosterUser user = getUserByUsername(creatorUserName);
-        int numberCreatedUpdate= user.getCreatedBooster() + 1;
+        int numberCreatedUpdate = user.getCreatedBooster() + 1;
         user.setCreatedBooster(numberCreatedUpdate);
         userDb.save(user);
 
     }
 
-    public BoosterUser getUserByUsername(String username){
+    public BoosterUser getUserByUsername(String username) {
         Optional<BoosterUser> optionalBoosterUser = userDb.findByUsername(username);
-        if(optionalBoosterUser.isPresent()){
+        if (optionalBoosterUser.isPresent()) {
             return optionalBoosterUser.get();
-        } throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with username " +username+" does not exist.");
+        }
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User with username " + username + " does not exist.");
     }
 }
 

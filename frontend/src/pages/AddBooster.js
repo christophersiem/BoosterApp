@@ -33,7 +33,7 @@ export default function AddBooster() {
         <div className={classes.root}>
             <p className={classes.title}>Add a booster</p>
 
-                <AddBoosterForm/>
+            <AddBoosterForm/>
 
         </div>
     )

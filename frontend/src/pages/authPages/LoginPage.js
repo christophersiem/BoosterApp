@@ -16,14 +16,14 @@ const useStyles = makeStyles((theme) => ({
     image: {
         padding: "45px 0px 15px",
         Width: "300px",
-        marginBottom:"15px"
+        marginBottom: "15px"
     },
 
     welcome2: {
-        fontFamily: 'Lora',
+        fontFamily: theme.typography.subtitle2.fontFamily,
         fontSize: theme.typography.subtitle2.fontSize,
         letterSpacing: theme.typography.subtitle2.letterSpacing,
-        color:"#AD6B36",
+        color: "#AD6B36",
         alignSelf: "center",
         margin: "25px 15px 20px"
     },
@@ -32,10 +32,10 @@ const useStyles = makeStyles((theme) => ({
 
     },
     name: {
-        fontFamily: 'Lora',
-        fontSize:"42px",
-        letterSpacing:theme.typography.subtitle2.letterSpacing,
-        color:"#ad6b36"
+        fontFamily: theme.typography.subtitle2.fontFamily,
+        fontSize: "42px",
+        letterSpacing: theme.typography.subtitle2.letterSpacing,
+        color: "#ad6b36"
     }
 
 }))
@@ -63,7 +63,7 @@ export default function LoginPage() {
                 <img className={classes.image} src={"./login_logo.png"} alt="MoodBoost_Logo"/>
 
 
-                <img className={classes.mood} src={"./mood.jpeg"} alt="MoodBoost_Logo"/>
+                <img className={classes.mood} src={"./mood2.png"} alt="MoodBoost_Logo"/>
 
 
                 <Grid item>

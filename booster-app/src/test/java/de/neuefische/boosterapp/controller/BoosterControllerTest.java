@@ -30,19 +30,14 @@ class BoosterControllerTest {
 
     @LocalServerPort
     public int port;
-
-    @MockBean
-    private UserUtils userUtils;
-
     @Autowired
     public PasswordEncoder encoder;
-
     @Autowired
     public UserDb userDb;
-
     @Autowired
     public TestRestTemplate restTemplate;
-
+    @MockBean
+    private UserUtils userUtils;
     @Autowired
     private BoosterMongoDb boosterMongoDb;
 
@@ -140,7 +135,7 @@ class BoosterControllerTest {
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(token);
         HttpEntity entity = new HttpEntity(headers);
-        ResponseEntity <Booster[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, Booster[].class);
+        ResponseEntity<Booster[]> response = restTemplate.exchange(url, HttpMethod.GET, entity, Booster[].class);
 
         //THEN
         assertEquals(response.getStatusCode(), HttpStatus.OK);

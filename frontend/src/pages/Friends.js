@@ -44,6 +44,8 @@ export default function Friends() {
     const [allFriends, setAllFriends] = useState([])
     const [selfAdd, setSelfAdd] = useState(false)
     const {userData} = useContext(UserStateContext);
+    const [friendExists, setFriendExists] = useState(true)
+    const [userExists, setUserExists] = useState()
 
     useEffect(() => {
 
@@ -59,8 +61,7 @@ export default function Friends() {
     }
 
 
-    const [friendExists, setFriendExists] = useState(true)
-    const [userExists, setUserExists] = useState()
+
 
     function addFriend() {
         setSelfAdd(false)
@@ -68,7 +69,7 @@ export default function Friends() {
         if (allFriends.includes(friendToAdd)) {
             setFriendExists(false)
         }
-        if (userData.userName === friendToAdd) {
+        else if (userData.userName === friendToAdd) {
             setSelfAdd(true)
         } else {
             addUserAsFriend(friendToAdd)

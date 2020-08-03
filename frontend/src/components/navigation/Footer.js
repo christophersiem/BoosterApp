@@ -12,18 +12,19 @@ import MoodIcon from "@material-ui/icons/Mood";
 
 const useStyles = makeStyles(() => ({
     footer: {
-        alignItems:"center",
+        alignItems: "center",
         height: "64px",
     },
 
     root: {
         "& .MuiBottomNavigationAction-root.Mui-selected ": {
-            color: "#d7c4af"},
-        "& .MuiBottomNavigationAction-root":{
+            color: "#d7c4af"
+        },
+        "& .MuiBottomNavigationAction-root": {
             color: "#47392d",
         },
 
-}
+    }
 
 }))
 
@@ -36,7 +37,7 @@ export default function SimpleBottomNavigation() {
         history.push(`/${newValue}`);
         setValue(newValue);
     };
-    const { authStatus } = useContext(UserStateContext);
+    const {authStatus} = useContext(UserStateContext);
 
     if (authStatus !== 'SUCCESS') {
         return <div/>;
@@ -44,11 +45,14 @@ export default function SimpleBottomNavigation() {
 
     return (
         <footer>
-            <BottomNavigation value={value} onChange={handleChange} className={classes.root} style={{background: 'rgb(191,148,115)'}}>
-                <BottomNavigationAction label="Home" value="" icon={<HomeOutlinedIcon className={classes.iconColor}/>} />
-                <BottomNavigationAction label="Booster" value="list" icon={<MoodIcon className={classes.iconColor}/>} />
-                <BottomNavigationAction label="New" value="add" icon={<PostAddOutlinedIcon className={classes.iconColor}/>} />
-                <BottomNavigationAction label="FAQ" value="faq" icon={<HelpOutlineOutlinedIcon className={classes.iconColor}/>} />
+            <BottomNavigation value={value} onChange={handleChange} className={classes.root}
+                              style={{background: 'rgb(191,148,115)'}}>
+                <BottomNavigationAction label="Home" value="" icon={<HomeOutlinedIcon className={classes.iconColor}/>}/>
+                <BottomNavigationAction label="Booster" value="list" icon={<MoodIcon className={classes.iconColor}/>}/>
+                <BottomNavigationAction label="New" value="add"
+                                        icon={<PostAddOutlinedIcon className={classes.iconColor}/>}/>
+                <BottomNavigationAction label="FAQ" value="faq"
+                                        icon={<HelpOutlineOutlinedIcon className={classes.iconColor}/>}/>
             </BottomNavigation>
 
         </footer>

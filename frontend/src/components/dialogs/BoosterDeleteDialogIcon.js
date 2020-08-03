@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -10,7 +10,6 @@ import {deleteBooster} from "../../utils/booster-utils";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import {BoosterDispatchContext} from "../../context/booster/BoosterContext";
 
 
 const useStyles = makeStyles(() => ({
@@ -25,10 +24,8 @@ export default function BoosterDeleteDialogIcon(props) {
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const idToDelete = (props.value)
-    const dispatch = useContext(BoosterDispatchContext)
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
+
+
 
     const handleClose = () => {
         setOpen(false);
@@ -67,7 +64,9 @@ export default function BoosterDeleteDialogIcon(props) {
                         <Grid item>
                             <Button
                                 className={classes.delete}
-                                onClick={() => {handleDelete(idToDelete)}}
+                                onClick={() => {
+                                    handleDelete(idToDelete)
+                                }}
                                 href="/">
                                 Delete
                             </Button>

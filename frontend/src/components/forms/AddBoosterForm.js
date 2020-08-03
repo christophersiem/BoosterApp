@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
         margin: "6px 40px",
         width: "80%",
     },
-    addBoosterButton:{
+    addBoosterButton: {
         backgroundColor: "rgb(191,148,115)",
-        fontFamily: 'Lora',
+        fontFamily: theme.typography.subtitle2.fontFamily,
         color: "#47392d",
         letterSpacing: theme.typography.subtitle2.letterSpacing,
         margin: "6px 40px",

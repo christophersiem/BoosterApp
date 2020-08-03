@@ -23,16 +23,16 @@ const useStyles = makeStyles((theme) => ({
     signInButton: {
         margin: "24px 0px 16px",
         backgroundColor: "rgb(191,148,115)",
-        fontFamily: 'Lora',
+        fontFamily: theme.typography.subtitle2.fontFamily,
         color: "#47392d",
-        borderRadius:"20px",
+        borderRadius: "20px",
         letterSpacing: theme.typography.subtitle2.letterSpacing,
         width: "40%",
         [theme.breakpoints.up("sm")]: {
             width: "20%",
         },
 
-},
+    },
     alert: {
         backgroundColor: "rgb(186,84,38)",
         marginTop: "10px",
@@ -111,7 +111,7 @@ export default function LoginForm() {
                 Sign In
             </Button>
 
-            <Link href="/register" variant="body2" style={{color: "#47392d", fontFamily:"Nora"}}>
+            <Link href="/register" variant="body2" style={{color: "#47392d", fontFamily: "Nora"}}>
                 {"No Account? Sign Up!"}
             </Link>
         </>

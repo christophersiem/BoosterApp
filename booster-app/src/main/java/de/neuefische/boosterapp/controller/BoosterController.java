@@ -41,7 +41,7 @@ public class BoosterController {
 
     @PostMapping
     public Booster addNewBooster(@RequestBody @Valid AddBoosterDto data, Principal principal) {
-        return boosterService.addNewBooster(data.getName(),data.getCreatorName(),data.getMessage(),data.getOwner(),data.getYoutubeLink(),data.getImage(),data.getType(),principal.getName());
+        return boosterService.addNewBooster(data.getName(), data.getCreatorName(), data.getMessage(), data.getOwner(), data.getYoutubeLink(), data.getImage(), data.getType(), principal.getName());
     }
 
     @DeleteMapping("{id}")

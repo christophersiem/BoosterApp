@@ -23,7 +23,7 @@ class BoosterUtilsTest {
         String response = BoosterUtils.getYoutubeId(url);
 
         //THEN
-        assertEquals("YO1GBsuzTWU",response);
+        assertEquals("YO1GBsuzTWU", response);
 
     }
 }

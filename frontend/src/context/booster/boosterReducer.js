@@ -12,13 +12,13 @@ import {
 export default function boosterReducer(state, action) {
     switch (action.type) {
         case FETCH_BOOSTER_ITEMS:
-            return { ...state, fetchStatus: 'PENDING' };
+            return {...state, fetchStatus: 'PENDING'};
         case FETCH_BOOSTER_ITEMS_SUCCESS:
-            return { ...state, fetchStatus: 'SUCCESS', boosterItems: action.payload };
+            return {...state, fetchStatus: 'SUCCESS', boosterItems: action.payload};
         case FETCH_BOOSTER_ITEMS_FAILED:
-            return { ...state, fetchStatus: 'FAILED' };
+            return {...state, fetchStatus: 'FAILED'};
         case ADD_BOOSTER:
-            return { ...state, addStatus: 'PENDING' };
+            return {...state, addStatus: 'PENDING'};
         case ADD_BOOSTER_SUCCESS:
             return {
                 ...state,
@@ -26,7 +26,7 @@ export default function boosterReducer(state, action) {
                 boosterItems: [...state.boosterItems, action.payload],
             };
         case ADD_BOOSTER_FAILED:
-            return { ...state, addStatus: 'FAILED' };
+            return {...state, addStatus: 'FAILED'};
         case DELETE_BOOSTER_SUCCESS:
             return {
                 ...state,
