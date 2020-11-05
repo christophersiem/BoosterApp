@@ -1,32 +1,29 @@
-import {getJWTToken} from "./jwt-utils";
+import { getJWTToken } from './jwt-utils';
 
 export async function addUserAsFriend(friend) {
-    const token = getJWTToken();
-    const response = await fetch('/api/friends', {
-
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-        },
-        body: (friend),
-    });
-    if (response.status !== 200) {
-        throw new Error(`failed to add friend: ${response.statusText}`);
-    }
-    return await response.text();
+  const token = getJWTToken();
+  const response = await fetch('/api/friends', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: friend,
+  });
+  if (response.status !== 200) {
+    throw new Error(`failed to add friend: ${response.statusText}`);
+  }
+  return await response.text();
 }
 
 export function deleteFriend(friendToDelete) {
-    const token = getJWTToken();
-    return fetch("/api/friends/", {
-        method: "DELETE",
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-        },
-        body: (friendToDelete),
-
-    })
-
+  const token = getJWTToken();
+  return fetch('/api/friends/', {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: friendToDelete,
+  });
 }

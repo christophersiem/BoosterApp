@@ -1,40 +1,39 @@
 import {
-    ADD_BOOSTER,
-    ADD_BOOSTER_FAILED,
-    ADD_BOOSTER_SUCCESS,
-    DELETE_BOOSTER_SUCCESS,
-    FETCH_BOOSTER_ITEMS,
-    FETCH_BOOSTER_ITEMS_FAILED,
-    FETCH_BOOSTER_ITEMS_SUCCESS
-} from "./booster-actions";
-
+  ADD_BOOSTER,
+  ADD_BOOSTER_FAILED,
+  ADD_BOOSTER_SUCCESS,
+  DELETE_BOOSTER_SUCCESS,
+  FETCH_BOOSTER_ITEMS,
+  FETCH_BOOSTER_ITEMS_FAILED,
+  FETCH_BOOSTER_ITEMS_SUCCESS,
+} from './booster-actions';
 
 export default function boosterReducer(state, action) {
-    switch (action.type) {
-        case FETCH_BOOSTER_ITEMS:
-            return {...state, fetchStatus: 'PENDING'};
-        case FETCH_BOOSTER_ITEMS_SUCCESS:
-            return {...state, fetchStatus: 'SUCCESS', boosterItems: action.payload};
-        case FETCH_BOOSTER_ITEMS_FAILED:
-            return {...state, fetchStatus: 'FAILED'};
-        case ADD_BOOSTER:
-            return {...state, addStatus: 'PENDING'};
-        case ADD_BOOSTER_SUCCESS:
-            return {
-                ...state,
-                addStatus: 'SUCCESS',
-                boosterItems: [...state.boosterItems, action.payload],
-            };
-        case ADD_BOOSTER_FAILED:
-            return {...state, addStatus: 'FAILED'};
-        case DELETE_BOOSTER_SUCCESS:
-            return {
-                ...state,
-                boosterItems: state.boosterItems.filter((booster) => {
-                    return booster.id !== action.payload;
-                }),
-            };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case FETCH_BOOSTER_ITEMS:
+      return { ...state, fetchStatus: 'PENDING' };
+    case FETCH_BOOSTER_ITEMS_SUCCESS:
+      return { ...state, fetchStatus: 'SUCCESS', boosterItems: action.payload };
+    case FETCH_BOOSTER_ITEMS_FAILED:
+      return { ...state, fetchStatus: 'FAILED' };
+    case ADD_BOOSTER:
+      return { ...state, addStatus: 'PENDING' };
+    case ADD_BOOSTER_SUCCESS:
+      return {
+        ...state,
+        addStatus: 'SUCCESS',
+        boosterItems: [...state.boosterItems, action.payload],
+      };
+    case ADD_BOOSTER_FAILED:
+      return { ...state, addStatus: 'FAILED' };
+    case DELETE_BOOSTER_SUCCESS:
+      return {
+        ...state,
+        boosterItems: state.boosterItems.filter((booster) => {
+          return booster.id !== action.payload;
+        }),
+      };
+    default:
+      return state;
+  }
 }
