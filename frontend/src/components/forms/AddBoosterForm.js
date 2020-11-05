@@ -10,8 +10,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import {BoosterDispatchContext, BoosterStateContext} from "../../context/booster/BoosterContext";
 import {ADD_BOOSTER, addBooster} from "../../context/booster/booster-actions";
 import {UserStateContext} from "../../context/user/UserContext";
-import Alert from "@material-ui/lab/Alert";
 import {fetchUserNumbers} from "../../utils/user-utils";
+import ShowAlerts from "../alerts/ShowAlerts";
 
 const useStyles = makeStyles((theme) => ({
     field: {
@@ -36,50 +36,29 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }))
+const initialState = {
+    creator: "",
+    creatorName: "",
+    owner: "",
+    type: "",
+    name: "",
+    message: "",
+    youtubeLink: "",
+    image: "",
+}
 
 export default function AddBoosterForm() {
 
     const {addStatus} = useContext(BoosterStateContext);
     const {userData} = useContext(UserStateContext);
     const dispatch = useContext(BoosterDispatchContext);
-
     const classes = useStyles();
-    const [owner, setOwner] = useState("");
-    const [type, setType] = useState("");
-    const [name, setName] = useState("");
-    const [message, setMessage] = useState("");
-    const [youtube, setYoutube] = useState("");
-    const [image, setImage] = useState("");
+    const [boosterToAdd, setBoosterToAdd] = useState(initialState)
     const [allFriends, setAllFriends] = useState([])
 
-    const boosterToAdd = {
-        creator: userData.id,
-        creatorName: userData.firstName,
-        owner: owner,
-        type: type,
-        name: name,
-        message: message,
-        youtubeLink: youtube,
-        image: image,
+    function handleChange (event){
+        setBoosterToAdd({...boosterToAdd, [event.target.name] : event.target.value});
     }
-    const handleChangeOwner = (event) => {
-        setOwner(event.target.value);
-    };
-    const handleChangeType = (event) => {
-        setType(event.target.value);
-    };
-    const handleChangeName = (event) => {
-        setName(event.target.value);
-    };
-    const handleChangeMessage = (event) => {
-        setMessage(event.target.value);
-    };
-    const handleChangeYoutube = (event) => {
-        setYoutube(event.target.value)
-    };
-    const handleChangeImage = (event) => {
-        setImage(event.target.value)
-    };
 
     function handleSubmit() {
         addBooster(dispatch, boosterToAdd)
@@ -87,14 +66,12 @@ export default function AddBoosterForm() {
     }
 
     useEffect(() => {
-
         dispatch({type: ADD_BOOSTER})
         fetchUserNumbers(userData.userName)
             .then(data => setAllFriends(data.friends))
     }, [dispatch, userData.userName])
 
     return (
-        <>
             <Grid
                 container
                 direction="column"
@@ -105,14 +82,14 @@ export default function AddBoosterForm() {
                         <FormControl fullWidth={true} variant="outlined" className={classes.field}>
                             <InputLabel id="owner">Who is this Booster for?</InputLabel>
                             <Select
+                                name="owner"
                                 className={classes.root}
-                                value={owner}
-                                onChange={handleChangeOwner}
+                                value={boosterToAdd.owner}
+                                onChange={handleChange}
                                 label="Who is this Booster for?"
                                 id="owner"
                                 fullWidth={true}
                             >
-
                                 <MenuItem value={userData.userName} style={{fontFamily: "Lora"}}>Me</MenuItem>
                                 {allFriends && allFriends.map((friend) => (
                                     <MenuItem value={friend} key={friend}
@@ -122,13 +99,14 @@ export default function AddBoosterForm() {
                     </Grid>
 
                     <Grid item>
-                        {owner &&
+                        {boosterToAdd.owner &&
                         <FormControl fullWidth={true} variant="outlined" className={classes.field}>
                             <InputLabel id="type">Booster Type</InputLabel>
                             <Select
+                                name="type"
                                 className={classes.root}
-                                value={type}
-                                onChange={handleChangeType}
+                                value={boosterToAdd.type}
+                                onChange={handleChange}
                                 label="Type"
                                 id="type"
                                 displayEmpty={true}
@@ -140,84 +118,85 @@ export default function AddBoosterForm() {
                         </FormControl>}
 
                     </Grid>
-                    {type &&
+                    {boosterToAdd.type &&
                     <Grid item>
                         <form noValidate autoComplete="off" className={classes.field}>
                             <TextField
+                                name="name"
                                 className={classes.root}
-                                id="name"
+                                value={boosterToAdd.name}
+                                onChange={handleChange}
                                 label="Name of Booster"
+                                id="name"
                                 variant="outlined"
-                                onChange={handleChangeName}
-                                value={name}
                                 fullWidth={true}
-                                error={name.length > 30 && name.length > 0}
-                                helperText={name.length > 30 && name.length > 0 && "Choose a name with maximum 30 characters"}
+                                error={boosterToAdd.name.length > 30 && boosterToAdd.name.length > 0}
+                                helperText={boosterToAdd.name.length > 30 && boosterToAdd.name.length > 0 && "Choose a name with maximum 30 characters"}
                             />
                         </form>
                     </Grid>}
-                    {name &&
+                    {boosterToAdd.name &&
                     <Grid item>
                         <form noValidate autoComplete="off" className={classes.field}>
                             <TextField
+                                name="youtube"
                                 className={classes.root}
-                                id="youtube"
-                                value={youtube}
+                                value={boosterToAdd.youtube}
+                                onChange={handleChange}
                                 label="Youtube-Link (optional)"
+                                id="youtube"
                                 variant="outlined"
-                                onChange={handleChangeYoutube}
                                 fullWidth={true}
                             />
                         </form>
                     </Grid>}
-                    {name && <Grid item>
+                    {boosterToAdd.name && <Grid item>
                         <form noValidate autoComplete="off" className={classes.field}>
                             <TextField
+                                name="image"
                                 className={classes.root}
-                                id="image"
-                                value={image}
+                                value={boosterToAdd.image}
+                                onChange={handleChange}
                                 label="Image-Link (optional)"
+                                id="image"
                                 variant="outlined"
-                                onChange={handleChangeImage}
                                 fullWidth={true}
                             />
                         </form>
                     </Grid>}
-                    {name &&
+                    {boosterToAdd.name &&
                     <Grid item>
                         <form noValidate autoComplete="off" className={classes.field}>
                             <TextField
+                                name="message"
                                 className={classes.root}
-                                fullWidth={true}
-                                id="message"
+                                value={boosterToAdd.message}
+                                onChange={handleChange}
                                 label="Your Message"
+                                id="message"
                                 variant="outlined"
+                                fullWidth={true}
                                 multiline rows={4}
-                                onChange={handleChangeMessage}
-                                value={message}
                             />
                         </form>
                     </Grid>}
                     <Grid item>
-                        {addStatus === "SUCCESS" && <Alert
-                            variant="filled" severity="success"
-                        > Booster successfully created :) </Alert>}
-                        {addStatus === "FAIL" && <Alert
-                            variant="filled" severity="error"
-                        > Check entries! </Alert>}
-                        {name &&
+                        <ShowAlerts addStatus = {addStatus}/>
+                        {boosterToAdd.name &&
                         <Button
                             className={classes.addBoosterButton}
                             onClick={handleSubmit}
-                            disabled={name.length > 30 || name.length < 1 || !owner || !type || (!youtube && !image && !message)}
+                            disabled={
+                                boosterToAdd.name.length > 30 ||
+                                boosterToAdd.name.length < 1 ||
+                                !boosterToAdd.owner ||
+                                !boosterToAdd.type ||
+                                (!boosterToAdd.youtube && !boosterToAdd.image && !boosterToAdd.message)}
                         >
                             Create Booster
                         </Button>}
-
                     </Grid>
                 </FormControl>
             </Grid>
-
-        </>
     )
 }
