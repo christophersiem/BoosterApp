@@ -26,6 +26,5 @@ export function isJWTTokenValid() {
 export function getDecodedJWTToken() {
     const jwtToken = getJWTToken();
     const decodedToken = jwtDecode(jwtToken);
-    console.log(decodedToken);
     return decodedToken;
 }

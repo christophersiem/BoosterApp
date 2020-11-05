@@ -62,8 +62,6 @@ export default function UserInfo() {
 
     }, [userData.userName])
 
-    console.log(userNumbers)
-
     const userDetails = [
         {no: "1", heading: "Firstname", content: userData.firstName},
         {no: "2", heading: "Username", content: userData.userName},
