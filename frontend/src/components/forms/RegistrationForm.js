@@ -1,7 +1,5 @@
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router';
+import React, { useContext, useEffect, useState } from 'react';
 import { addNewUser } from '../../utils/auth-utils';
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
@@ -16,6 +14,7 @@ import {
   REGISTRATION_SUCCESS,
 } from '../../context/user/UserContextProvider';
 import Grid from '@material-ui/core/Grid';
+import RegisterPageButtons from '../RegisterPageButtons';
 
 const useStyles = makeStyles((theme) => ({
   inputField: {
@@ -37,16 +36,7 @@ const useStyles = makeStyles((theme) => ({
       width: '20%',
     },
   },
-  goToLoginButton: {
-    margin: '10x 0px ',
-    width: '40%',
-    backgroundColor: 'rgb(191,148,115)',
-    fontFamily: theme.typography.subtitle2.fontFamily,
-    color: '#47392d',
-    [theme.breakpoints.up('sm')]: {
-      width: '20%',
-    },
-  },
+
   alert: {
     marginBottom: '12px',
   },
@@ -58,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
 export default function RegistrationForm() {
   const dispatch = useContext(UserDispatchContext);
   const { registrationStatus } = useContext(UserStateContext);
-  const history = useHistory();
   const classes = useStyles();
   const [passwordState, setPasswordState] = useState('');
   const [registerState, setRegisterState] = useState({
@@ -67,17 +56,12 @@ export default function RegistrationForm() {
     password: '',
     email: '',
   });
-  const validation =
-    registerState.username.length > 5 &&
-    registerState.username.length > 0 &&
-    registerState.password.length > 5 &&
-    passwordState.length > 0 &&
-    registerState.password === passwordState &&
-    registerState.email.length > 0 &&
-    registerState.email.includes('@') &&
-    (registerState.email.includes('.de') ||
-      registerState.email.includes('.com') ||
-      registerState.email.includes('.net'));
+  const isError= registerState.email.length > 0 &&
+    (!registerState.email.includes('@') ||
+      !(
+        registerState.email.includes('.de') ||
+        registerState.email.includes('.com') ||
+        registerState.email.includes('.net')))
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -118,7 +102,6 @@ export default function RegistrationForm() {
         variant="outlined"
         required
         fullWidth
-        id="firstname"
         label="Firstname"
         name="firstName"
       />
@@ -132,7 +115,6 @@ export default function RegistrationForm() {
         fullWidth
         name="username"
         label="Username"
-        id="username"
         error={
           registerState.username.length < 6 && registerState.username.length > 0
         }
@@ -152,7 +134,6 @@ export default function RegistrationForm() {
         name="password"
         label="Password"
         type="password"
-        id="password"
         error={
           registerState.password.length < 6 && registerState.password.length > 0
         }
@@ -193,23 +174,8 @@ export default function RegistrationForm() {
         label="E-Mail"
         type="email"
         id="email"
-        error={
-          registerState.email.length > 0 &&
-          (!registerState.email.includes('@') ||
-            !(
-              registerState.email.includes('.de') ||
-              registerState.email.includes('.com') ||
-              registerState.email.includes('.net')
-            ))
-        }
-        helperText={
-          registerState.email.length > 0 &&
-          (!registerState.email.includes('@') ||
-            !(
-              registerState.email.includes('.de') ||
-              registerState.email.includes('.com') ||
-              registerState.email.includes('.net')
-            )) &&
+        error={isError}
+        helperText={ isError &&
           'Please enter a valid E-Mail address'
         }
       />
@@ -226,27 +192,12 @@ export default function RegistrationForm() {
           Username already exists{' '}
         </Alert>
       )}
-      {registrationStatus !== 'SUCCESS' && (
-        <Button
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.registerButton}
-          onClick={handleSubmit}
-          disabled={!validation}
-        >
-          REGISTER
-        </Button>
-      )}
-      <Button
-        fullWidth
-        variant="contained"
-        color=""
-        className={classes.goToLoginButton}
-        onClick={() => history.push('/login')}
-      >
-        Go to Log in
-      </Button>
+ <RegisterPageButtons
+   handleSubmit={handleSubmit}
+   registrationStatus={registrationStatus}
+   registerState={registerState}
+   passwordState={passwordState}
+ />
     </Grid>
   );
 }
