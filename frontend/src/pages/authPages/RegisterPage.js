@@ -8,7 +8,6 @@ import RegistrationForm from '../../components/forms/RegistrationForm';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    overflow: 'scroll',
     paddingTop: '20px',
   },
   image: {
