@@ -1,5 +1,5 @@
 import TextField from '@material-ui/core/TextField';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { addNewUser } from '../../utils/auth-utils';
 import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
