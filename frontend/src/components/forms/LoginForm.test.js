@@ -18,5 +18,17 @@ describe('component test :: LoginPage', () => {
     expect(loginField).toBeInTheDocument();
   });
 
+  it('renders a loginbutton', () => {
+
+    //GIVEN
+    const {getByRole} = render(<LoginForm />);
+
+    //WHEN
+    const loginButton = getByRole('button', { name: /sign in/i });
+
+    //THEN
+    expect(loginButton).toBeInTheDocument();
+  });
+
 
 });
