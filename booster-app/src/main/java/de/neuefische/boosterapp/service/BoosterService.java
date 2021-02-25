@@ -39,17 +39,19 @@ public class BoosterService {
     }
 
 
-    public Booster addNewBooster(String name, String creatorName, String message, String owner, String youtube, String image, BoosterType type, String user) {
-        Booster booster = new Booster();
-        booster.setId(userUtils.generateRandomId());
-        booster.setName(name);
-        booster.setCreatorName(creatorName);
-        booster.setMessage(message);
-        booster.setOwnerUsername(owner);
-        booster.setYoutubeLink(getYoutubeId(youtube));
-        booster.setImage(image);
-        booster.setType(type);
-        booster.setCreator(user);
+    public Booster addNewBooster(String boosterName, String creatorName, String message, String owner, String youtube, String image, BoosterType type, String user) {
+        Booster booster = Booster.builder()
+                .id(userUtils.generateRandomId())
+                .name(boosterName)
+                .creatorName(creatorName)
+                .message(message)
+                .ownerUsername(owner)
+                .youtubeLink(getYoutubeId(youtube))
+                .image(image)
+                .type(type)
+                .creator(user)
+                .build();
+
         userUtils.increaseBoosterCounter(user);
 
         return boosterDb.save(booster);
